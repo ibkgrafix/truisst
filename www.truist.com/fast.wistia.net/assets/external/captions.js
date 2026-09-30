@@ -491,7 +491,7 @@ var __webpack_modules__ = [, , t => {
                 try {
                     const t = document.createElement("canvas"),
                         e = t.getContext("webgl") || t.getContext("experimental-webgl");
-                    return !!e && (e.getExtension("WEBGL_lose_context") ? .loseContext(), !0)
+                    return !!e && (e.getExtension("WEBGL_lose_context") ?.loseContext(), !0)
                 } catch (t) {
                     return !1
                 }
@@ -505,11 +505,11 @@ var __webpack_modules__ = [, , t => {
                     edge: k(),
                     firefox: O(),
                     gearvr: f.test(o),
-                    hdr: !!window.matchMedia ? .("(dynamic-range: high)").matches || !!(screen.colorDepth && screen.colorDepth >= 30),
+                    hdr: !!window.matchMedia ?.("(dynamic-range: high)").matches || !!(screen.colorDepth && screen.colorDepth >= 30),
                     hdrCodecs: {
-                        hevc: window.MediaSource ? .isTypeSupported ? .('video/mp4; codecs="hvc1.2.4.L153.B0"') ? ? !1,
-                        av1: window.MediaSource ? .isTypeSupported ? .('video/mp4; codecs="av01.0.08M.10.0.110.09.16.09"') ? ? !1,
-                        vp92: window.MediaSource ? .isTypeSupported ? .('video/mp4; codecs="vp09.02.10.10.01.09.16.09"') ? ? !1
+                        hevc: window.MediaSource ?.isTypeSupported ?.('video/mp4; codecs="hvc1.2.4.L153.B0"') ?? !1,
+                        av1: window.MediaSource ?.isTypeSupported ?.('video/mp4; codecs="av01.0.08M.10.0.110.09.16.09"') ?? !1,
+                        vp92: window.MediaSource ?.isTypeSupported ?.('video/mp4; codecs="vp09.02.10.10.01.09.16.09"') ?? !1
                     },
                     android: C(),
                     oldandroid: C() && parseFloat(C().version) < 4.1,
@@ -529,7 +529,7 @@ var __webpack_modules__ = [, , t => {
                     hoverIsNatural: _(),
                     touchScreen: T(),
                     video: P(),
-                    managedMediaSource: "ManagedMediaSource" in window && "function" == typeof window.ManagedMediaSource ? .isTypeSupported,
+                    managedMediaSource: "ManagedMediaSource" in window && "function" == typeof window.ManagedMediaSource ?.isTypeSupported,
                     mediaSource: n.z.MediaSource && n.z.MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'),
                     nativeHls: (S() || x() || E()) && P().nativeHls,
                     localstorage: I(),
@@ -784,7 +784,7 @@ var __webpack_modules__ = [, , t => {
                 }
             },
             a = function(t) {
-                return t ? .mediaId ? t.mediaId : t ? .id ? t.id : void 0
+                return t ?.mediaId ? t.mediaId : t ?.id ? t.id : void 0
             }
     }, (t, e, i) => {
         i.d(e, {
@@ -905,17 +905,17 @@ var __webpack_modules__ = [, , t => {
             s = i(14),
             o = i(15),
             r = i(7);
-        r.z.Wistia ? ? = {}, r.z.Wistia.Preact ? ? = { ...n,
+        r.z.Wistia ??= {}, r.z.Wistia.Preact ??= { ...n,
             hooks: s,
             compat: o
-        }, r.z.Wistia._destructors ? ? = {}, r.z.Wistia._initializers ? ? = {}, r.z.Wistia._remoteData ? ? = new Map, r.z.Wistia.api ? ? = () => (console.error("Accessed Wistia.api() before it was initialized"), null), r.z.Wistia.defineControl ? ? = () => (console.error("Accessed Wistia.defineControl() before it was initialized"), null), r.z.Wistia.EventShepherdManager ? ? = {}, r.z.Wistia.mixin ? ? = (t, e = {}) => {
+        }, r.z.Wistia._destructors ??= {}, r.z.Wistia._initializers ??= {}, r.z.Wistia._remoteData ??= new Map, r.z.Wistia.api ??= () => (console.error("Accessed Wistia.api() before it was initialized"), null), r.z.Wistia.defineControl ??= () => (console.error("Accessed Wistia.defineControl() before it was initialized"), null), r.z.Wistia.EventShepherdManager ??= {}, r.z.Wistia.mixin ??= (t, e = {}) => {
             Object.keys(e).forEach((i => {
                 (function(t, e) {
                     if (null == t) throw new TypeError("Cannot convert undefined or null to object");
                     return Object.prototype.hasOwnProperty.call(Object(t), e)
                 })(e, i) && (t[i] = e[i])
             }))
-        }, r.z.Wistia.playlistMethods ? ? = new Map, r.z.Wistia.PublicApi ? ? = null, r.z.Wistia.uncacheMedia ? ? = () => (console.error("Accessed Wistia.uncacheMedia() before it was initialized"), null), r.z.Wistia.VisitorKey ? ? = null, r.z.Wistia.visitorKey ? ? = null, r.z.Wistia.wistia ? ? = void 0, r.z.Wistia._liveStreamEventDataPromises ? ? = {}, r.z.Wistia._mediaDataPromises ? ? = {}, r.z.Wistia._liveStreamPollingPromises ? ? = {}, r.z.Wistia.first ? ? = () => r.z.Wistia.api() ? ? document.querySelector("wistia-player");
+        }, r.z.Wistia.playlistMethods ??= new Map, r.z.Wistia.PublicApi ??= null, r.z.Wistia.uncacheMedia ??= () => (console.error("Accessed Wistia.uncacheMedia() before it was initialized"), null), r.z.Wistia.VisitorKey ??= null, r.z.Wistia.visitorKey ??= null, r.z.Wistia.wistia ??= void 0, r.z.Wistia._liveStreamEventDataPromises ??= {}, r.z.Wistia._mediaDataPromises ??= {}, r.z.Wistia._liveStreamPollingPromises ??= {}, r.z.Wistia.first ??= () => r.z.Wistia.api() ?? document.querySelector("wistia-player");
         const a = r.z.Wistia
     }, t => {
         t.exports = window.Wistia.Preact.hooks
@@ -955,8 +955,8 @@ var __webpack_modules__ = [, , t => {
                 }) : t[e] = i
             }
             addListener(t, e, i) {
-                const o = n[t] ? ? t;
-                this.convertedEventsMap[o] ? ? = [];
+                const o = n[t] ?? t;
+                this.convertedEventsMap[o] ??= [];
                 const r = e => {
                     if (s[t]) {
                         const n = s[t](e.detail);
@@ -970,13 +970,13 @@ var __webpack_modules__ = [, , t => {
             }
             removeAllListeners(t) {
                 Object.keys(this.convertedEventsMap).forEach((e => {
-                    this.convertedEventsMap[e] ? .forEach((i => {
+                    this.convertedEventsMap[e] ?.forEach((i => {
                         t.removeEventListener(e, i.eventListenerCallback)
                     })), this.convertedEventsMap[e] = []
                 }))
             }
             removeListener(t, e, i) {
-                const s = n[t] ? ? t,
+                const s = n[t] ?? t,
                     o = [];
                 i ? (e.removeEventListener(s, i), this.convertedEventsMap[s] && (this.convertedEventsMap[s].forEach(((t, n) => {
                     t.givenCallback === i && (o.push(n), e.removeEventListener(s, t.eventListenerCallback))
@@ -1237,7 +1237,7 @@ var __webpack_modules__ = [, , t => {
                         if ("undefined" == typeof document || "function" != typeof document.querySelector) return !1;
                         try {
                             const t = document.querySelector('meta[name="wistia-host-mode"]'),
-                                e = t ? .getAttribute("content");
+                                e = t ?.getAttribute("content");
                             return "string" == typeof e && "production" === e.trim().toLowerCase()
                         } catch {
                             return !1
@@ -1387,7 +1387,7 @@ var __webpack_modules__ = [, , t => {
             }
             parse(t) {
                 let e = !1;
-                if (Array.isArray(t)) this.r = t[0], this.g = t[1], this.b = t[2], this.a = t[3] ? ? 1, e = !0;
+                if (Array.isArray(t)) this.r = t[0], this.g = t[1], this.b = t[2], this.a = t[3] ?? 1, e = !0;
                 else {
                     const i = String(t).replace(/\s+/g, "");
                     if (s.test(i)) {
@@ -1591,13 +1591,13 @@ var __webpack_modules__ = [, , t => {
             d = t => {
                 const e = t.error;
                 if (!(e instanceof Error)) return;
-                const i = t.error ? .source ? ? "",
+                const i = t.error ?.source ?? "",
                     n = (0, r.Ni)("fast");
                 i.includes(n) && u("globalListener", e)
             },
             p = t => {
                 const e = t.reason;
-                e instanceof Error && (t.reason ? .stack ? ? "").includes((0, r.Ni)("fast")) && u("globalListener", e)
+                e instanceof Error && (t.reason ?.stack ?? "").includes((0, r.Ni)("fast")) && u("globalListener", e)
             },
             g = () => {
                 o.s._isListeningForGlobalErrors || (window.addEventListener("error", d), o.s._isListeningForGlobalErrors = !0)
@@ -2223,7 +2223,7 @@ var __webpack_modules__ = [, , t => {
         const n = t => t.split("-")[0],
             s = () => {
                 const t = new Error;
-                return t.stack ? .split("\n").slice(2).join("\n")
+                return t.stack ?.split("\n").slice(2).join("\n")
             },
             o = (t, e) => {
                 t.some((t => "string" != typeof t)) && (console.error("availableLanguages has non-string values", t, s()), t = t.filter((t => "string" == typeof t))), e.some((t => "string" != typeof t)) && (console.error("preferredLanguages has non-string values", e, s()), e = e.filter((t => "string" == typeof t)));
@@ -2383,14 +2383,14 @@ var __webpack_modules__ = [, , t => {
                     this.video.whenControlMounted("transcript").then((t => {
                         t._isVisible ? t.close() : t.open()
                     }))
-                })), this.video = t, this.options = t.plugin ? .captions ? .options ? ? {}, this._menuKey = 0, this._isTranscriptOpen = !1, this._currentMenuKey = "root", this.fetchCaptions().then((() => {
+                })), this.video = t, this.options = t.plugin ?.captions ?.options ?? {}, this._menuKey = 0, this._isTranscriptOpen = !1, this._currentMenuKey = "root", this.fetchCaptions().then((() => {
                     const t = (0, m.JM)();
                     if (this.options.onByDefault && (0, s.DM)(t)) return void this.video.captionsEnabled(!0);
                     const {
                         onByViewerPreference: e,
                         iso6392Language: i
                     } = t;
-                    !1 !== e && !1 !== v.s._viewerPreferencesEnabled ? (e && (this.video.captionsLanguages() ? ? []).some((({
+                    !1 !== e && !1 !== v.s._viewerPreferencesEnabled ? (e && (this.video.captionsLanguages() ?? []).some((({
                         iso6392LanguageCode: t
                     }) => t === i)) || this.options.onByDefault) && this.video.captionsEnabled(!0) : this.video.captionsEnabled(!1)
                 })), this.unbinds = [], this.onTranscriptControlVisibilityChange = t => {
@@ -2426,7 +2426,7 @@ var __webpack_modules__ = [, , t => {
                 this.updateButtonLabel()
             }
             controlDialogClosed() {
-                this._menuKey += 1, this._currentMenuKey = "root", this.renderDialog(), this.updateButtonLabel(), this.setAriaLiveText ? .("")
+                this._menuKey += 1, this._currentMenuKey = "root", this.renderDialog(), this.updateButtonLabel(), this.setAriaLiveText ?.("")
             }
             updateButtonLabel() {
                 this.dialog && (this.dialog.isOpen() ? this.setButtonLabel(this.translate("HIDE_MENU")) : this.setButtonLabel(this.translate("SHOW_MENU")))
@@ -2540,13 +2540,13 @@ var __webpack_modules__ = [, , t => {
                 null == i ? this.video.captionsEnabled(!1) : e !== i && this.video.captionsLanguage(i)
             }
             setCustomizeEmbedOptionsForCurrentLanguage(t = this.video.captionsLanguage().wistiaLanguageCode) {
-                const e = this.video._mediaData.translatedMediaData ? .find((e => e.wistiaLanguageCode === t)) ? .embedOptions;
+                const e = this.video._mediaData.translatedMediaData ?.find((e => e.wistiaLanguageCode === t)) ?.embedOptions;
                 this.video.setCustomizeEmbedOptions(e)
             }
         }
         T.handle = "captionsButton", T.type = "control-bar-right", T.sortValue = 50, T.shouldMount = t => {
             const e = t.plugin.captions;
-            return null != e && !1 === t.isLiveMedia() && (null != e.captions ? e.captions.length > 0 : (t._mediaData.availableTranscripts ? .length ? ? 0) > 0)
+            return null != e && !1 === t.isLiveMedia() && (null != e.captions ? e.captions.length > 0 : (t._mediaData.availableTranscripts ?.length ?? 0) > 0)
         }, (0, u.X)(T)
     }, (t, e, i) => {
         i.d(e, {
@@ -2746,10 +2746,10 @@ var __webpack_modules__ = [, , t => {
                 selectedHex: o,
                 title: r
             }) => {
-                const [a, l] = (0, s.useState)(null), [c, u] = (0, s.useState)(null), d = y.L1.find((t => t.hex === o)) ? .ariaLabel ? ? null;
+                const [a, l] = (0, s.useState)(null), [c, u] = (0, s.useState)(null), d = y.L1.find((t => t.hex === o)) ?.ariaLabel ?? null;
                 return (0, n.h)(h.Z, {
                     title: r,
-                    value: a ? ? c ? ? d
+                    value: a ?? c ?? d
                 }, (0, n.h)(T, null, (0, n.h)(g.z6, {
                     direction: "horizontal",
                     shouldWrap: t,
@@ -3008,7 +3008,7 @@ var __webpack_modules__ = [, , t => {
                     const o = { ...e,
                         ...n
                     };
-                    i(o), (0, s.iZ)(o), t ? .(o, n)
+                    i(o), (0, s.iZ)(o), t ?.(o, n)
                 }
             }
         }
@@ -3285,7 +3285,7 @@ var __webpack_modules__ = [, , t => {
                     navigationDirection: h,
                     prevMenuKey: u,
                     menuStack: d
-                } = l, p = (0, s.useMemo)((() => d[d.length - 1] ? ? "root"), [d]), g = (0, s.useMemo)((() => ({
+                } = l, p = (0, s.useMemo)((() => d[d.length - 1] ?? "root"), [d]), g = (0, s.useMemo)((() => ({
                     goBack: () => c({
                         type: "GO_BACK"
                     }),
@@ -3519,7 +3519,7 @@ var __webpack_modules__ = [, , t => {
                 onMouseEnter: () => b(!0),
                 onMouseLeave: () => b(!1),
                 style: S,
-                tabIndex: -1 === g ? -1 : g ? ? 0,
+                tabIndex: -1 === g ? -1 : g ?? 0,
                 ...(0, r.n9)(d) ? {
                     ariaLabel: d
                 } : {},
@@ -3575,7 +3575,7 @@ var __webpack_modules__ = [, , t => {
                         const t = p.current;
                         t && "away-from-root" === y && (0, c.FR)(t)
                     }), [b, y]), !b) return null;
-                const C = i ? ? "Go back",
+                const C = i ?? "Go back",
                     S = (0, o.n9)(t) ? `${C}, ${t}` : void 0,
                     T = w && (0, o.n9)(i),
                     _ = T && d,
@@ -3645,7 +3645,7 @@ var __webpack_modules__ = [, , t => {
                     for (; i.nextNode();) e.push(i.currentNode);
                     return e
                 })(t);
-                e[0] ? .focus({
+                e[0] ?.focus({
                     preventScroll: !0
                 })
             }
@@ -3853,10 +3853,10 @@ var __webpack_modules__ = [, , t => {
                 checked: l,
                 style: o._,
                 onFocus: () => {
-                    (0, a.C)() || g(!0), u ? .("focus")
+                    (0, a.C)() || g(!0), u ?.("focus")
                 },
                 onBlur: () => {
-                    g(!1), d ? .("focus")
+                    g(!1), d ?.("focus")
                 }
             }), (0, n.h)("div", {
                 style: v
@@ -3864,8 +3864,8 @@ var __webpack_modules__ = [, , t => {
                 htmlFor: m,
                 style: f,
                 "aria-label": c,
-                onMouseEnter: () => u ? .("hover"),
-                onMouseLeave: () => d ? .("hover")
+                onMouseEnter: () => u ?.("hover"),
+                onMouseLeave: () => d ?.("hover")
             })))
         }
     }, (t, e, i) => {
@@ -3921,7 +3921,7 @@ var __webpack_modules__ = [, , t => {
         });
         var n = i(163),
             s = i(27);
-        const o = t => n.Yc.get(t) ? ? s.yY
+        const o = t => n.Yc.get(t) ?? s.yY
     }, (t, e, i) => {
         i.d(e, {
             O: () => h
@@ -4185,7 +4185,7 @@ var __webpack_modules__ = [, , t => {
             a = i(33),
             l = i(162),
             c = i(93);
-        n.s.captionsPromises ? ? = {};
+        n.s.captionsPromises ??= {};
         const h = n.s.captionsPromises;
         n.s.uncacheCaptions = (t, e) => {
             if (t && e) {
@@ -4332,7 +4332,7 @@ var __webpack_modules__ = [, , t => {
         const m = (0, c.o1)(),
             f = (t, e) => {
                 if (!e || null == t) return t;
-                const i = e.currentTrack() ? .cues || [],
+                const i = e.currentTrack() ?.cues || [],
                     n = i.map(((t, e) => {
                         const n = i[e + 1];
                         return {
@@ -4356,7 +4356,7 @@ var __webpack_modules__ = [, , t => {
                     if (this.captions && this.video.captionsEnabled()) {
                         const e = this.captions.hash.lines.filter((e => e.start <= t && t < e.end));
                         let i = e[0];
-                        if (this.video.controls.extendedAudioDescriptionButton ? .isEnabled() && this.video.controls.extendedAudioDescriptionButton ? .isAudioPlaying()) {
+                        if (this.video.controls.extendedAudioDescriptionButton ?.isEnabled() && this.video.controls.extendedAudioDescriptionButton ?.isAudioPlaying()) {
                             const t = e.find((t => t.extendedAudioDescription));
                             t && (i = t)
                         } else i = e.find((t => !t.extendedAudioDescription));
@@ -4569,7 +4569,7 @@ var __webpack_modules__ = [, , t => {
                 if (i / n < 1) {
                     const [e, i] = (t => {
                         if (!(o.iphone || o.ipad || o.android)) return [340, 860];
-                        if (t ? .isAudio()) return [500, 960];
+                        if (t ?.isAudio()) return [500, 960];
                         const e = r();
                         let i;
                         if (e.height) {
@@ -4584,7 +4584,7 @@ var __webpack_modules__ = [, , t => {
                 } else {
                     const [n, s] = e || (t => {
                         if (!(o.iphone || o.ipad || o.android)) return [640, 960];
-                        if (t ? .isAudio()) return [500, 960];
+                        if (t ?.isAudio()) return [500, 960];
                         const e = r();
                         let i;
                         if (e.width) {
@@ -4801,7 +4801,7 @@ var __webpack_modules__ = [, , t => {
                     totalHits: e
                 }) => {
                     this.video.behaviors.ui.setAriaLiveText(`${t} of ${e} results.`)
-                })), this.video = t, this.options = t.plugin.captions ? .options ? ? {}, this._isVisible = !1, this._turnstileClosed = !1, this.unbinds = [], this.unbinds.push(this.video.on("captionschange", (t => {
+                })), this.video = t, this.options = t.plugin.captions ?.options ?? {}, this._isVisible = !1, this._turnstileClosed = !1, this.unbinds = [], this.unbinds.push(this.video.on("captionschange", (t => {
                     this.setSelectedLanguage(t)
                 })), this.video.on("timechange", (() => {
                     this._isVisible && this.renderTranscript()
@@ -4848,7 +4848,7 @@ var __webpack_modules__ = [, , t => {
             }
             renderTranscript() {
                 this.video.controls.captions.hideCustomCaptions();
-                const t = (0, h.Tx)(this.video._mediaData, this.video.embedOptions().plugin ? .["captions-v1"]);
+                const t = (0, h.Tx)(this.video._mediaData, this.video.embedOptions().plugin ?.["captions-v1"]);
                 let e;
                 return t >= 0 && (e = this.captionsResp.captions[t].language), new Promise((t => {
                     (0, o.$)("assets/external/interFontFace.js").then((() => {
@@ -4879,7 +4879,7 @@ var __webpack_modules__ = [, , t => {
                 return (0, n.render)((0, n.h)("nothing", null), this.rootElem), this.renderTranscript()
             }
             getSrtCaptions() {
-                return this.video.controls.extendedAudioDescriptionButton ? .isEnabled() ? this.captionsResp.captions : (this.captionsWithoutExtendedAudioDescription || (this.captionsWithoutExtendedAudioDescription = {}, this.captionsWithoutExtendedAudioDescription.captions = this.captionsResp.captions.map((t => {
+                return this.video.controls.extendedAudioDescriptionButton ?.isEnabled() ? this.captionsResp.captions : (this.captionsWithoutExtendedAudioDescription || (this.captionsWithoutExtendedAudioDescription = {}, this.captionsWithoutExtendedAudioDescription.captions = this.captionsResp.captions.map((t => {
                     const e = t.hash.lines.filter((t => !t.extendedAudioDescription));
                     return { ...t,
                         hash: { ...t.hash,
@@ -5139,7 +5139,7 @@ var __webpack_modules__ = [, , t => {
             }
             formatCaptions() {
                 const t = this.getCaptionsForLanguage(),
-                    e = t ? .hash.lines.map((t => t.text.map((e => ({
+                    e = t ?.hash.lines.map((t => t.text.map((e => ({
                         start: t.start,
                         end: t.end,
                         text: e
@@ -5153,7 +5153,7 @@ var __webpack_modules__ = [, , t => {
                     captions: e,
                     hitCounter: i,
                     totalHits: s
-                } = this.state, o = this.getCaptionsForLanguage() ? .right_to_left ? "rtl" : "ltr";
+                } = this.state, o = this.getCaptionsForLanguage() ?.right_to_left ? "rtl" : "ltr";
                 return (0, n.h)("div", {
                     class: "w-css-reset w-css-reset-tree",
                     onKeyUp: this.onKeyUp,
@@ -5308,7 +5308,7 @@ var __webpack_modules__ = [, , t => {
                     fontWeight: 600,
                     fontFamily: s.yY,
                     transition: "all 300ms ease"
-                }, i = this.getCaptionsForLanguage() ? .right_to_left;
+                }, i = this.getCaptionsForLanguage() ?.right_to_left;
                 return i ? e.left = 48 * t + 45 + "px" : e.right = 48 * t + "px", e
             }
             stylesForClearSearchButton() {
@@ -5691,7 +5691,7 @@ var __webpack_modules__ = [, , t => {
                 if (null == i) throw new Error("Must provide seedRange argument");
                 if (null != s && "function" != typeof s) throw new Error("Given seed is not a function");
                 if ("function" != typeof u) throw new Error(`Invalid easing function given: ${this.easing}`);
-                this._seedRange = i, this._seedFunction = s || (() => (new Date).getTime()), this._outputStart = a, this._outputEnd = c, this._easing = u, this._seedStart = o ? .() || this.seed()
+                this._seedRange = i, this._seedFunction = s || (() => (new Date).getTime()), this._outputStart = a, this._outputEnd = c, this._easing = u, this._seedStart = o ?.() || this.seed()
             }
             seed() {
                 return this.seedFunction()()
@@ -5957,9 +5957,9 @@ var __webpack_modules__ = [, , t => {
                     t.changed("ephemeral[captions][captionsArray]") && this.clearCache(), this.allMountedAndFetched().then((() => {
                         this.video.requestControls("customizePreview-captions", 4e3);
                         const t = (0, n.getDeep)(this.video, "controls.captionsButton.dialog");
-                        if (t ? .open(), setTimeout((() => {
+                        if (t ?.open(), setTimeout((() => {
                                 const t = (0, n.getDeep)(this.video, "controls.captionsButton.dialog");
-                                t ? .close()
+                                t ?.close()
                             }), 4e3), this.captions.length) i.onByDefault ? this.turnOn() : this.turnOff();
                         else {
                             const t = [{
@@ -6035,7 +6035,7 @@ var __webpack_modules__ = [, , t => {
                         const e = this.captions.find((e => e.language === t));
                         e && (e.hash = this.originalHashByLanguage[t]), delete this.originalHashByLanguage[t]
                     }
-                    this.video.controls.captions ? .setActiveLineForTime(this.video.time())
+                    this.video.controls.captions ?.setActiveLineForTime(this.video.time())
                 }
             }
             restoreOriginalCaptions() {
@@ -6046,7 +6046,7 @@ var __webpack_modules__ = [, , t => {
             setCaptionsHash(t, e) {
                 this.captions && (this.captions.forEach((i => {
                     i.language === t && (i.hash = e)
-                })), this.video.controls.captions ? .setActiveLineForTime(this.video.time()))
+                })), this.video.controls.captions ?.setActiveLineForTime(this.video.time()))
             }
             refreshDataFromServer() {
                 return new Promise((t => {

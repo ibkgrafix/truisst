@@ -4986,3 +4986,6 @@ div.bg-off-white:not(.card):not(.staticcardv2) {
     --truNeutral50: #ffffff !important;
     background-color: #ffffff !important;
 }
+
+html, body { background-color: #fff !important; }
+body { max-width: none !important; margin: 0 !important; }

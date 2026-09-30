@@ -6,17 +6,17 @@ var __webpack_modules__ = [, (t, e, i) => {
             s = i(3),
             o = i(4),
             r = i(5);
-        r.z.Wistia ? ? = {}, r.z.Wistia.Preact ? ? = { ...n,
+        r.z.Wistia ??= {}, r.z.Wistia.Preact ??= { ...n,
             hooks: s,
             compat: o
-        }, r.z.Wistia._destructors ? ? = {}, r.z.Wistia._initializers ? ? = {}, r.z.Wistia._remoteData ? ? = new Map, r.z.Wistia.api ? ? = () => (console.error("Accessed Wistia.api() before it was initialized"), null), r.z.Wistia.defineControl ? ? = () => (console.error("Accessed Wistia.defineControl() before it was initialized"), null), r.z.Wistia.EventShepherdManager ? ? = {}, r.z.Wistia.mixin ? ? = (t, e = {}) => {
+        }, r.z.Wistia._destructors ??= {}, r.z.Wistia._initializers ??= {}, r.z.Wistia._remoteData ??= new Map, r.z.Wistia.api ??= () => (console.error("Accessed Wistia.api() before it was initialized"), null), r.z.Wistia.defineControl ??= () => (console.error("Accessed Wistia.defineControl() before it was initialized"), null), r.z.Wistia.EventShepherdManager ??= {}, r.z.Wistia.mixin ??= (t, e = {}) => {
             Object.keys(e).forEach((i => {
                 (function(t, e) {
                     if (null == t) throw new TypeError("Cannot convert undefined or null to object");
                     return Object.prototype.hasOwnProperty.call(Object(t), e)
                 })(e, i) && (t[i] = e[i])
             }))
-        }, r.z.Wistia.playlistMethods ? ? = new Map, r.z.Wistia.PublicApi ? ? = null, r.z.Wistia.uncacheMedia ? ? = () => (console.error("Accessed Wistia.uncacheMedia() before it was initialized"), null), r.z.Wistia.VisitorKey ? ? = null, r.z.Wistia.visitorKey ? ? = null, r.z.Wistia.wistia ? ? = void 0, r.z.Wistia._liveStreamEventDataPromises ? ? = {}, r.z.Wistia._mediaDataPromises ? ? = {}, r.z.Wistia._liveStreamPollingPromises ? ? = {}, r.z.Wistia.first ? ? = () => r.z.Wistia.api() ? ? document.querySelector("wistia-player");
+        }, r.z.Wistia.playlistMethods ??= new Map, r.z.Wistia.PublicApi ??= null, r.z.Wistia.uncacheMedia ??= () => (console.error("Accessed Wistia.uncacheMedia() before it was initialized"), null), r.z.Wistia.VisitorKey ??= null, r.z.Wistia.visitorKey ??= null, r.z.Wistia.wistia ??= void 0, r.z.Wistia._liveStreamEventDataPromises ??= {}, r.z.Wistia._mediaDataPromises ??= {}, r.z.Wistia._liveStreamPollingPromises ??= {}, r.z.Wistia.first ??= () => r.z.Wistia.api() ?? document.querySelector("wistia-player");
         const a = r.z.Wistia
     }, (t, e, i) => {
         i.r(e), i.d(e, {
@@ -1254,7 +1254,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     {
                         searchParams: o
                     } = new URL(window.location.toString()),
-                    r = Boolean(o.get("useAccessiblePlayerIconColor") ? ? !1);
+                    r = Boolean(o.get("useAccessiblePlayerIconColor") ?? !1);
                 return i || !r && !e || new s.Q1("#fff").getContrastRatio(n) >= a.paragraphText ? "#ffffff" : u(t, t, "paragraphText")
             }
     }, (t, e, i) => {
@@ -1274,7 +1274,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             parse(t) {
                 let e = !1;
-                if (Array.isArray(t)) this.r = t[0], this.g = t[1], this.b = t[2], this.a = t[3] ? ? 1, e = !0;
+                if (Array.isArray(t)) this.r = t[0], this.g = t[1], this.b = t[2], this.a = t[3] ?? 1, e = !0;
                 else {
                     const i = String(t).replace(/\s+/g, "");
                     if (s.test(i)) {
@@ -1478,13 +1478,13 @@ var __webpack_modules__ = [, (t, e, i) => {
             d = t => {
                 const e = t.error;
                 if (!(e instanceof Error)) return;
-                const i = t.error ? .source ? ? "",
+                const i = t.error ?.source ?? "",
                     n = (0, r.Ni)("fast");
                 i.includes(n) && c("globalListener", e)
             },
             p = t => {
                 const e = t.reason;
-                e instanceof Error && (t.reason ? .stack ? ? "").includes((0, r.Ni)("fast")) && c("globalListener", e)
+                e instanceof Error && (t.reason ?.stack ?? "").includes((0, r.Ni)("fast")) && c("globalListener", e)
             },
             m = () => {
                 o.Wistia._isListeningForGlobalErrors || (window.addEventListener("error", d), o.Wistia._isListeningForGlobalErrors = !0)
@@ -1638,7 +1638,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
             },
             a = function(t) {
-                return t ? .mediaId ? t.mediaId : t ? .id ? t.id : void 0
+                return t ?.mediaId ? t.mediaId : t ?.id ? t.id : void 0
             }
     }, (t, e, i) => {
         i.d(e, {
@@ -1785,8 +1785,8 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }) : t[e] = i
             }
             addListener(t, e, i) {
-                const o = n[t] ? ? t;
-                this.convertedEventsMap[o] ? ? = [];
+                const o = n[t] ?? t;
+                this.convertedEventsMap[o] ??= [];
                 const r = e => {
                     if (s[t]) {
                         const n = s[t](e.detail);
@@ -1800,13 +1800,13 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             removeAllListeners(t) {
                 Object.keys(this.convertedEventsMap).forEach((e => {
-                    this.convertedEventsMap[e] ? .forEach((i => {
+                    this.convertedEventsMap[e] ?.forEach((i => {
                         t.removeEventListener(e, i.eventListenerCallback)
                     })), this.convertedEventsMap[e] = []
                 }))
             }
             removeListener(t, e, i) {
-                const s = n[t] ? ? t,
+                const s = n[t] ?? t,
                     o = [];
                 i ? (e.removeEventListener(s, i), this.convertedEventsMap[s] && (this.convertedEventsMap[s].forEach(((t, n) => {
                     t.givenCallback === i && (o.push(n), e.removeEventListener(s, t.eventListenerCallback))
@@ -1929,38 +1929,38 @@ var __webpack_modules__ = [, (t, e, i) => {
             r = i(84);
         const a = () => (void 0 === (0, o.wData)("video") ? [] : Object.values((0, o.wData)("video"))).concat(void 0 === (0, o.wData)("iframe_api") ? [] : Object.values((0, o.wData)("iframe_api"))),
             l = t => {
-                if (void 0 === t) return a()[0] ? ? null;
+                if (void 0 === t) return a()[0] ?? null;
                 let e = null;
                 if ("string" == typeof t) {
                     const i = t;
-                    if (e = document.querySelector(`[unique-id='${i}']`) ? ? document.getElementById(i), null === e) {
+                    if (e = document.querySelector(`[unique-id='${i}']`) ?? document.getElementById(i), null === e) {
                         const t = a().find((t => {
-                            if (t.hashedId() ? .startsWith(i) || t.container ? .id.startsWith(i)) return t;
+                            if (t.hashedId() ?.startsWith(i) || t.container ?.id.startsWith(i)) return t;
                             if ("mediaLanguages" in t && "languageToLocalization" in t) {
                                 if (t.mediaLanguages().some((e => {
                                         const n = t.languageToLocalization(e);
                                         return null != n && (0, r.G)(n.hashedId).startsWith(i)
                                     }))) return t;
-                                if ((0, r.G)(t._mediaData ? .sourceHashedId).startsWith(i)) return t
+                                if ((0, r.G)(t._mediaData ?.sourceHashedId).startsWith(i)) return t
                             }
                             return null
                         }));
-                        "removed" !== t && (e = t ? .container ? ? null)
+                        "removed" !== t && (e = t ?.container ?? null)
                     }
                 } else if ("number" == typeof t) {
                     let i = t;
                     const n = a();
                     i < 0 && (i = n.length + i);
                     const s = n[i];
-                    void 0 !== s && "removed" !== s && (e = s.container ? ? null)
+                    void 0 !== s && "removed" !== s && (e = s.container ?? null)
                 } else t instanceof HTMLElement ? e = t : s.ct.error("Unrecognized matcher", t);
-                return "WISTIA-PLAYER" === e ? .tagName ? e.deprecatedApiDoNotUse : void 0 !== e ? .wistiaApi && "removed" !== e.wistiaApi ? e.wistiaApi : null
+                return "WISTIA-PLAYER" === e ?.tagName ? e.deprecatedApiDoNotUse : void 0 !== e ?.wistiaApi && "removed" !== e.wistiaApi ? e.wistiaApi : null
             },
             h = t => {
                 let e = null;
                 const i = t,
-                    n = a().find((t => t.hashedId() ? .startsWith(i) ? t : null));
-                return "removed" !== n && (e = n ? .container ? ? null), "WISTIA-PLAYER" === e ? .tagName ? e.deprecatedApiDoNotUse : void 0 !== e ? .wistiaApi && "removed" !== e.wistiaApi ? e.wistiaApi : null
+                    n = a().find((t => t.hashedId() ?.startsWith(i) ? t : null));
+                return "removed" !== n && (e = n ?.container ?? null), "WISTIA-PLAYER" === e ?.tagName ? e.deprecatedApiDoNotUse : void 0 !== e ?.wistiaApi && "removed" !== e.wistiaApi ? e.wistiaApi : null
             },
             u = () => [...Array.from((0, n.e)("wistia_embed_initialized")).reduce(((t, e) => (void 0 !== e.wistiaApi && "removed" !== e.wistiaApi && null !== e.wistiaApi && t.push(e.wistiaApi), t)), []), ...Array.from(document.querySelectorAll("wistia-player")).reduce(((t, e) => (void 0 !== e.deprecatedApiDoNotUse && "removed" !== e.deprecatedApiDoNotUse && null !== e.deprecatedApiDoNotUse && t.push(e.deprecatedApiDoNotUse), t)), [])]
     }, (t, e, i) => {
@@ -2357,7 +2357,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         if ("undefined" == typeof document || "function" != typeof document.querySelector) return !1;
                         try {
                             const t = document.querySelector('meta[name="wistia-host-mode"]'),
-                                e = t ? .getAttribute("content");
+                                e = t ?.getAttribute("content");
                             return "string" == typeof e && "production" === e.trim().toLowerCase()
                         } catch {
                             return !1
@@ -3224,14 +3224,14 @@ var __webpack_modules__ = [, (t, e, i) => {
                     if (null != e) t = e;
                     else {
                         if ("function" != typeof t.getRootNode) return !1;
-                        t = t.getRootNode() ? .host
+                        t = t.getRootNode() ?.host
                     }
                 }
                 return !1
             },
             q = (t = document) => {
                 let e = t.activeElement;
-                for (; e ? .shadowRoot ? .activeElement;) e = e.shadowRoot.activeElement;
+                for (; e ?.shadowRoot ?.activeElement;) e = e.shadowRoot.activeElement;
                 return e
             },
             K = (t, e) => {
@@ -3539,7 +3539,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 try {
                     const t = document.createElement("canvas"),
                         e = t.getContext("webgl") || t.getContext("experimental-webgl");
-                    return !!e && (e.getExtension("WEBGL_lose_context") ? .loseContext(), !0)
+                    return !!e && (e.getExtension("WEBGL_lose_context") ?.loseContext(), !0)
                 } catch (t) {
                     return !1
                 }
@@ -3553,11 +3553,11 @@ var __webpack_modules__ = [, (t, e, i) => {
                     edge: I(),
                     firefox: D(),
                     gearvr: f.test(o),
-                    hdr: !!window.matchMedia ? .("(dynamic-range: high)").matches || !!(screen.colorDepth && screen.colorDepth >= 30),
+                    hdr: !!window.matchMedia ?.("(dynamic-range: high)").matches || !!(screen.colorDepth && screen.colorDepth >= 30),
                     hdrCodecs: {
-                        hevc: window.MediaSource ? .isTypeSupported ? .('video/mp4; codecs="hvc1.2.4.L153.B0"') ? ? !1,
-                        av1: window.MediaSource ? .isTypeSupported ? .('video/mp4; codecs="av01.0.08M.10.0.110.09.16.09"') ? ? !1,
-                        vp92: window.MediaSource ? .isTypeSupported ? .('video/mp4; codecs="vp09.02.10.10.01.09.16.09"') ? ? !1
+                        hevc: window.MediaSource ?.isTypeSupported ?.('video/mp4; codecs="hvc1.2.4.L153.B0"') ?? !1,
+                        av1: window.MediaSource ?.isTypeSupported ?.('video/mp4; codecs="av01.0.08M.10.0.110.09.16.09"') ?? !1,
+                        vp92: window.MediaSource ?.isTypeSupported ?.('video/mp4; codecs="vp09.02.10.10.01.09.16.09"') ?? !1
                     },
                     android: w(),
                     oldandroid: w() && parseFloat(w().version) < 4.1,
@@ -3577,7 +3577,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     hoverIsNatural: C(),
                     touchScreen: T(),
                     video: x(),
-                    managedMediaSource: "ManagedMediaSource" in window && "function" == typeof window.ManagedMediaSource ? .isTypeSupported,
+                    managedMediaSource: "ManagedMediaSource" in window && "function" == typeof window.ManagedMediaSource ?.isTypeSupported,
                     mediaSource: n.z.MediaSource && n.z.MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'),
                     nativeHls: (E() || S() || P()) && x().nativeHls,
                     localstorage: k(),
@@ -4166,7 +4166,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 if (!e.protected && (z(t, e, i) || q(t, e, i))) return !1;
                 const s = "Audio" === e.type ? 0 == (0, h.readyPublicMp3s)(n).length : 0 == (0, h.readyPublicMp4s)(n).length;
                 if ("LiveStream" === e.mediaType) return !1;
-                if (e.protected && !i.authorization ? .jwt) return i.notPlayableOptions = {
+                if (e.protected && !i.authorization ?.jwt) return i.notPlayableOptions = {
                     fadeIn: !1,
                     message: "This video is set to private.",
                     shouldRefresh: !1
@@ -4184,8 +4184,8 @@ var __webpack_modules__ = [, (t, e, i) => {
             },
             rt = (t = {}) => {
                 if (t.options.overrideSpherical) return !1;
-                const e = String(t.mediaData ? .spherical),
-                    i = String(t.opts ? .spherical);
+                const e = String(t.mediaData ?.spherical),
+                    i = String(t.opts ?.spherical);
                 return "true" === e || "true" === i
             },
             at = (t, e) => !!lt(t, e) && (0, n.indexOf)(pt(t), e) >= 0,
@@ -4432,7 +4432,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         });
         const n = (t = "wistia_embed") => {
             const e = document.querySelectorAll(`div.${t},span.${t},iframe.${t}`);
-            return Array.from(e).map((t => "WISTIA-PLAYER" === t.lastChild ? .nodeName ? t.lastChild : t))
+            return Array.from(e).map((t => "WISTIA-PLAYER" === t.lastChild ?.nodeName ? t.lastChild : t))
         }
     }, (t, e, i) => {
         i.d(e, {
@@ -4746,7 +4746,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         i.d(e, {
             Yw: () => n
         });
-        const n = t => "stacked_alpha_video" === t ? .type
+        const n = t => "stacked_alpha_video" === t ?.type
     }, (t, e, i) => {
         i.r(e), i.d(e, {
             cacheMedia: () => p,
@@ -4766,7 +4766,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         const u = (t, e) => {
                 const i = { ...t
                     },
-                    n = (0, o.merge)({}, i.media ? .embedOptions, e);
+                    n = (0, o.merge)({}, i.media ?.embedOptions, e);
                 return i.error ? i : (delete i.media.unnamed_assets, (0, h.M)(i.media, n), i.media)
             },
             c = (t, e = {}) => {
@@ -4779,7 +4779,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             },
             p = (t, e) => (0, a.ry)(t, e),
             m = t => {
-                (0, a.s3)(t), n.Wistia.uncacheCaptions ? .(t), g(t)
+                (0, a.s3)(t), n.Wistia.uncacheCaptions ?.(t), g(t)
             },
             g = t => {
                 window[`wistiajsonp-/embed/medias/${t}.json`] = null, (0, r.wz)(c(t), {
@@ -4880,7 +4880,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             },
             p = async (t, e = {}) => {
                 if (null != (0, l.F2)(t) && !0 !== e.skipCache) return (0, c.j)(t, e);
-                const i = n.Wistia._inlineMediaData ? .[t];
+                const i = n.Wistia._inlineMediaData ?.[t];
                 if (null != i) {
                     const n = (0, u.clone)(i);
                     return (0, a.M)(n, e), (0, l.ry)(t, n), (0, c.j)(t, e)
@@ -4983,14 +4983,14 @@ var __webpack_modules__ = [, (t, e, i) => {
                 const u = (0, o.mediaDataHost)(e),
                     c = new window.URL(`https://${u}/embed/medias/${t}.json`);
                 (0, n.n9)(e.channelId) && c.searchParams.set("channelId", e.channelId.toString());
-                const d = e.channelPassword ? ? e.plugin ? .passwordProtectedChannel ? .password;
+                const d = e.channelPassword ?? e.plugin ?.passwordProtectedChannel ?.password;
                 (0, n.n9)(d) && c.searchParams.set("channelPassword", d), (0, n.n9)(e.password) && c.searchParams.set("password", e.password), e.deferFetchingToCarousel && c.searchParams.set("defer_fetching_to_carousel", "true"), e.bypassOriginShield && c.searchParams.set("bos", "1");
                 const p = fetch(c.href).then((t => t.json())).then((t => {
                     if ((0, l.V)(t)) return t;
                     const {
                         media: i
                     } = t;
-                    return (0, r.M)(i, e), (0, a.ry)(i.hashedId ? ? "", i), i
+                    return (0, r.M)(i, e), (0, a.ry)(i.hashedId ?? "", i), i
                 })).finally((() => {
                     Reflect.deleteProperty(s.Wistia._mediaDataPromises, i)
                 }));
@@ -5003,10 +5003,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                 if (null == n.localizations || 0 === n.localizations.length) return n;
                 const s = (0, u.getViewerPreferences)().localization,
                     o = [];
-                null != e.overrideMediaLanguage && o.push(e.overrideMediaLanguage), null != s ? .bcp47LanguageTag && o.push(s.bcp47LanguageTag), null != e.defaultMediaLanguage && o.push(e.defaultMediaLanguage);
+                null != e.overrideMediaLanguage && o.push(e.overrideMediaLanguage), null != s ?.bcp47LanguageTag && o.push(s.bcp47LanguageTag), null != e.defaultMediaLanguage && o.push(e.defaultMediaLanguage);
                 const r = o.filter(((t, e) => o.indexOf(t) === e));
                 let a = (0, h.J)(n.localizations.map((t => t.bcp47LanguageTag)), r);
-                if (-1 === a && (a = (0, h.J)(n.localizations.map((t => t.wistiaLanguageCode)), r)), -1 === a && (a = (0, h.J)(n.localizations.map((t => t.bcp47LanguageTag)), [...navigator.languages ? ? ["en"]])), a >= 0) {
+                if (-1 === a && (a = (0, h.J)(n.localizations.map((t => t.wistiaLanguageCode)), r)), -1 === a && (a = (0, h.J)(n.localizations.map((t => t.bcp47LanguageTag)), [...navigator.languages ?? ["en"]])), a >= 0) {
                     const t = n.localizations[a];
                     return n.hashedId === t.hashedId || "alternate_audio" === t.localizationIntent ? n : c(t.hashedId, { ...e
                     })
@@ -5020,7 +5020,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         const n = t => t.split("-")[0],
             s = () => {
                 const t = new Error;
-                return t.stack ? .split("\n").slice(2).join("\n")
+                return t.stack ?.split("\n").slice(2).join("\n")
             },
             o = (t, e) => {
                 t.some((t => "string" != typeof t)) && (console.error("availableLanguages has non-string values", t, s()), t = t.filter((t => "string" == typeof t))), e.some((t => "string" != typeof t)) && (console.error("preferredLanguages has non-string values", e, s()), e = e.filter((t => "string" == typeof t)));
@@ -5236,7 +5236,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     height: (t, e) => {
                         const i = m(S, this).parentElement;
                         if (!i) return this;
-                        if (void 0 !== t && (i.style.height = `${t}px`, e ? .constrain)) {
+                        if (void 0 !== t && (i.style.height = `${t}px`, e ?.constrain)) {
                             const e = t / m(S, this).aspect;
                             i.style.width = `${e}px`
                         }
@@ -5245,7 +5245,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     width: (t, e) => {
                         const i = m(S, this).parentElement;
                         if (!i) return this;
-                        if (void 0 !== t && (i.style.width = `${t}px`, e ? .constrain)) {
+                        if (void 0 !== t && (i.style.width = `${t}px`, e ?.constrain)) {
                             const e = t / m(S, this).aspect;
                             i.style.height = `${e}px`
                         }
@@ -5292,7 +5292,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     const {
                         mediaId: i
                     } = m(S, this);
-                    return u.Wistia.EventShepherdManager[i] ? ? = new c.S, u.Wistia.EventShepherdManager[i].addListener(t, m(S, this), e), this
+                    return u.Wistia.EventShepherdManager[i] ??= new c.S, u.Wistia.EventShepherdManager[i].addListener(t, m(S, this), e), this
                 }
                 switch (t) {
                     case "crosstime":
@@ -5335,22 +5335,22 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return m(S, this).duration
             }
             email(t) {
-                return void 0 === t ? m(S, this).email ? ? null : (m(T, this).synchronize((e => {
+                return void 0 === t ? m(S, this).email ?? null : (m(T, this).synchronize((e => {
                     m(S, this).email = t, e()
                 })), this)
             }
             embedded(t) {
-                const e = m(S, this).shadowRoot ? .querySelector(".w-ui-container");
-                return t ? e ? .hasChildNodes() ? (t(), this) : (e && g(w, this, e), g(y, this, new MutationObserver((e => {
+                const e = m(S, this).shadowRoot ?.querySelector(".w-ui-container");
+                return t ? e ?.hasChildNodes() ? (t(), this) : (e && g(w, this, e), g(y, this, new MutationObserver((e => {
                     e.forEach((e => {
                         Array.from(e.addedNodes).forEach((e => {
-                            1 === e.nodeType && (e.classList.contains("w-ui-container") && g(w, this, e), (0, l.elemIsDescendantOf)(e, m(w, this)) && (t(), m(y, this) ? .disconnect(), g(y, this, void 0), g(w, this, void 0)))
+                            1 === e.nodeType && (e.classList.contains("w-ui-container") && g(w, this, e), (0, l.elemIsDescendantOf)(e, m(w, this)) && (t(), m(y, this) ?.disconnect(), g(y, this, void 0), g(w, this, void 0)))
                         }))
                     }))
                 }))), m(y, this).observe(m(S, this).shadowRoot, {
                     subtree: !0,
                     childList: !0
-                }), this) : e ? .hasChildNodes() ? ? !1
+                }), this) : e ?.hasChildNodes() ?? !1
             }
             enterInputContext(t) {
                 m(S, this).enterInputContext(t)
@@ -5368,7 +5368,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return m(S, this).inputContext
             }
             getMediaElement() {
-                return m(S, this).shadowRoot ? .querySelector("video, audio") ? ? null
+                return m(S, this).shadowRoot ?.querySelector("video, audio") ?? null
             }
             async getRemapTime() {
                 return m(S, this).getRemapTime()
@@ -5428,7 +5428,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 })), this
             }
             name() {
-                return m(S, this).name ? ? null
+                return m(S, this).name ?? null
             }
             pause() {
                 return m(T, this).synchronize((t => {
@@ -5465,7 +5465,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return m(S, this).releaseControls(t)
             }
             remove() {
-                m(y, this) ? .disconnect(), g(y, this, void 0), g(w, this, void 0), g(v, this, []), m(S, this).removeEventListener(a.INTERNAL_API_CREATED_EVENT, m(A, this)), m(S, this).remove()
+                m(y, this) ?.disconnect(), g(y, this, void 0), g(w, this, void 0), g(v, this, []), m(S, this).removeEventListener(a.INTERNAL_API_CREATED_EVENT, m(A, this)), m(S, this).remove()
             }
             replaceWith(t, e = {}) {
                 return m(T, this).synchronize((i => {
@@ -5522,14 +5522,14 @@ var __webpack_modules__ = [, (t, e, i) => {
                 })), this)
             }
             unbind(t, e, i, n) {
-                if (Object.keys(c.h).includes(t)) return u.Wistia.EventShepherdManager[m(S, this).mediaId] ? .removeListener(t, m(S, this), e), this;
+                if (Object.keys(c.h).includes(t)) return u.Wistia.EventShepherdManager[m(S, this).mediaId] ?.removeListener(t, m(S, this), e), this;
                 switch (t) {
                     case "crosstime":
                         return m(C, this).removeBinding(e, i), this;
                     case "betweentimes":
                         return m(E, this).removeBinding(e, i, n), this;
                     default:
-                        return g(v, this, m(v, this).filter((i => i.event !== t || void 0 !== e && i.fn !== e))), m(S, this).deprecatedApiDoNotUse ? .unbind(t, e), this
+                        return g(v, this, m(v, this).filter((i => i.event !== t || void 0 !== e && i.fn !== e))), m(S, this).deprecatedApiDoNotUse ?.unbind(t, e), this
                 }
             }
             unmute() {
@@ -5563,7 +5563,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return parseFloat(getComputedStyle(m(S, this)).width)
             }
             visitorKey() {
-                return null != window.Wistia ? .visitorKey ? .value() ? window.Wistia.visitorKey.value() : null
+                return null != window.Wistia ?.visitorKey ?.value() ? window.Wistia.visitorKey.value() : null
             }
             volume(t) {
                 return void 0 === t ? m(S, this).volume : (m(T, this).synchronize((e => {
@@ -5800,7 +5800,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 const r = () => {
                     void 0 !== i && cancelAnimationFrame(i), i = void 0
                 };
-                this.embedElement.addEventListener("pause", r), this.embedElement.addEventListener("end", r), this.embedElement.addEventListener("waiting", r), this.bindings[t] ? ? = [], this.bindings[t].push({
+                this.embedElement.addEventListener("pause", r), this.embedElement.addEventListener("end", r), this.embedElement.addEventListener("waiting", r), this.bindings[t] ??= [], this.bindings[t].push({
                     callback: e,
                     clearAnimationFrame: r,
                     timeChangeBinding: o
@@ -5905,7 +5905,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     const n = this.currentTime;
                     t <= n && n < e && !r ? (r = !0, i.call(this.unbindFunction, r) === this.unbindFunction && this.removeBinding(t, e, i)) : t <= n && n < e || !r || (r = !1, i.call(this.unbindFunction, r) === this.unbindFunction && this.removeBinding(t, e, i))
                 };
-                this.crossTime.addBinding(t, l), this.crossTime.addBinding(e, l), this.embedElement.addEventListener("time-update", l), l(), this.bindings[n] ? ? = [], this.bindings[n].push({
+                this.crossTime.addBinding(t, l), this.crossTime.addBinding(e, l), this.embedElement.addEventListener("time-update", l), l(), this.bindings[n] ??= [], this.bindings[n].push({
                     callback: i,
                     endTime: e,
                     startTime: t,
@@ -5915,7 +5915,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             removeAllBindings() {
                 Object.keys(this.bindings).forEach((t => {
                     const e = this.bindings[t];
-                    e ? .forEach((t => {
+                    e ?.forEach((t => {
                         this.embedElement.removeEventListener("time-update", t.timeUpdateBinding), this.crossTime.removeBinding(t.startTime, t.timeUpdateBinding), this.crossTime.removeBinding(t.endTime, t.timeUpdateBinding)
                     }))
                 })), this.bindings = {}
@@ -5975,7 +5975,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             constructor(t, e, i, s) {
                 p(this, "activeMediaId", void 0), p(this, "activeMediaIndex", void 0), p(this, "isInitialized", void 0), p(this, "orderedPlaylistMedias", void 0), p(this, "sourceIdentifier", void 0), p(this, "_autoAdvance", void 0), p(this, "_embedHost", void 0), p(this, "_endBehavior", void 0), p(this, "_isInsidePlayerControl", void 0), p(this, "_overrideEmbedOptions", void 0), p(this, "_player", void 0), p(this, "_transition", void 0), p(this, "_handlePlayerEnded", (() => {
                     this.playNextMedia(!0)
-                })), this.sourceIdentifier = `${i.source.type}_${i.source.id}`, this._embedHost = s ? ? m, this.orderedPlaylistMedias = t, this._player = e, this._autoAdvance = i.autoAdvance ? ? !0, this._endBehavior = i.endBehavior ? ? "default", this._transition = i.transition ? ? "fade", this._isInsidePlayerControl = i.isInsidePlayerControl ? ? !1, this._overrideEmbedOptions = i.overrideEmbedOptions, (0, n.Et)(i.startIndex) && i.startIndex >= t.length - 1 ? (this.activeMediaIndex = this._lastMediaIndex, this.activeMediaId = t[this._lastMediaIndex].hashedId) : (0, n.Bx)(i.startIndex) ? (this.activeMediaIndex = 0, this.activeMediaId = t[0].hashedId) : (this.activeMediaIndex = i.startIndex, this.activeMediaId = t[i.startIndex].hashedId), this._autoAdvance && this._player.addEventListener("ended", this._handlePlayerEnded), (0, n.gD)(r.Wistia.playlistMethods) && (r.Wistia.playlistMethods = new Map), r.Wistia.playlistMethods.set(this.sourceIdentifier, this)
+                })), this.sourceIdentifier = `${i.source.type}_${i.source.id}`, this._embedHost = s ?? m, this.orderedPlaylistMedias = t, this._player = e, this._autoAdvance = i.autoAdvance ?? !0, this._endBehavior = i.endBehavior ?? "default", this._transition = i.transition ?? "fade", this._isInsidePlayerControl = i.isInsidePlayerControl ?? !1, this._overrideEmbedOptions = i.overrideEmbedOptions, (0, n.Et)(i.startIndex) && i.startIndex >= t.length - 1 ? (this.activeMediaIndex = this._lastMediaIndex, this.activeMediaId = t[this._lastMediaIndex].hashedId) : (0, n.Bx)(i.startIndex) ? (this.activeMediaIndex = 0, this.activeMediaId = t[0].hashedId) : (this.activeMediaIndex = i.startIndex, this.activeMediaId = t[i.startIndex].hashedId), this._autoAdvance && this._player.addEventListener("ended", this._handlePlayerEnded), (0, n.gD)(r.Wistia.playlistMethods) && (r.Wistia.playlistMethods = new Map), r.Wistia.playlistMethods.set(this.sourceIdentifier, this)
             }
             set overrideEmbedOptions(t) {
                 this._overrideEmbedOptions = t
@@ -6053,7 +6053,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 if ((0, n.gD)(i)) return Promise.resolve();
                 const s = this.orderedPlaylistMedias[0].hashedId === t.hashedId;
                 this._autoAdvance && this._isInsidePlayerControl && this.removePlayerEndedListener(), await this._player.replaceWithMedia(i.hashedId, { ...i.embedOptions,
-                    ...this._overrideEmbedOptions ? ? {},
+                    ...this._overrideEmbedOptions ?? {},
                     transition : this._transition
                 }), e && document.dispatchEvent(new CustomEvent("playlist-methods-autoplay-next-media-started"));
                 let o = !1;
@@ -6066,10 +6066,10 @@ var __webpack_modules__ = [, (t, e, i) => {
             _getCachedMediaDataAsPlaylistMedia(t) {
                 const e = (0, l.F2)(t);
                 return (0, n.n9)(e) ? {
-                    durationInSeconds: e.duration ? ? 0,
-                    embedOptions: e.embedOptions ? ? {},
-                    hashedId: e.hashedId ? ? "",
-                    name: e.name ? ? ""
+                    durationInSeconds: e.duration ?? 0,
+                    embedOptions: e.embedOptions ?? {},
+                    hashedId: e.hashedId ?? "",
+                    name: e.name ?? ""
                 } : null
             }
             _getIndexOfMediaInPlaylist(t) {
@@ -6077,20 +6077,20 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             _getMediaDataAsPlaylistMedia(t) {
                 return {
-                    durationInSeconds: t.duration ? ? 0,
-                    embedOptions: t.embedOptions ? ? {},
-                    hashedId: t.hashedId ? ? "",
-                    name: t.name ? ? ""
+                    durationInSeconds: t.duration ?? 0,
+                    embedOptions: t.embedOptions ?? {},
+                    hashedId: t.hashedId ?? "",
+                    name: t.name ?? ""
                 }
             }
             async _prefetchMedia(t) {
-                t.embedOptions ? .plugin ? .passwordProtectedVideo && delete t.embedOptions.plugin.passwordProtectedVideo;
+                t.embedOptions ?.plugin ?.passwordProtectedVideo && delete t.embedOptions.plugin.passwordProtectedVideo;
                 const e = this._getCachedMediaDataAsPlaylistMedia(t.hashedId);
                 if ((0, n.n9)(e)) return o()(e.embedOptions, t.embedOptions), Promise.resolve(e);
                 const i = { ...t.embedOptions,
                     embedHost: this._embedHost
                 };
-                (0, n.n9)(t.embedOptions ? .channelId) && (i.channelId = t.embedOptions.channelId), (0, n.n9)(t.embedOptions ? .channelPassword) && (i.channelPassword = t.embedOptions.channelPassword);
+                (0, n.n9)(t.embedOptions ?.channelId) && (i.channelId = t.embedOptions.channelId), (0, n.n9)(t.embedOptions ?.channelPassword) && (i.channelPassword = t.embedOptions.channelPassword);
                 const s = await (0, h.j)(t.hashedId, i);
                 if ((0, d.V)(s)) return Promise.resolve(null);
                 const r = s,
@@ -6637,7 +6637,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         const d = [],
             p = [],
             m = (t, e) => {
-                const i = t.wistiaApi ? ? t.deprecatedApiDoNotUse ? ? null;
+                const i = t.wistiaApi ?? t.deprecatedApiDoNotUse ?? null;
                 null !== i && "removed" !== i && e(i)
             },
             g = (t, e) => (t.addEventListener(h.INIT_EMBED_EVENT, e), t.addEventListener(h.INTERNAL_API_ON_FIND_EVENT, e), t.addEventListener(h.AFTER_REPLACE_EVENT, e), [() => t.removeEventListener(h.INIT_EMBED_EVENT, e), () => t.removeEventListener(h.INTERNAL_API_ON_FIND_EVENT, e), () => t.removeEventListener(h.AFTER_REPLACE_EVENT, e)]),
@@ -6657,7 +6657,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             api: s,
                             deprecatedApiDoNotUse: o
                         } = n.detail;
-                        f(s ? ? o, t, e, i)
+                        f(s ?? o, t, e, i)
                     };
                 d.push(s), p.push(h), null === c && (c = (0, r.elemMutationObserver)((t => {
                     t.forEach((t => {
@@ -6748,8 +6748,8 @@ var __webpack_modules__ = [, (t, e, i) => {
             }, t._initializers.initWLog = function() {
                 let t, e, i, o;
                 const r = (0, s.parseUrl)(location.href);
-                if (document.referrer && (e = (0, s.parseUrl)(document.referrer)), ((t = r ? .params ? .wlog) || top !== self && (t = e ? .params ? .wlog)) && n.ct.setLevel(t), ((i = r ? .params ? .wgrep) || (i = e ? .params ? .wgrep)) && n.ct.setGrep(new RegExp(i, "i")), (o = r ? .params ? .wgrepv) || (o = e ? .params ? .wgrepv)) return n.ct.setGrepv(new RegExp(o, "i"))
-            }, t._destructors.destroyWLog = () => n.ct ? .reset())
+                if (document.referrer && (e = (0, s.parseUrl)(document.referrer)), ((t = r ?.params ?.wlog) || top !== self && (t = e ?.params ?.wlog)) && n.ct.setLevel(t), ((i = r ?.params ?.wgrep) || (i = e ?.params ?.wgrep)) && n.ct.setGrep(new RegExp(i, "i")), (o = r ?.params ?.wgrepv) || (o = e ?.params ?.wgrepv)) return n.ct.setGrepv(new RegExp(o, "i"))
+            }, t._destructors.destroyWLog = () => n.ct ?.reset())
         }(window.Wistia)
     }, (t, e, i) => {
         var n = function(t, e) {
@@ -8229,7 +8229,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     options: {},
                     async: !1,
                     src: `${(0,o.eV1Protocol)()}//${(0,o.eV1HostWithPort)()}/assets/external/carouselHardWallPlayer.js`
-                }), t.localizations ? .length > 0 && b.push({
+                }), t.localizations ?.length > 0 && b.push({
                     name: "localizationSwitcher",
                     options: {},
                     async: !1,
@@ -8244,13 +8244,13 @@ var __webpack_modules__ = [, (t, e, i) => {
                     if (!b(r)) return void console.warn("invalid plugin name", r);
                     let a = t[r];
                     if ("form" === v(r)) {
-                        const e = t["requireEmail-v1"] ? ? {};
+                        const e = t["requireEmail-v1"] ?? {};
                         T(e, {
                             media_hashed_id: i.hashedId,
                             account_key: i.accountKey
                         }), a = C(e, a)
                     }
-                    if ("turnstile" === v(r) && ("boolean" == typeof t.form ? .on ? t.form ? .on : "true" === t.form ? .on) && (a = { ...a,
+                    if ("turnstile" === v(r) && ("boolean" == typeof t.form ?.on ? t.form ?.on : "true" === t.form ?.on) && (a = { ...a,
                             on: !1
                         }), a && !1 !== a.on) {
                         const t = _(r),
@@ -8322,10 +8322,10 @@ var __webpack_modules__ = [, (t, e, i) => {
             },
             C = (t, e) => ({ ...e,
                 ...t,
-                skippable: t.allowSkip ? ? e.skippable,
-                formButtonText: t.submitButtonText ? ? e.formButtonText,
-                formLowerText: t.bottomText ? ? e.formLowerText,
-                title: t.topText ? ? e.title
+                skippable: t.allowSkip ?? e.skippable,
+                formButtonText: t.submitButtonText ?? e.formButtonText,
+                formLowerText: t.bottomText ?? e.formLowerText,
+                title: t.topText ?? e.title
             })
     }, (t, e, i) => {
         i.d(e, {
@@ -8366,13 +8366,13 @@ var __webpack_modules__ = [, (t, e, i) => {
             h = i(127);
         const u = (t, e) => {
                 const i = `https://${(0,o.cdnFastWistiaNetHost)()}/embed/iframe/${t.hashedId}`;
-                return (0, n.Vq)(t, e) && !(0, n.Qy)(e) && t.embedOptions.plugin ? .videoThumbnail ? `${i}?wseektoaction=true` : i
+                return (0, n.Vq)(t, e) && !(0, n.Qy)(e) && t.embedOptions.plugin ?.videoThumbnail ? `${i}?wseektoaction=true` : i
             },
             c = t => {
                 const {
                     assets: e
                 } = t;
-                if ("Audio" === t.mediaType) return (0, r.readyPublicMp3s)(e)[0] ? .url;
+                if ("Audio" === t.mediaType) return (0, r.readyPublicMp3s)(e)[0] ?.url;
                 const i = (0, r.readyPublicMp4s)(e);
                 if (0 === i.length) return;
                 const n = (0, r.findClosestAssetByQuality)(i, 1080);
@@ -8402,7 +8402,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             protocol: "https:",
                             videoWidth: i,
                             videoHeight: n,
-                            embedHost: a ? .embedHost
+                            embedHost: a ?.embedHost
                         }),
                         contentUrl: c(t),
                         embedUrl: u(t, a),
@@ -8418,7 +8418,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     let {
                         embedOptions: d
                     } = e;
-                    d || (d = (0, s.cast)((0, s.clone)(t.embedOptions)) ? ? {});
+                    d || (d = (0, s.cast)((0, s.clone)(t.embedOptions)) ?? {});
                     const p = {
                         "@context": "http://schema.org/",
                         "@id": `https://${(0,o.cdnFastWistiaNetHost)()}/embed/iframe/${t.hashedId}`,
@@ -8430,7 +8430,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             protocol: "https:",
                             videoWidth: i,
                             videoHeight: a,
-                            embedHost: d ? .embedHost
+                            embedHost: d ?.embedHost
                         }),
                         embedUrl: u(t, d),
                         uploadDate: new Date(1e3 * t.createdAt).toISOString(),
@@ -8481,8 +8481,8 @@ var __webpack_modules__ = [, (t, e, i) => {
                     passwordProtectedVideo: s,
                     "requireEmail-v1": o,
                     form: r
-                } = e.plugin ? ? {}, a = "LiveStream" === n, l = !0 === s ? .on || "true" === s ? .on, h = o && !1 !== o.on && "end" !== o.time && !o.persistentTurnstile;
-                return !l && !h && !(!1 !== r ? .on && "end" !== r ? .time && "pause" === r ? .displayMode) && !a && "number" == typeof i && i >= 30
+                } = e.plugin ?? {}, a = "LiveStream" === n, l = !0 === s ?.on || "true" === s ?.on, h = o && !1 !== o.on && "end" !== o.time && !o.persistentTurnstile;
+                return !l && !h && !(!1 !== r ?.on && "end" !== r ?.time && "pause" === r ?.displayMode) && !a && "number" == typeof i && i >= 30
             },
             a = (t, e, i) => {
                 if (!Array.isArray(t) || 0 === t.length) return [];
@@ -8527,7 +8527,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 chaptersOn: i,
                 chapterList: s
             } = t;
-            if (e ? .chapters) return e.chapters;
+            if (e ?.chapters) return e.chapters;
             const o = !0 === i || "true" === i;
             return (0, n.n9)(s) || o ? {
                 on: i,
@@ -8743,13 +8743,13 @@ var __webpack_modules__ = [, (t, e, i) => {
         var n = i(112),
             s = i(20);
         const o = t => {
-            const e = /wemail=([^&#]+)/.exec(t) ? ? null;
+            const e = /wemail=([^&#]+)/.exec(t) ?? null;
             if (e) try {
                 return decodeURIComponent(e[1])
             } catch {
                 return e[1]
             }
-            const i = /wkey=([^&#]+)/.exec(t) ? ? null;
+            const i = /wkey=([^&#]+)/.exec(t) ?? null;
             if (i) {
                 const t = i[1];
                 try {
@@ -8764,7 +8764,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         i.d(e, {
             H: () => n
         });
-        const n = () => null != window.FreshUrl ? .originalUrl ? window.FreshUrl.originalUrl : window.top === window.self ? window.location.href || "" : document.referrer || ""
+        const n = () => null != window.FreshUrl ?.originalUrl ? window.FreshUrl.originalUrl : window.top === window.self ? window.location.href || "" : document.referrer || ""
     }, (t, e, i) => {
         i.d(e, {
             Tx: () => r
@@ -8772,7 +8772,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         var n = i(1),
             s = (i(135), i(24), i(20), i(136)),
             o = i(94);
-        n.Wistia.captionsPromises ? ? = {}, n.Wistia.captionsPromises, n.Wistia.uncacheCaptions = (t, e) => {
+        n.Wistia.captionsPromises ??= {}, n.Wistia.captionsPromises, n.Wistia.uncacheCaptions = (t, e) => {
             if (t && e) {
                 const i = a(t, e);
                 delete n.Wistia.captionsPromises[i]
@@ -8953,7 +8953,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             r = (t, e) => {
                 if (t.videoQuality && "auto" !== t.videoQuality) return (0, n.countMetric)("legacy/videoquality-embed-option", 1, {
                     videoQuality: t.videoQuality,
-                    hashedId: e ? .hashedId,
+                    hashedId: e ?.hashedId,
                     url: window.location.href
                 }), "sd-only" === t.videoQuality ? [200, 360] : "md" === t.videoQuality ? [540, s] : "hd-only" === t.videoQuality ? [720, s] : [360, s];
                 let i, r;
@@ -9036,11 +9036,11 @@ var __webpack_modules__ = [, (t, e, i) => {
             scrollTop: () => s
         });
         const n = t => {
-                if (!t) return document ? .documentElement ? .scrollLeft || document ? .body ? .scrollLeft || 0;
+                if (!t) return document ?.documentElement ?.scrollLeft || document ?.body ?.scrollLeft || 0;
                 document.body && (document.body.scrollLeft = t), document.documentElement && (document.documentElement.scrollLeft = t)
             },
             s = t => {
-                if (!t) return document ? .documentElement ? .scrollTop || document ? .body ? .scrollTop || 0;
+                if (!t) return document ?.documentElement ?.scrollTop || document ?.body ?.scrollTop || 0;
                 document.body && (document.body.scrollTop = t), document.documentElement && (document.documentElement.scrollTop = t)
             }
     }, (t, e, i) => {
@@ -9121,7 +9121,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         const h = (0, a.o1)(),
             u = t => {
                 const e = (t => {
-                    if (!(0, n.gD)(t)) return (0, n.Kg)(t) ? t : (0, l.W)(t) ? t._impl ? .embedType : t.embedType
+                    if (!(0, n.gD)(t)) return (0, n.Kg)(t) ? t : (0, l.W)(t) ? t._impl ?.embedType : t.embedType
                 })(t);
                 if ((0, n.gD)(e)) return s.Wistia.Player;
                 const i = {
@@ -9139,7 +9139,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     }), r.ct.error(`PublicApi.getPlayerClass: embedType is ${e} but its class is not defined. Using 'vulcan-v2' instead.`), s.Wistia.VulcanV2Player),
                     u = i[e];
                 if ((0, n.gD)(u) && e in i) return a();
-                const c = u ? ? s.Wistia.Player;
+                const c = u ?? s.Wistia.Player;
                 return (0, n.gD)(c) ? a() : c
             }
     }, (t, e, i) => {
@@ -9166,7 +9166,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         }) => {
             const a = s(r, "iframe") && Boolean(r.iframe);
             let l = "";
-            s(r, "message") ? l = r.message ? ? "" : s(r, "error") && (l = String(r.error));
+            s(r, "message") ? l = r.message ?? "" : s(r, "error") && (l = String(r.error));
             const h = () => a ? ((t, e, i) => {
                 const s = `${(0,n.eV1Protocol)()}//${(0,n.eV1HostWithPort)()}`,
                     o = document.createElement("iframe");
@@ -9260,7 +9260,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
                 addLoopBehavior() {
                     this.whenVideoElementInDom().then((() => {
-                        this.engine ? .getMediaElement().setAttribute("loop", "")
+                        this.engine ?.getMediaElement().setAttribute("loop", "")
                     }))
                 }
                 animate(t = {}, e = {}) {
@@ -9269,7 +9269,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     e.callback = () => {
                         this.grid && (0, f.elemStyle)(this.grid.root, {
                             position: "relative"
-                        }), i ? .()
+                        }), i ?.()
                     };
                     const n = this.grid ? [this.grid.root] : [];
                     return (0, f.elemStyle)(n, {
@@ -9281,17 +9281,17 @@ var __webpack_modules__ = [, (t, e, i) => {
                     if (this.publicApi.isAudio()) return this.publicApi.width() / this.publicApi.height();
                     if (null != this._mediaData.aspectRatio) return this._mediaData.aspectRatio;
                     if (this._currentAsset && "variable" == this._currentAsset.width) return this.mp4Aspect() || this.originalAspect();
-                    if (this._currentAsset ? .width && this._currentAsset ? .height) return this._currentAsset.width / this._currentAsset.height;
+                    if (this._currentAsset ?.width && this._currentAsset ?.height) return this._currentAsset.width / this._currentAsset.height;
                     const t = this.asset({
                         container: /mp4/,
                         status: 2
                     });
-                    if (t ? .width && t ? .height) return t.width / t.height;
+                    if (t ?.width && t ?.height) return t.width / t.height;
                     if (null != this._mediaData.instantHlsAspectRatio) return this._mediaData.instantHlsAspectRatio;
                     const e = this.asset({
                         container: /mp4/
                     });
-                    return e ? .width && e ? .height ? e.width / e.height : 640 / 360
+                    return e ?.width && e ?.height ? e.width / e.height : 640 / 360
                 }
                 asset(t) {
                     if ("string" == typeof arguments[0]) {
@@ -9317,9 +9317,9 @@ var __webpack_modules__ = [, (t, e, i) => {
                     throw new Error("Define in subclass!")
                 }
                 cleanupRefs() {
-                    this.cleanup ? .(), (0, c.keys)(this).forEach((t => {
+                    this.cleanup ?.(), (0, c.keys)(this).forEach((t => {
                         const e = this[t];
-                        null != e && e !== this && e.cleanup ? .()
+                        null != e && e !== this && e.cleanup ?.()
                     }))
                 }
                 constrainToHeight() {
@@ -9330,7 +9330,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
                 disableTextTracks() {
                     this.info("disableTextTracks"), this._disableTextTracks || (this._disableTextTracks = () => {
-                        this.elem() ? .textTracks && Array.prototype.slice.call(this.elem().textTracks).forEach((t => {
+                        this.elem() ?.textTracks && Array.prototype.slice.call(this.elem().textTracks).forEach((t => {
                             t.mode = "disabled"
                         }))
                     }), this.rebind("play", this._disableTextTracks)
@@ -9348,7 +9348,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return this._embedOptions || (this._embedOptions = (0, c.clone)(this._opts)), this._embedOptions
                 }
                 eventKey() {
-                    return this._tracker ? .eventKey()
+                    return this._tracker ?.eventKey()
                 }
                 extraHeight() {
                     return Math.max((0, f.elemHeight)(this.grid.above), (0, f.elemHeight)(this.grid.top)) + Math.max((0, f.elemHeight)(this.grid.below), (0, f.elemHeight)(this.grid.bottom))
@@ -9367,7 +9367,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     t.callback = () => {
                         (0, f.elemStyle)(this.gridChildren(), {
                             opacity: ""
-                        }), e ? .()
+                        }), e ?.()
                     }, (0, f.elemStyle)(this.gridChildren(), {
                         opacity: 0
                     }), (0, u.doTimeout)(`${this.uuid}.fade_in`, (() => this.fade(1, t)), 1)
@@ -9380,7 +9380,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
                 fit() {}
                 focus() {
-                    this.chrome ? .focus()
+                    this.chrome ?.focus()
                 }
                 freezeLastFrame() {}
                 fullscreenControlEnabled(t) {
@@ -9397,10 +9397,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return this._mediaData.mediaType || null
                 }
                 getReadyState() {
-                    return this.engine ? .getMediaElement() ? .readyState
+                    return this.engine ?.getMediaElement() ?.readyState
                 }
                 getStandardBuffered() {
-                    return this.engine ? .getMediaElement() ? .buffered
+                    return this.engine ?.getMediaElement() ?.buffered
                 }
                 gridChildren() {
                     if (!this.grid) return [];
@@ -9415,7 +9415,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
                 handleError(e) {
                     t.Metrics.videoCount(this, "player/playback-error");
-                    const i = e.target ? .error ? ? new Error("Unspecified error in media playback");
+                    const i = e.target ?.error ?? new Error("Unspecified error in media playback");
                     throw (0, v.N7)("mediaPlayback", i.message, {
                         mediaErrorCode: i.code
                     }), i
@@ -9530,7 +9530,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             }
                         })), this.renderUI()), this
                     }
-                    return e.contrastIcons ? ? !1
+                    return e.contrastIcons ?? !1
                 }
                 opaqueControls(t) {
                     const {
@@ -9547,7 +9547,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             }
                         })), this.renderUI()), this
                     }
-                    return e.opaqueControls ? ? !1
+                    return e.opaqueControls ?? !1
                 }
                 pageUrl() {
                     return this.publicApi._attrs.pageUrl
@@ -9600,7 +9600,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             }
                         })), this
                     }
-                    return e.playerColorGradient ? .on && (0, w.b)(e.playerColorGradient) ? (0, g.yz)(e.playerColorGradient) ? ? e.playerColor : e.playerColor
+                    return e.playerColorGradient ?.on && (0, w.b)(e.playerColorGradient) ? (0, g.yz)(e.playerColorGradient) ?? e.playerColor : e.playerColor
                 }
                 playerColorGradient(t) {
                     const {
@@ -9711,13 +9711,13 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return this.publicApi._attrs.playPauseNotifier = t, this
                 }
                 preloadValue() {
-                    return this.engine ? .getPreload()
+                    return this.engine ?.getPreload()
                 }
                 qualityMax(t) {
-                    this.engine ? .qualityMax && this.engine.qualityMax(t)
+                    this.engine ?.qualityMax && this.engine.qualityMax(t)
                 }
                 qualityMin(t) {
-                    this.engine ? .qualityMin && this.engine.qualityMin(t)
+                    this.engine ?.qualityMin && this.engine.qualityMin(t)
                 }
                 qualityOptions() {
                     const {
@@ -9738,11 +9738,11 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return this.publicApi.getRemapTime()
                 }
                 remove(t = {}) {
-                    this.info("remove"), !1 !== t.trigger && this.trigger("beforeremove"), this.hasData(!1), this.ready(!1), this.embedded(!1), this.engine ? .destroy(), this.stopStreaming(), !1 !== t.trigger && (this.trigger("down"), this.trigger("afterremove")), this.wipeOutstandingAsyncFunctions(), this._bindings = {}, this.cleanupRefs(), this.grid ? .root && ((0, f.elemUnbindAllInside)(this.grid.root), (0, f.elemRemove)(this.grid.root)), this.grid = null, this.elem() && this.elem().removeEventListener("error", this.handleError)
+                    this.info("remove"), !1 !== t.trigger && this.trigger("beforeremove"), this.hasData(!1), this.ready(!1), this.embedded(!1), this.engine ?.destroy(), this.stopStreaming(), !1 !== t.trigger && (this.trigger("down"), this.trigger("afterremove")), this.wipeOutstandingAsyncFunctions(), this._bindings = {}, this.cleanupRefs(), this.grid ?.root && ((0, f.elemUnbindAllInside)(this.grid.root), (0, f.elemRemove)(this.grid.root)), this.grid = null, this.elem() && this.elem().removeEventListener("error", this.handleError)
                 }
                 removeLoopBehavior() {
                     this.whenVideoElementInDom().then((() => {
-                        this.engine ? .getMediaElement().removeAttribute("loop")
+                        this.engine ?.getMediaElement().removeAttribute("loop")
                     }))
                 }
                 renderUI() {}
@@ -9765,7 +9765,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             }
                         })), this.renderUI()), this
                     }
-                    return e.rotateToFullscreen ? ? !1
+                    return e.rotateToFullscreen ?? !1
                 }
                 sdAsset() {
                     throw new Error("Implement in subclass!")
@@ -9952,7 +9952,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         videoHeight: this.videoHeight()
                     }, this._opts, {
                         stillUrl: this._attrs.poster
-                    }, t)).playerColor || (t.playerColor = this._mediaData ? .embedOptions ? .playerColor), s.stillUrl(this._mediaData.assets, t)
+                    }, t)).playerColor || (t.playerColor = this._mediaData ?.embedOptions ?.playerColor), s.stillUrl(this._mediaData.assets, t)
                 }
                 stopStreaming() {}
                 thumbnailAssets() {
@@ -10002,7 +10002,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             }
                         })), e.constrain && this.constrainToHeight(), this
                     }
-                    return "WISTIA-PLAYER" !== this.embedElement ? .tagName || this.embedElement ? .wistiaPopover || this.inFullscreen() ? (0, f.elemHeight)(this.chrome) : (0, f.elemHeight)(this.embedElement)
+                    return "WISTIA-PLAYER" !== this.embedElement ?.tagName || this.embedElement ?.wistiaPopover || this.inFullscreen() ? (0, f.elemHeight)(this.chrome) : (0, f.elemHeight)(this.embedElement)
                 }
                 videoWidth(t, e = {
                     constrain: !1,
@@ -10018,7 +10018,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             }
                         })), e.constrain && this.constrainToWidth(), this
                     }
-                    return "WISTIA-PLAYER" !== this.embedElement ? .tagName || this.embedElement ? .wistiaPopover || this.inFullscreen() ? (0, f.elemWidth)(this.chrome) : (0, f.elemWidth)(this.embedElement)
+                    return "WISTIA-PLAYER" !== this.embedElement ?.tagName || this.embedElement ?.wistiaPopover || this.inFullscreen() ? (0, f.elemWidth)(this.chrome) : (0, f.elemWidth)(this.embedElement)
                 }
                 getVideoQuality() {
                     return "auto"
@@ -10027,7 +10027,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return this
                 }
                 visitorKey() {
-                    return this._tracker ? .visitorKey()
+                    return this._tracker ?.visitorKey()
                 }
                 volume(t) {
                     return null != t ? (this.info("volume", t), this.volumeAttr(t), this.ready((() => this.volume(t)))) : 0
@@ -10107,7 +10107,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             first_share_for_account: i,
                             account_key: t,
                             media_hashed_id: n
-                        }), s && "WISTIA-PLAYER" === this.embedElement ? .tagName && (0, p.countMetric)("player/first-embed-web-component", 1, {
+                        }), s && "WISTIA-PLAYER" === this.embedElement ?.tagName && (0, p.countMetric)("player/first-embed-web-component", 1, {
                             account_key: t,
                             media_hashed_id: n,
                             url: window.location.href
@@ -10125,7 +10125,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
                 _refreshDataFromServer(e, i) {
                     const n = this.embedOptions().embedHost || t.remote.embedHost();
-                    return fetch(`//${n}/embed/medias/${this.hashedId()}.json`).then((t => t.json())).then((i => (this.publicApi._originalMediaData = i.media, this._mediaData = this.publicApi._transformAndUpdateMediaData(), this._newStill && this._replaceStillAsset(this._newStill), this.publicApi._mediaData = this._mediaData, t.cacheMedia(this.hashedId(), this._mediaData), e ? .(), this.trigger("refreshed-from-server"), this._mediaData))).catch(i)
+                    return fetch(`//${n}/embed/medias/${this.hashedId()}.json`).then((t => t.json())).then((i => (this.publicApi._originalMediaData = i.media, this._mediaData = this.publicApi._transformAndUpdateMediaData(), this._newStill && this._replaceStillAsset(this._newStill), this.publicApi._mediaData = this._mediaData, t.cacheMedia(this.hashedId(), this._mediaData), e ?.(), this.trigger("refreshed-from-server"), this._mediaData))).catch(i)
                 }
                 _replaceStillAsset(t) {
                     const e = this.assets().filter((t => "still_image" !== t.type));
@@ -10140,12 +10140,12 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
             }
             e.FAILED = -1, e.PROCESSING = 1, e.QUEUED = 0, e.READY = 2, e.asset = s.one, e.assets = s.filter, e.assetsWithinQualityRange = s.withinQualityRange, e.bakeryHosts = () => s.BAKERY_HOSTS, e.isBakeryUrl = s.isBakeryUrl, e.stillAsset = s.still, e.stillUrl = s.stillUrl, t.mixin(e.prototype, t.bindable), t.mixin(e.prototype, t.logHelpers), e.prototype._logPrefix = function() {
-                return [this.constructor.name, this.hashedId() || "no hashedId", this._embedContainer ? .id, this.uuid]
+                return [this.constructor.name, this.hashedId() || "no hashedId", this._embedContainer ?.id, this.uuid]
             };
             const i = e.prototype.trigger;
             e.prototype.trigger = function(...t) {
                 return i.apply(this, t), this.publicApi._triggerNoImpl(...t)
-            }, t.PublicApi ? .prototype && Object.getOwnPropertyNames(t.PublicApi.prototype).forEach((i => {
+            }, t.PublicApi ?.prototype && Object.getOwnPropertyNames(t.PublicApi.prototype).forEach((i => {
                 const n = t.PublicApi.prototype[i];
                 "function" != typeof n || T(e.prototype, i) || function(t, i) {
                     e.prototype[t] = function(...e) {
@@ -10201,7 +10201,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return "playing" !== this.video.state() && !e || this.video.playbackRate() >= this.maxWatchingPlaybackRate || !this.justReleasedPlaybar() && !this.justPlayed() && (!!this.isScrubbing() || void 0)
             }
             eventLoopDuration() {
-                return this.video._impl ? ._eventLoopDuration || 300
+                return this.video._impl ?._eventLoopDuration || 300
             }
             isScrubbing() {
                 return this.lastTimeChangeAt && Date.now() - this.lastTimeChangeAt < this.eventLoopDuration()
@@ -10251,7 +10251,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     }, this.opt), this.opt.uuid || (this.opt.uuid = (0, o.h)("bandwidth_test_"))
                 }
                 start() {
-                    this._testXhr ? .abort(), this._testStart = (new Date).getTime(), this._testXhr = new XMLHttpRequest, this._testXhr.open("GET", this.testFileUrl(), !0);
+                    this._testXhr ?.abort(), this._testStart = (new Date).getTime(), this._testXhr = new XMLHttpRequest, this._testXhr.open("GET", this.testFileUrl(), !0);
                     const t = 1e6 * Math.floor(100 * Math.random()),
                         e = t + 999999;
                     return this._testXhr.setRequestHeader("Range", `bytes=${t}-${e}`), (0, s.doTimeout)(`${this.uuid}.cancel_bandwidth_test`, (() => (this.trigger("timeout"), this.fail())), this.opt.timeoutLength), this._testDataLoaded = 0, this._onTestXhrProgress = t => (this._testDataLoaded = t.loaded, this.trigger("progress", t)), this._testXhr.addEventListener("progress", this._onTestXhrProgress), this._onTestXhrLoaded = () => this.succeed(), this._testXhr.addEventListener("load", this._onTestXhrLoaded), this._testXhr.send(null), this.trigger("started")
@@ -10267,7 +10267,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         if (this._suspiciouslyFast()) return t.Metrics.count("player/suspicious-bandwidth-test", 1, {
                             bw_test_time: this._testTime,
                             visitor_key: t.visitorKey.value(),
-                            location: location ? .protocol ? .length && location ? .hostname ? .length ? `${location.protocol}//${location.hostname}` : null,
+                            location: location ?.protocol ?.length && location ?.hostname ?.length ? `${location.protocol}//${location.hostname}` : null,
                             connection_type: t.Metrics.connectionType(),
                             agent: navigator.userAgent
                         })
@@ -10285,7 +10285,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return null == this._supportsHd && null != this._testDataLoaded ? (this._sampleKbps(), this._supportsHd = !(this._testTime > 1) || this._kbps >= this.opt.minKbps, this.trigger("ended-early"), this.end()) : (this.end(), this.trigger("ended-early"))
                 }
                 end() {
-                    return this._onTestXhrLoaded && this._testXhr ? .removeEventListener("load", this._onTestXhrLoaded), this._onTestXhrProgress && this._testXhr ? .removeEventListener("progress", this._onTestXhrProgress), this._testXhr ? .abort(), this._testXhr = null, (0, s.clearTimeouts)(`${this.uuid}.cancel_bandwidth_test`), this.trigger("ended")
+                    return this._onTestXhrLoaded && this._testXhr ?.removeEventListener("load", this._onTestXhrLoaded), this._onTestXhrProgress && this._testXhr ?.removeEventListener("progress", this._onTestXhrProgress), this._testXhr ?.abort(), this._testXhr = null, (0, s.clearTimeouts)(`${this.uuid}.cancel_bandwidth_test`), this.trigger("ended")
                 }
                 testFileUrl() {
                     return this.opt.testFileUrl || ("https:" === (0, n.proto)() ? "https://embed-ssl.wistia.com/deliveries/6992339c876a95a37250fbe5b0a0eaecca3018a5/file.jpg?bust=2015-12-29a" : "http://embed.wistia.com/deliveries/76a57ca47a1978a834d82dcf7eeb03a6.bin?bust=2015-12-29a")
@@ -10304,7 +10304,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return t.localStorage(this.saveKey())
                 }
                 isFresh() {
-                    return (new Date).getTime() - (this.savedResult() ? .updatedAt || 0) < this.opt.freshFor
+                    return (new Date).getTime() - (this.savedResult() ?.updatedAt || 0) < this.opt.freshFor
                 }
                 supportsHd() {
                     return this._supportsHd || !1
@@ -10635,13 +10635,13 @@ var __webpack_modules__ = [, (t, e, i) => {
                 eventId: t,
                 event: e
             }) => {
-                const i = a() ? ? {};
+                const i = a() ?? {};
                 i[t] = e, window.localStorage.setItem(s.kS, JSON.stringify(i))
             },
             h = (t, e = 1) => {
                 if ((0, n.gD)(t)) return [];
                 const i = (0, o.Lg)(s.zB);
-                return i ? .[t] ? .sort(((t, e) => e.lastUsed - t.lastUsed)).slice(0, e) ? ? []
+                return i ?.[t] ?.sort(((t, e) => e.lastUsed - t.lastUsed)).slice(0, e) ?? []
             }
     }, (t, e, i) => {
         i.d(e, {
@@ -10783,39 +10783,39 @@ var __webpack_modules__ = [, (t, e, i) => {
                 sample: n.XM,
                 send: n.tN,
                 videoCount(t, e, i, n) {
-                    return null == i && (i = 1), t.isInstantHls ? .() && this.videoSend(t, "count", `player/instant-hls/${e}`, i, n), this.videoSend(t, "count", e, i, n)
+                    return null == i && (i = 1), t.isInstantHls ?.() && this.videoSend(t, "count", `player/instant-hls/${e}`, i, n), this.videoSend(t, "count", e, i, n)
                 },
                 videoSample(t, e, i, n) {
                     return this.videoSend(t, "sample", e, i, n)
                 },
                 videoSend(e, i, n, a, l) {
-                    return null == l && (l = {}), e.hasData ? .((() => {
+                    return null == l && (l = {}), e.hasData ?.((() => {
                         let h;
-                        const u = e.bandwidthTest ? .().savedResult() || {};
+                        const u = e.bandwidthTest ?.().savedResult() || {};
                         if (l = (0, s.merge)({
-                                location: location ? .protocol ? .length && location ? .hostname ? .length ? `${location.protocol}//${location.hostname}` : null,
+                                location: location ?.protocol ?.length && location ?.hostname ?.length ? `${location.protocol}//${location.hostname}` : null,
                                 agent: navigator.userAgent,
-                                account_key: e._mediaData ? .accountKey,
+                                account_key: e._mediaData ?.accountKey,
                                 at: e.time(),
                                 video_id: e.hashedId(),
                                 embed_type: e.playerType,
                                 duration: e.duration(),
                                 client_kbps: u.clientKbps,
                                 supports_hd: u.supportsHd,
-                                autoplay: !!e._attrs ? .autoplay,
+                                autoplay: !!e._attrs ?.autoplay,
                                 in_iframe: top !== self,
                                 device_pixel_ratio: r.z.devicePixelRatio,
                                 window_width: (0, o.elemWidth)(window),
                                 window_height: (0, o.elemHeight)(window),
                                 video_width: e.videoWidth(),
                                 video_height: e.videoHeight(),
-                                visitor_key: e._tracker ? .visitorKey(),
-                                event_key: e._tracker ? .eventKey(),
-                                event_time_delta: e._tracker ? .timeDelta(),
+                                visitor_key: e._tracker ?.visitorKey(),
+                                event_key: e._tracker ?.eventKey(),
+                                event_time_delta: e._tracker ?.timeDelta(),
                                 connection_type: this.connectionType(),
                                 version: 9,
                                 channel: t.channelName
-                            }, l), /romulus|html5|vulcan/.test(e.playerType) && (l.errorState = e.elem() ? .error), null != e._cacheStatus && (l.cache_status = e._cacheStatus), null != e._assetServer && (l.asset_server = e._assetServer), null != e._cacheHit && (l.cache_hit = e._cacheHit), e.inFullscreen && (l.in_fullscreen = e.inFullscreen()), null != e._substream ? (l.substream = e._substream.index, l.adaptive = e._substream.adaptive, l.current_level = e._substream.currentLevel, l.all_level_names = e._substream.allLevelNames, h = e._substream.asset, l.hls_error_counts = e._substream.hlsErrorCounts()) : (l.substream = null, l.adaptive = null, h = e.data ? .asset), null != h && (l.asset_type = h.type, l.asset_slug = h.slug, l.bitrate = h.bitrate, l.asset_height = h.height, l.asset_width = h.width), e.videoElem ? .buffered ? .length > 0 && (l.bufferedFrom0 = e.videoElem.buffered.end(0)), null != e._timeToFirstByte && (l.time_to_first_byte = e._timeToFirstByte), l.buffered = null != e.totalBuffered ? e.totalBuffered() : void 0, l.played = null != e.totalPlayed ? e.totalPlayed() : void 0, this.send(i, n, a, l), e._mediaData && e._mediaData.accountKey && e._mediaData.accountSpecificMetrics) return this.send(i, `${e._mediaData.accountKey}/${n}`, a, l)
+                            }, l), /romulus|html5|vulcan/.test(e.playerType) && (l.errorState = e.elem() ?.error), null != e._cacheStatus && (l.cache_status = e._cacheStatus), null != e._assetServer && (l.asset_server = e._assetServer), null != e._cacheHit && (l.cache_hit = e._cacheHit), e.inFullscreen && (l.in_fullscreen = e.inFullscreen()), null != e._substream ? (l.substream = e._substream.index, l.adaptive = e._substream.adaptive, l.current_level = e._substream.currentLevel, l.all_level_names = e._substream.allLevelNames, h = e._substream.asset, l.hls_error_counts = e._substream.hlsErrorCounts()) : (l.substream = null, l.adaptive = null, h = e.data ?.asset), null != h && (l.asset_type = h.type, l.asset_slug = h.slug, l.bitrate = h.bitrate, l.asset_height = h.height, l.asset_width = h.width), e.videoElem ?.buffered ?.length > 0 && (l.bufferedFrom0 = e.videoElem.buffered.end(0)), null != e._timeToFirstByte && (l.time_to_first_byte = e._timeToFirstByte), l.buffered = null != e.totalBuffered ? e.totalBuffered() : void 0, l.played = null != e.totalPlayed ? e.totalPlayed() : void 0, this.send(i, n, a, l), e._mediaData && e._mediaData.accountKey && e._mediaData.accountSpecificMetrics) return this.send(i, `${e._mediaData.accountKey}/${n}`, a, l)
                     }))
                 },
                 countEvent(t, e, i) {
@@ -10846,10 +10846,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return t.bind("waiting", (i => (e < 5 && i >= 5 && this.videoCount(t, "player/show-loading-long-time/all", 1), e = i))), t.bind("done-waiting", (() => e = -1))
                 },
                 mobileBuckets: () => t.detect.iphone || t.detect.android || /mobile/i.test(navigator.userAgent) ? t.detect.iphone ? ["mobile", "iphone"] : t.detect.android ? ["mobile", "android"] : ["mobile"] : [],
-                embedTypeBuckets: t => "WISTIA-PLAYER" === t ? .tagName ? !0 === t ? .useWebComponent ? ["web-component", "translated-web-component"] : ["web-component"] : ["legacy"],
+                embedTypeBuckets: t => "WISTIA-PLAYER" === t ?.tagName ? !0 === t ?.useWebComponent ? ["web-component", "translated-web-component"] : ["web-component"] : ["legacy"],
                 connectionType() {
                     const t = window.navigator.connection || window.navigator.mozConnection || window.navigator.webkitConnection;
-                    return t ? .type
+                    return t ?.type
                 },
                 sumTimeRanges(t) {
                     if (null == t) return null;
@@ -11160,16 +11160,16 @@ var __webpack_modules__ = [, (t, e, i) => {
             if (t.VisitorKey) return;
             const e = "__distillery";
             (0, n.PD)("visitortrackingchange", ((e, i) => {
-                for (let t of Array.from((0, r.bp)())) t._postDownVisitorTrackingEnabled ? .();
+                for (let t of Array.from((0, r.bp)())) t._postDownVisitorTrackingEnabled ?.();
                 if (t.visitorKey) {
-                    if (!(0, s.isVisitorTrackingEnabled)()) return t.visitorKey.unpersist(), t._destructors.destroyMux ? .();
+                    if (!(0, s.isVisitorTrackingEnabled)()) return t.visitorKey.unpersist(), t._destructors.destroyMux ?.();
                     if (t.visitorKey.value()) return t.visitorKey.persist(t.visitorKey.value())
                 }
             })), t.VisitorKey = class {
                 constructor() {
                     this.ready = this.ready.bind(this), this.unbinds = [], setTimeout((() => this.unbinds.push((0, a.onFindApiHandle)({
                         matcher: a.ALL_API_HANDLES_KEY,
-                        functionToRun: t => t.hasData((() => (t.iframe || !0 !== t._mediaData ? .privacyMode || this.unpersist(), this.ready())))
+                        functionToRun: t => t.hasData((() => (t.iframe || !0 !== t._mediaData ?.privacyMode || this.unpersist(), this.ready())))
                     }))), 0)
                 }
                 ready() {
@@ -11182,14 +11182,14 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
                 persist(i) {
                     if (t.VisitorKey.isValid(i)) {
-                        if (this.info ? .("@persist", i), this._value = i, (0, s.isVisitorTrackingEnabled)()) return !0 !== window.wistiaDisableCookies && this.localStorageValue() !== this._value ? t.localStorage(e, this._value) : void 0
+                        if (this.info ?.("@persist", i), this._value = i, (0, s.isVisitorTrackingEnabled)()) return !0 !== window.wistiaDisableCookies && this.localStorageValue() !== this._value ? t.localStorage(e, this._value) : void 0
                     } else this.error(new Error(`Attempted to persist invalid visitor key '${i}'`))
                 }
                 unpersist() {
                     return this.clearFromCurrentDomain()
                 }
                 clear() {
-                    return this.info ? .("clear"), this.unpersist(), this._value = null
+                    return this.info ?.("clear"), this.unpersist(), this._value = null
                 }
                 clearFromCurrentDomain() {
                     return t.removeLocalStorage(e, null)
@@ -11212,13 +11212,13 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return this.unbinds = []
                 }
                 static isValid(t) {
-                    return t ? .length > 25 && /^[a-z0-9_\-.]+$/i.test(t)
+                    return t ?.length > 25 && /^[a-z0-9_\-.]+$/i.test(t)
                 }
                 static generate() {
                     return (0, o.b)(`${Date.now().toString().substring(0,7)}_`)
                 }
             }, t.logHelpers && t.mixin(t.VisitorKey.prototype, t.logHelpers), t._initializers.initVisitorKey = () => t.visitorKey = new t.VisitorKey, t._destructors.destroyVisitorKey = function() {
-                return t.visitorKey ? .destroy(), t.visitorKey = null
+                return t.visitorKey ?.destroy(), t.visitorKey = null
             }
         }(window.Wistia)
     }, (t, e, i) => {
@@ -11228,8 +11228,8 @@ var __webpack_modules__ = [, (t, e, i) => {
                 try {
                     if (parent !== self) return;
                     const e = location.href.match(/[?&]wtime=([\dhms]*)/),
-                        i = location.href.match(/[?&]wvideo(id)?=([^&]+)/) ? .[2];
-                    if (!(e ? .length >= 2)) return;
+                        i = location.href.match(/[?&]wvideo(id)?=([^&]+)/) ?.[2];
+                    if (!(e ?.length >= 2)) return;
                     if (t._specificTimeInitiated) return;
                     t._specificTimeInitiated = !0;
                     let s = !1;
@@ -11237,7 +11237,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         matcher: n.ALL_API_HANDLES_KEY,
                         shouldOnlyRunWhenVisible: !0,
                         functionToRun: t => {
-                            if (!i || t.hashedId() === i) return s ? void 0 : (s = !0, t.embedded((() => t.popover ? .show())), t.time(e[1]).play())
+                            if (!i || t.hashedId() === i) return s ? void 0 : (s = !0, t.embedded((() => t.popover ?.show())), t.time(e[1]).play())
                         }
                     })
                 } catch (e) {
@@ -11271,7 +11271,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 if (null == i) throw new Error("Must provide seedRange argument");
                 if (null != s && "function" != typeof s) throw new Error("Given seed is not a function");
                 if ("function" != typeof c) throw new Error(`Invalid easing function given: ${this.easing}`);
-                this._seedRange = i, this._seedFunction = s || (() => (new Date).getTime()), this._outputStart = a, this._outputEnd = h, this._easing = c, this._seedStart = o ? .() || this.seed()
+                this._seedRange = i, this._seedFunction = s || (() => (new Date).getTime()), this._outputStart = a, this._outputEnd = h, this._easing = c, this._seedStart = o ?.() || this.seed()
             }
             seed() {
                 return this.seedFunction()()
@@ -11367,7 +11367,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             functionToRun: t => {
                 t.hasData((() => {
                     t._mediaData && t._mediaData.tagManager && (t => {
-                        if (t.doNotTrack ? .()) return;
+                        if (t.doNotTrack ?.()) return;
                         const e = t._mediaData.integrations || {},
                             i = "true" === document.documentElement.dataset.wistiaTagManagerDetectOnly,
                             n = !1 !== e.marketo_v2_watch_events && "false" !== e.marketo_v2_watch_events,
@@ -11408,14 +11408,14 @@ var __webpack_modules__ = [, (t, e, i) => {
                                         }
                                     })(t, i) : null;
                                     t._wistiaTagManagerRelease = () => {
-                                        s ? .(), e()
+                                        s ?.(), e()
                                     }, t._wistiaTagManagerRemoved && t._wistiaTagManagerRelease()
                                 })).catch((() => {
                                     t._wistiaTagManagerPending = !1
                                 })))
                             }));
                         t.bind("beforeremove", (() => {
-                            t._wistiaTagManagerRemoved = !0, r(), t._wistiaTagManagerRelease ? .(), t._wistiaTagManagerRelease = null
+                            t._wistiaTagManagerRemoved = !0, r(), t._wistiaTagManagerRelease ?.(), t._wistiaTagManagerRelease = null
                         }))
                     })(t)
                 }))
@@ -11455,7 +11455,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 };
                 return c("visitortrackingchange", e), () => d("visitortrackingchange", e)
             },
-            g = () => (r.Wistia._tagManager ? ? = {
+            g = () => (r.Wistia._tagManager ??= {
                 el: null,
                 refs: 0
             }, r.Wistia._tagManager),
@@ -11465,17 +11465,17 @@ var __webpack_modules__ = [, (t, e, i) => {
             }) => {
                 await (0, n.$)("assets/external/tag-manager.js");
                 const i = g();
-                i.el && !i.el.isConnected && (i.el = null), i.el ? ? = document.querySelector("wistia-tag-manager");
+                i.el && !i.el.isConnected && (i.el = null), i.el ??= document.querySelector("wistia-tag-manager");
                 const s = t => {
                     const {
                         detail: i
-                    } = t, n = i ? .foreignIds;
+                    } = t, n = i ?.foreignIds;
                     void 0 !== n && e(n)
                 };
                 if (i.el) {
                     i.el.addEventListener("foreignidschange", s);
                     const n = i.el.foreignIds;
-                    void 0 !== n && Object.keys(n).length > 0 && e(n), i.el.config = (o = i.el.config ? ? {}, r = t, Object.entries(r).reduce(((t, [e, i]) => {
+                    void 0 !== n && Object.keys(n).length > 0 && e(n), i.el.config = (o = i.el.config ?? {}, r = t, Object.entries(r).reduce(((t, [e, i]) => {
                         const n = !0 === t[e] && "object" == typeof i;
                         return a(t, e) && !n ? t : { ...t,
                             [e]: i
@@ -11491,10 +11491,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                 let l = !1;
                 return {
                     release: () => {
-                        l || (l = !0, i.el ? .removeEventListener("foreignidschange", s), i.refs -= 1, i.refs <= 0 && (i.el ? .remove(), i.el = null, i.refs = 0))
+                        l || (l = !0, i.el ?.removeEventListener("foreignidschange", s), i.refs -= 1, i.refs <= 0 && (i.el ?.remove(), i.el = null, i.refs = 0))
                     },
                     track: (t, e) => {
-                        g().el ? .track ? .(t, e)
+                        g().el ?.track ?.(t, e)
                     }
                 }
             }
@@ -11739,10 +11739,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                 requestControls(t, e, i = !0) {
                     return this._visibilityRequests[t] = i, null != e && (0, u.doTimeout)(`${this.uuid}.${t}.release_controls`, (() => {
                         this.releaseControls(t)
-                    }), e), this.ui ? .maybeToggleControls()
+                    }), e), this.ui ?.maybeToggleControls()
                 }
                 releaseControls(t) {
-                    return this._visibilityRequests[t] = null, this.ui ? .maybeToggleControls()
+                    return this._visibilityRequests[t] = null, this.ui ?.maybeToggleControls()
                 }
                 fit() {
                     super.fit(), this.embedded((() => {}))
@@ -11781,7 +11781,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     return this.behaviors.fullscreen.cancelFullscreen()
                 }
                 inFullscreen() {
-                    return this.behaviors.fullscreen ? .inFullscreen()
+                    return this.behaviors.fullscreen ?.inFullscreen()
                 }
                 stopStreaming() {
                     this.info("stopStreaming"), this.engine && this.engine.stopStreaming()
@@ -11950,7 +11950,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 state() {
                     if (this.engine) {
                         const t = this.engine.getPlaybackMode();
-                        return "beforeplay" === t && this.behaviors.relayEvents ? ._hasPlayed ? "paused" : t
+                        return "beforeplay" === t && this.behaviors.relayEvents ?._hasPlayed ? "paused" : t
                     }
                     return "beforeplay"
                 }
@@ -12197,7 +12197,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     }))
                 }
                 _inNativeMode() {
-                    return this.behaviors.ui ? .inNativeMode() || !1
+                    return this.behaviors.ui ?.inNativeMode() || !1
                 }
                 _bandwidthTest() {
                     return this.behaviors.bandwidthTest.bandwidthTest()
@@ -12227,7 +12227,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     }))
                 }
                 turnOffCaptions() {
-                    this.controls.captions ? .turnOff(), this.controls.captionsButton ? .matchMenuToSelectedTextTrack()
+                    this.controls.captions ?.turnOff(), this.controls.captionsButton ?.matchMenuToSelectedTextTrack()
                 }
             }
             m.Wistia.VulcanV2Player = e, m.Wistia.plugin("vulcanV2Player", ((t, e) => {
@@ -12309,8 +12309,8 @@ var __webpack_modules__ = [, (t, e, i) => {
                         account_id: t.accountId,
                         live_stream_event_channel_id: this.channelId(),
                         live_stream_event_id: t.liveStreamEventDetails.id,
-                        live_series_id: t.liveStreamEventDetails.liveSeriesId ? ? null,
-                        media_id: t.sourceMediaId ? ? t.mediaId,
+                        live_series_id: t.liveStreamEventDetails.liveSeriesId ?? null,
+                        media_id: t.sourceMediaId ?? t.mediaId,
                         media_type: "Video",
                         player_type: "modern"
                     }, {
@@ -12403,22 +12403,22 @@ var __webpack_modules__ = [, (t, e, i) => {
                 })), m(f, this, Date.now()), m(y, this, t)
             }
             get meta() {
-                return p(w, this) ? .meta
+                return p(w, this) ?.meta
             }
             get lastEvent() {
-                return p(w, this) ? .lastEvent
+                return p(w, this) ?.lastEvent
             }
             get isPlaying() {
-                return p(w, this) ? .isPlaying
+                return p(w, this) ?.isPlaying
             }
             get captionsEnabled() {
                 return !!p(y, this).getSelectedCaptions()
             }
             get isLive() {
-                return !!p(y, this)._mediaData ? .liveStreamEventDetails ? .startedAt
+                return !!p(y, this)._mediaData ?.liveStreamEventDetails ?.startedAt
             }
             get numericId() {
-                return p(y, this)._mediaData ? .liveStreamEventDetails ? .id
+                return p(y, this)._mediaData ?.liveStreamEventDetails ?.id
             }
             get hashedId() {
                 return p(y, this).hashedId()
@@ -12439,14 +12439,14 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return (new Date).getTime() - p(f, this)
             }
             eventKey() {
-                return this.meta ? .session_key
+                return this.meta ?.session_key
             }
             visitorKey() {
                 return p(y, this).visitorKey()
             }
             channelId() {
                 const t = p(y, this)._mediaData,
-                    e = t ? .liveStreamEventDetails ? .id;
+                    e = t ?.liveStreamEventDetails ?.id;
                 return e ? (0, r.FB)(e) : null
             }
         }
@@ -12463,9 +12463,9 @@ var __webpack_modules__ = [, (t, e, i) => {
 
         function R() {
             const t = p(y, this)._mediaData,
-                e = t ? .liveStreamEventDetails ? .hashedId;
+                e = t ?.liveStreamEventDetails ?.hashedId;
             if (!p(y, this).email() && e) {
-                const t = (0, h.e)(e) ? .email;
+                const t = (0, h.e)(e) ?.email;
                 p(y, this).email(t)
             }
         }
@@ -12481,7 +12481,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 if (!Number.isNaN(t)) return t
             }
             const i = (0, n.mu)(t);
-            return i ? .channelId ? ? null
+            return i ?.channelId ?? null
         }
     }, (t, e, i) => {
         i.d(e, {
@@ -12999,7 +12999,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         });
         var n = i(166);
         const s = (t, e, i) => {
-            const s = ((0, n.NW)() ? ? {})[t] ? ? {},
+            const s = ((0, n.NW)() ?? {})[t] ?? {},
                 o = `${e}_${i}`;
             return !(o in s) && ((0, n.kH)({
                 eventId: t,
@@ -13121,18 +13121,18 @@ var __webpack_modules__ = [, (t, e, i) => {
                 var e, i, n;
                 super(t), e = this, n = t => {
                     const e = this.video.engine.getAudioTracks().then((e => {
-                        const i = t => "public.accessibility.describes-video" === t ? .characteristics,
+                        const i = t => "public.accessibility.describes-video" === t ?.characteristics,
                             n = t => e.find((e => Number(e.id) === Number(t))),
                             s = e.find((t => t.isSelected)),
                             o = n(t);
                         if (!o) return;
                         let r = o;
-                        if (i(o)) i(s) || (this.trackIdBeforeDescription = s ? .id);
+                        if (i(o)) i(s) || (this.trackIdBeforeDescription = s ?.id);
                         else {
                             if (!i(s)) return;
-                            r = n(this.trackIdBeforeDescription) ? ? o
+                            r = n(this.trackIdBeforeDescription) ?? o
                         }
-                        Number(r.id) !== Number(s ? .id) && this.video.changeAudioTrack(r.id)
+                        Number(r.id) !== Number(s ?.id) && this.video.changeAudioTrack(r.id)
                     }));
                     return (0, u.C)() && setTimeout((() => {
                         this.dialog.close(), this.buttonRoot.parentElement.focus()
@@ -13206,11 +13206,11 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
         }
         m.shouldMount = t => {
-            const e = (0, d.Wu)(t._mediaData.assets).filter((t => t ? .details ? .audioDescription)),
+            const e = (0, d.Wu)(t._mediaData.assets).filter((t => t ?.details ?.audioDescription)),
                 i = (0, d.DK)(e),
                 n = t._impl.bestEngine();
             return !(n !== p.HLS_ENGINE_PATH && n !== p.NATIVE_HLS_ENGINE_PATH || (t => {
-                const e = t.embedOptions().plugin ? .extendedAudioDescription;
+                const e = t.embedOptions().plugin ?.extendedAudioDescription;
                 return e && !1 !== e.on
             })(t) || !1 === t._attrs.audioDescriptionIsRequired || !1 === t._attrs.audioDescriptionControl || !(i.length > 1))
         }, m.handle = "audioDescriptionButton", m.type = "control-bar-right", m.sortValue = 51, m.isVideoChrome = !0, (0, o.X)(m), a.Wistia.AudioDescriptionControl = m
@@ -13647,8 +13647,8 @@ var __webpack_modules__ = [, (t, e, i) => {
                         mediaData: e,
                         attributes: i
                     } = t, n = `${(0,s.eV1Protocol)()}//${(0,s.cdnFastWistiaComHost)(i.embedHost)}`, o = `${(0,s.eV1Protocol)()}//${(0,s.cdnFastProtectedWistiaComHost)(i.assetHost)}`;
-                    if (e.protected && i.authorization ? .jwt) {
-                        const t = e.sourceHashedId ? ? e.hashedId,
+                    if (e.protected && i.authorization ?.jwt) {
+                        const t = e.sourceHashedId ?? e.hashedId,
                             i = t !== e.hashedId,
                             n = i ? t : e.hashedId,
                             s = new URL(`${o}/embed/accounts/${e.accountId}/medias/${n}.m3u8`);
@@ -13656,11 +13656,11 @@ var __webpack_modules__ = [, (t, e, i) => {
                     }
                     return new URL(`${n}/embed/medias/${e.hashedId}.m3u8`)
                 })(t);
-                return "HlsVideo" !== t ? .name && (E && C.searchParams.set("quality_min", E), T && C.searchParams.set("quality_max", T)), m && C.searchParams.set("disallow_original_file_playback", m), p && C.searchParams.set("delivery_cdn", p), w && -1 !== w && C.searchParams.set("start_position", w), h && null != u && c && (C.searchParams.set("clip_to", c), C.searchParams.set("clip_from", u)), g && C.searchParams.set("force_instant_hls", !0), f && C.searchParams.set("force_original_file_playback", !0), i && r.hdr && C.searchParams.set("allow_hdr", !0), o && (Array.isArray(o) ? o.forEach((t => {
+                return "HlsVideo" !== t ?.name && (E && C.searchParams.set("quality_min", E), T && C.searchParams.set("quality_max", T)), m && C.searchParams.set("disallow_original_file_playback", m), p && C.searchParams.set("delivery_cdn", p), w && -1 !== w && C.searchParams.set("start_position", w), h && null != u && c && (C.searchParams.set("clip_to", c), C.searchParams.set("clip_from", u)), g && C.searchParams.set("force_instant_hls", !0), f && C.searchParams.set("force_original_file_playback", !0), i && r.hdr && C.searchParams.set("allow_hdr", !0), o && (Array.isArray(o) ? o.forEach((t => {
                     C.searchParams.append("bit_depth[]", t)
                 })) : C.searchParams.set("bit_depth", o)), d && (Array.isArray(d) ? d.forEach((t => {
                     C.searchParams.append("codec[]", t)
-                })) : C.searchParams.set("codec", d)), n ? .jwt && C.searchParams.set("pma", n.jwt), _ && C.searchParams.set("password", _), a && l && (C.searchParams.set("channel_id", a), C.searchParams.set("channel_password", l)), C.toString()
+                })) : C.searchParams.set("codec", d)), n ?.jwt && C.searchParams.set("pma", n.jwt), _ && C.searchParams.set("password", _), a && l && (C.searchParams.set("channel_id", a), C.searchParams.set("channel_password", l)), C.toString()
             },
             l = t => (0, n.filter)(t, {
                 type: "mp4_alternate_audio",
@@ -13689,12 +13689,12 @@ var __webpack_modules__ = [, (t, e, i) => {
                         groupId: "audio",
                         id: i + 1,
                         lang: void 0,
-                        name: t.details ? .languageMetadata.name || "Alt Audio",
-                        label: t.details ? .languageMetadata.name || "Alt Audio",
+                        name: t.details ?.languageMetadata.name || "Alt Audio",
+                        label: t.details ?.languageMetadata.name || "Alt Audio",
                         type: "AUDIO",
                         isSelected: !1
                     };
-                    !0 === t.details ? .audioDescription && (n.characteristics = "public.accessibility.describes-video"), e.push(n)
+                    !0 === t.details ?.audioDescription && (n.characteristics = "public.accessibility.describes-video"), e.push(n)
                 })), e
             }
     }, (t, e, i) => {
@@ -13764,7 +13764,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                             writable: !0
                         }) : t[e] = i
                     }(this, "onClickButton", (() => {
-                        if (this.captionsV3Control ? .selectedLanguage) this.captionsV3Control.setLanguage(void 0), d(b, this, f);
+                        if (this.captionsV3Control ?.selectedLanguage) this.captionsV3Control.setLanguage(void 0), d(b, this, f);
                         else {
                             const t = this.captionsV3Control.captionAndSubtitleTextTracks()[0].language;
                             this.captionsV3Control.setLanguage(t), d(b, this, g)
@@ -13787,7 +13787,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             renderButton() {
                 !this.video._inNativeMode() && this.buttonRoot && (this.updateButtonLabel(), (0, n.render)((0, n.h)(r.b, {
                     color: this.video.playerColor(),
-                    filled: Boolean(this.captionsV3Control ? .selectedTrack)
+                    filled: Boolean(this.captionsV3Control ?.selectedTrack)
                 }), this.buttonRoot), this.reactMounts.button = [this.buttonRoot])
             }
             updateButtonLabel() {
@@ -13997,8 +13997,8 @@ var __webpack_modules__ = [, (t, e, i) => {
                         videoName: this.video.name() || "",
                         videoWidth: this.props.videoWidth,
                         backgroundGradientCss: this.backgroundGradientCss(),
-                        isOpaque: this.video.opaqueControls() ? ? !1,
-                        hasContrastIcons: this.video.contrastIcons() ? ? !1
+                        isOpaque: this.video.opaqueControls() ?? !1,
+                        hasContrastIcons: this.video.contrastIcons() ?? !1
                     }), this.rootElem), this.reactMounts = [this.rootElem]
                 })), u(this, "onClick", (() => {
                     this.video.play(), this.video.focus()
@@ -14011,7 +14011,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             backgroundGradientCss() {
                 const t = this.video.playerColorGradient();
-                if (t ? .on) return (0, o.qN)(t)
+                if (t ?.on) return (0, o.qN)(t)
             }
             onControlPropsUpdated(t) {
                 this.props.videoWidth === t.videoWidth && this.props.videoHeight === t.videoHeight && this.props.bigPlayButtonBorderRadius === t.bigPlayButtonBorderRadius || this.renderButton()
@@ -14075,7 +14075,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 if (i / n < 1) {
                     const [e, i] = (t => {
                         if (!(o.iphone || o.ipad || o.android)) return [340, 860];
-                        if (t ? .isAudio()) return [500, 960];
+                        if (t ?.isAudio()) return [500, 960];
                         const e = r();
                         let i;
                         if (e.height) {
@@ -14090,7 +14090,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 } else {
                     const [n, s] = e || (t => {
                         if (!(o.iphone || o.ipad || o.android)) return [640, 960];
-                        if (t ? .isAudio()) return [500, 960];
+                        if (t ?.isAudio()) return [500, 960];
                         const e = r();
                         let i;
                         if (e.width) {
@@ -14159,7 +14159,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     },
                     H = !p.edge && !S,
                     V = {
-                        background: new a.Q1(g ? ? "#000").alpha(1).toRgba(),
+                        background: new a.Q1(g ?? "#000").alpha(1).toRgba(),
                         display: H ? "block" : "none",
                         left: 0,
                         height: `${R}px`,
@@ -14169,7 +14169,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         width: `${O}px`
                     },
                     $ = null != t,
-                    U = new a.Q1(g ? ? "#000000");
+                    U = new a.Q1(g ?? "#000000");
                 let j = (0, d.ui)(U, U, "nonText");
                 const z = k ? j : U,
                     q = H ? .7 : .85,
@@ -14427,9 +14427,9 @@ var __webpack_modules__ = [, (t, e, i) => {
                     }))
                 })), p(this, "onClick", (t => {
                     if ((0, o.y)() || this.video.focus(), this.video.unmute(), !1 === this.video.isLiveMedia() && !0 !== d.Wistia._specificTimeInitiated) {
-                        const t = this.video._opts ? .time ? ? this.video._attrs ? .currentTime ? ? 0;
+                        const t = this.video._opts ?.time ?? this.video._attrs ?.currentTime ?? 0;
                         "beforeplay" === this.video.state() && t <= 0 ? this.video.play() : this.video.time(t).then((() => this.video.play()))
-                    }!0 !== this.video.embedOptions().plugin ? .captions ? .onByDefault && this.video.turnOffCaptions(), this.setIsVisible(!1), this.trigger("click", t)
+                    }!0 !== this.video.embedOptions().plugin ?.captions ?.onByDefault && this.video.turnOffCaptions(), this.setIsVisible(!1), this.trigger("click", t)
                 })), this.silentAutoPlayBackdropEnabled = this.video._opts.silentAutoPlayBackdropEnabled, this.unbinds.push(t.on("play", this.renderButton), t.on("silentplaybackmodechange", this.renderButton), t.on("volumechange", this.renderButton))
             }
             mount(t) {
@@ -14447,7 +14447,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             isVisible() {
                 const t = this.video.embedOptions();
-                return !0 !== t.clickForSound ? .disabled && (null != this._isVisible ? this._isVisible : this.video.inSilentPlaybackMode())
+                return !0 !== t.clickForSound ?.disabled && (null != this._isVisible ? this._isVisible : this.video.inSilentPlaybackMode())
             }
             setIsVisible(t) {
                 this._isVisible = t, this.renderButton(), this.video.trigger("clickforsoundvisibilitychange", this.isVisible())
@@ -14457,8 +14457,8 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             buttonTextEnabled() {
                 const t = this.video.embedOptions(),
-                    e = t.plugin ? .videoThumbnail;
-                return e ? .on ? e.clickForSound ? .showText ? ? !0 : t.clickForSound ? .showText ? ? !0
+                    e = t.plugin ?.videoThumbnail;
+                return e ?.on ? e.clickForSound ?.showText ?? !0 : t.clickForSound ?.showText ?? !0
             }
             afterButtonRenders() {
                 return new Promise((t => {
@@ -14466,7 +14466,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }))
             }
             translate(t) {
-                return (0, h.getTranslation)(this.props ? .playerLanguage.code, `CLICK_FOR_SOUND_${t}`)
+                return (0, h.getTranslation)(this.props ?.playerLanguage.code, `CLICK_FOR_SOUND_${t}`)
             }
             scale() {
                 const {
@@ -14803,7 +14803,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         class m extends u.E {
             constructor(t) {
                 super(t), d(this, "onContextMenu", ((t, e) => {
-                    t.altKey || this.video.ui.shouldOnlyShowControlBar ? .() || ("contextmenu" === t.type && t.preventDefault(), this.pageX = t.pageX, this.pageY = t.pageY, this._hasLoaded || this.loading(new Promise((t => {
+                    t.altKey || this.video.ui.shouldOnlyShowControlBar ?.() || ("contextmenu" === t.type && t.preventDefault(), this.pageX = t.pageX, this.pageY = t.pageY, this._hasLoaded || this.loading(new Promise((t => {
                         this.resolveLoadingPromise = t
                     })), {
                         x: this.pageX,
@@ -14898,7 +14898,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     t.showMore().then((() => {
                         if (!this.buttonElem) return;
                         const e = t.getControlsByType("control-bar-right").find((t => t.buttonElement && !t.disabledButton));
-                        e ? .buttonElement ? .focus()
+                        e ?.buttonElement ?.focus()
                     })).catch((() => {})), this.renderButton()
                 }, (i = function(t) {
                     var e = function(t) {
@@ -14930,8 +14930,8 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
         }
         l.handle = "ellipsisButton", l.isVideoChrome = !0, l.type = "ellipsis", l.sortValue = 1e5, l.shouldMount = t => {
-            const e = t._impl.ui ? .getControlsByType("control-bar-right") || [],
-                i = t._impl.ui ? .getControlsByType("playbar") || [];
+            const e = t._impl.ui ?.getControlsByType("control-bar-right") || [],
+                i = t._impl.ui ?.getControlsByType("playbar") || [];
             return e.length > 0 && i.length > 0 && t._impl.ui && !t._impl.ui.shouldShowMoreDefaultValue()
         }, (0, r.X)(l)
     }, (t, e, i) => {
@@ -15450,7 +15450,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             static shouldMount(t) {
                 const e = t.embedOptions();
-                return e ? .multiControl ? ? !1
+                return e ?.multiControl ?? !1
             }
             controlDialogClosed() {
                 this.updateButtonLabel()
@@ -15465,7 +15465,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 this.dialogRoot = t, this.renderMenu()
             }
             onControlPropsUpdated(t) {
-                this.dialog ? .isOpen() && this.renderMenu();
+                this.dialog ?.isOpen() && this.renderMenu();
                 const {
                     playerLanguage: e
                 } = this.props;
@@ -15478,9 +15478,9 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             renderMenu() {
                 if (!this.dialogRoot) return;
-                if (!this.dialog ? .isOpen()) return;
+                if (!this.dialog ?.isOpen()) return;
                 const t = this.loadMenuCode().then((() => {
-                    this.dialogRoot && this.renderDialog ? .(this.dialogRoot, this.impl)
+                    this.dialogRoot && this.renderDialog ?.(this.dialogRoot, this.impl)
                 }));
                 this.loading(new Promise((e => {
                     t.then(e)
@@ -15599,7 +15599,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         onResize: this.onResize,
                         playerIconColor: this.props.playerIconColor
                     }), this.rootElem), this.reactMounts = [this.rootElem]
-                })), c(this, "getDurationBeforeCuts", (() => this.video ? .engine ? this.video.engine.getDurationBeforeCuts() : -1)), c(this, "getTimeBeforeCuts", (t => this.video ? .engine ? this.video.engine.getTimeBeforeCuts(t) : -1)), c(this, "setTimeWidth", (t => {
+                })), c(this, "getDurationBeforeCuts", (() => this.video ?.engine ? this.video.engine.getDurationBeforeCuts() : -1)), c(this, "getTimeBeforeCuts", (t => this.video ?.engine ? this.video.engine.getTimeBeforeCuts(t) : -1)), c(this, "setTimeWidth", (t => {
                     this._timeWidth = t
                 })), c(this, "setRightBarMargin", (t => {
                     this._rightBarMargin = t
@@ -15807,7 +15807,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         i = this.isShowingChapterTitle();
                     (e || i) && (t.escapeHandled = !0, e && this.setState({
                         isHoverPreviewDismissed: !0
-                    }), i && this.props.onDismissChapterTitle ? .())
+                    }), i && this.props.onDismissChapterTitle ?.())
                 })), y(this, "onMouseEnter", (t => {
                     this.touchEvents || (t.wistiaPlayerHandled = !0, this.setState({
                         hoveredAt: Date.now(),
@@ -15978,7 +15978,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     chapterWithFocusedMarker: f,
                     duration: y
                 } = this.props, _ = 1.4 * this.barHeight() * t;
-                if (g ? .length > 0) {
+                if (g ?.length > 0) {
                     if (f) {
                         g = (0, a.clone)(g);
                         let t = -1;
@@ -16035,7 +16035,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             maybeCallOnResize() {
                 const t = this.unfilledBarWidth() + 2,
                     e = this.props.left + this.timeLeftPadding() + this.leftBarMargin() + this.timeWidth() - 1;
-                this._lastPlaybarWidth === t && this._lastPlaybarBarLeftOffsetFromPlayerLeftEdge === e || (this.props.onResize ? .({
+                this._lastPlaybarWidth === t && this._lastPlaybarBarLeftOffsetFromPlayerLeftEdge === e || (this.props.onResize ?.({
                     playbarBarWidth: t,
                     playbarBarLeftOffsetFromPlayerLeftEdge: e
                 }), this._lastPlaybarWidth = t, this._lastPlaybarBarLeftOffsetFromPlayerLeftEdge = e)
@@ -16051,7 +16051,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     }
                 }, (0, h.h)("div", {
                     "aria-describedby": this.props.controlBarId,
-                    "aria-label": (0, f.getTranslation)(this.props.playerLanguage ? .code, "PLAYBAR_SEEK"),
+                    "aria-label": (0, f.getTranslation)(this.props.playerLanguage ?.code, "PLAYBAR_SEEK"),
                     "aria-orientation": "horizontal",
                     "aria-valuemax": this.props.duration,
                     "aria-valuemin": 0,
@@ -16421,10 +16421,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }
             }
             widthOfTimeBadge() {
-                return this._timeBadgeRef ? .getBoundingClientRect().width || 24
+                return this._timeBadgeRef ?.getBoundingClientRect().width || 24
             }
             heightOfTimeBadge() {
-                return this._timeBadgeRef ? .getBoundingClientRect().height || 16
+                return this._timeBadgeRef ?.getBoundingClientRect().height || 16
             }
             render() {
                 return (0, s.h)("span", {
@@ -16569,7 +16569,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 style: {
                     width: "100%",
                     height: "100%",
-                    marginLeft: i ? ? 0
+                    marginLeft: i ?? 0
                 }
             }, (0, n.h)("svg", o, t ? (0, n.h)("path", {
                 "fill-rule": "evenodd",
@@ -16746,7 +16746,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 } = this.props;
                 return (0, n.h)("div", {
                     "aria-label": "Playback progress",
-                    "aria-valuenow": Math.round(t ? ? 0),
+                    "aria-valuenow": Math.round(t ?? 0),
                     role: "progressbar",
                     style: this.unfilledBarStyle()
                 }, (0, n.h)("div", {
@@ -16859,7 +16859,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 this.updateButtonLabel()
             }
             isAtRootLevel() {
-                return this.menuElem ? .isAtRootLevel()
+                return this.menuElem ?.isAtRootLevel()
             }
             mountButton(t) {
                 this.buttonRoot = t, this.renderButton()
@@ -17672,7 +17672,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             renderLiveStreamStatus() {
                 let t = null,
                     e = !1;
-                this.video._mediaData.liveStreamEventDetails ? .scheduledFor && (t = new Date(this.video._mediaData.liveStreamEventDetails.scheduledFor)), this.video._mediaData.liveStreamEventDetails ? .enableCountdown && (e = this.video._mediaData.liveStreamEventDetails.enableCountdown), (0, n.render)((0, n.h)(r.A, {
+                this.video._mediaData.liveStreamEventDetails ?.scheduledFor && (t = new Date(this.video._mediaData.liveStreamEventDetails.scheduledFor)), this.video._mediaData.liveStreamEventDetails ?.enableCountdown && (e = this.video._mediaData.liveStreamEventDetails.enableCountdown), (0, n.render)((0, n.h)(r.A, {
                     videoState: this.video.state(),
                     videoReady: this.video.ready(),
                     scheduledFor: t,
@@ -17789,7 +17789,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         }
 
         function p(t, e) {
-            const i = c[t].on ? .[e.type];
+            const i = c[t].on ?.[e.type];
             return void 0 === i ? t : i
         }
 
@@ -18058,7 +18058,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 })), y(this, "updateStartPosition", (() => {
                     const t = this.impl,
                         e = "beforeplay" === t.state(),
-                        i = "user-event" === t.lastPlayInfo() ? .source,
+                        i = "user-event" === t.lastPlayInfo() ?.source,
                         n = t.shouldResume() && i;
                     if (e)
                         if (!t.engine || "HlsVideo" !== t.engine.name && "NativeHlsVideo" !== t.engine.name) {
@@ -18091,7 +18091,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                         width: "100%",
                         height: "100%"
                     }
-                }), "WISTIA-PLAYER" === e.embedElement ? .tagName && (e.videoWrapper.style.display = "flex", e.videoWrapper.style.alignItems = "center"), this.updateBackgroundColor(), this.observeVideoWrapper(), (0, o.elemPrepend)(e.implContainer(), e.videoWrapper), e.uiContainer || (e.uiContainer = (0, o.elemFromObject)({
+                }), "WISTIA-PLAYER" === e.embedElement ?.tagName && (e.videoWrapper.style.display = "flex", e.videoWrapper.style.alignItems = "center"), this.updateBackgroundColor(), this.observeVideoWrapper(), (0, o.elemPrepend)(e.implContainer(), e.videoWrapper), e.uiContainer || (e.uiContainer = (0, o.elemFromObject)({
                     class: "w-ui-container",
                     style: {
                         height: "100%",
@@ -18209,13 +18209,13 @@ var __webpack_modules__ = [, (t, e, i) => {
                 (t._startPosition || t.shouldResume()) && (n = t._startPosition || (0, r.U2)(t.hashedId())), t.isResumableEnabled() && ((0, r.gI)(t.hashedId()) ? p.Wistia.Metrics.videoCount(t, "player/resumable-close-to-beginning") : (0, r.KO)(t.hashedId(), t.duration()) && p.Wistia.Metrics.videoCount(t, "player/resumable-close-to-end"));
                 const o = 0 === t._opts.trimStart && -1 === t._opts.trimEnd,
                     a = !0 === t._attrs.transparentLetterbox,
-                    l = t.embedOptions() ? .plugin ? .passwordProtectedVideo ? .password,
-                    h = t.embedOptions() ? .channelId,
-                    u = t.embedOptions() ? .channelPassword;
+                    l = t.embedOptions() ?.plugin ?.passwordProtectedVideo ?.password,
+                    h = t.embedOptions() ?.channelId,
+                    u = t.embedOptions() ?.channelPassword;
                 return {
                     audioPreference: t._attrs.audioPreference,
                     allowHdr: !1 !== t._opts.allowHdr && (0, c.hasAnyReadyHdrAssets)(t._mediaData.assets),
-                    aspectRatio: t._attrs.aspect ? ? t._mediaData.aspectRatio,
+                    aspectRatio: t._attrs.aspect ?? t._mediaData.aspectRatio,
                     assetHost: t._opts.assetHost,
                     authorization: t._attrs.authorization,
                     backgroundColor: a ? "transparent" : t.playerBackgroundColor(),
@@ -18239,12 +18239,12 @@ var __webpack_modules__ = [, (t, e, i) => {
                     height: t.videoHeight(),
                     hls: t._opts.hls,
                     isInstantHls: t.isInstantHls(),
-                    isWebComponentPlayer: "WISTIA-PLAYER" === t.embedElement ? .tagName,
+                    isWebComponentPlayer: "WISTIA-PLAYER" === t.embedElement ?.tagName,
                     layoutTiming: s,
                     liveMedia: t.isLiveMedia(),
                     loop: "loop" === t._attrs.endVideoBehavior,
                     muted: t._muted,
-                    name: t.name ? .(),
+                    name: t.name ?.(),
                     pageUrl: t._attrs.pageUrl,
                     password: l,
                     playbackRate: t._opts.playbackRate,
@@ -18264,7 +18264,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             otherEngine() {
                 const t = this.impl;
-                return t.oldImpl ? .engine ? t.oldImpl ? .engine : t.embedElement ? ._oldEngine ? t.embedElement ? ._oldEngine : null
+                return t.oldImpl ?.engine ? t.oldImpl ?.engine : t.embedElement ?._oldEngine ? t.embedElement ?._oldEngine : null
             }
         }
         v.handle = "embed";
@@ -18385,13 +18385,13 @@ var __webpack_modules__ = [, (t, e, i) => {
                 })), this.unbinds.push((0, l.elemBind)(t.embedElement, "rotatetofullscreenchange", this.syncOrientationBinding), (() => this.unbindOrientationListener())), this.syncOrientationBinding()
             }
             bindOrientationListener() {
-                this._orientationUnbind || (this._orientationUnbind = window.screen ? .orientation ? (0, l.elemBind)(window.screen.orientation, "change", this.onOrientationChange) : (0, l.elemBind)(window, "orientationchange", this.onOrientationChange))
+                this._orientationUnbind || (this._orientationUnbind = window.screen ?.orientation ? (0, l.elemBind)(window.screen.orientation, "change", this.onOrientationChange) : (0, l.elemBind)(window, "orientationchange", this.onOrientationChange))
             }
             unbindOrientationListener() {
                 this._orientationUnbind && (this._orientationUnbind(), this._orientationUnbind = null, this._enteredFullscreenViaRotate = !1)
             }
             isLandscape() {
-                const t = window.screen ? .orientation ? .type;
+                const t = window.screen ?.orientation ?.type;
                 return (0, a.n9)(t) ? t.startsWith("landscape") : 90 === window.orientation || -90 === window.orientation
             }
             requestFullscreen() {
@@ -18407,7 +18407,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             getIsRotateToFullscreen() {
                 const t = this.impl;
-                return !(!t._attrs.rotateToFullscreen || !p.touchScreen || t.isAudio() || t._mediaData ? .spherical || t._opts.spherical)
+                return !(!t._attrs.rotateToFullscreen || !p.touchScreen || t.isAudio() || t._mediaData ?.spherical || t._opts.spherical)
             }
             enterFakeFullscreen() {
                 const t = this.impl;
@@ -18907,7 +18907,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 })), A(this, "onFocusOut", (t => {
                     this._isDestroying || (this.updateFocusedControl(null), this.impl.exitInputContext("player-focus"), this.isKeyboardFocused ? (0, h.doTimeout)(`${this.impl.uuid}.maybe_toggle_on_blur`, (() => {
                         const e = (0, d.getDeepActiveElement)();
-                        e && (0, d.elemIsInside)(e, this.layoutRef) || (this.isKeyboardFocused = !1, this.impl ? .trigger("focusout", t), this.maybeToggleControls())
+                        e && (0, d.elemIsInside)(e, this.layoutRef) || (this.isKeyboardFocused = !1, this.impl ?.trigger("focusout", t), this.maybeToggleControls())
                     }), 1e3) : (0, h.doTimeout)(`${this.impl.uuid}.maybe_toggle_on_blur`, this.maybeToggleControls, 50))
                 })), A(this, "onKeyDown", (t => {
                     if (t.target !== this.layoutRef) return;
@@ -18927,7 +18927,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     e && (this.lastMovedMouseAt = Date.now(), this.lastPageX = t.pageX, this.lastPageY = t.pageY), e && (this.maybeToggleControls(), this.shouldShowControls() && (clearTimeout(this.maybeToggleControlsTimeout), (0, d.elemIsInside)(t.target, this.backgroundElem) ? (this.lastMouseMoveWasFromBackground = !0, this.maybeToggleControlsTimeout = setTimeout(this.maybeToggleControls, this.showControlsTimeout())) : (this.lastMouseMoveWasFromBackground = !1, this.maybeToggleControls())))
                 })), A(this, "onClick", (t => {
                     this.lastMovedMouseAt = Date.now();
-                    const e = m.Wistia.PopoverV3 ? ._activePopover,
+                    const e = m.Wistia.PopoverV3 ?._activePopover,
                         i = !(0, r.C)();
                     e && e.setShouldShowFocusOutline(i), this.lastPageX = t.pageX, this.lastPageY = t.pageY, (0, d.elemIsInside)(t.target, this.backgroundElem) ? L.touchScreen ? (this.isBeforePlayOrReset() ? this.impl.play() : this.isChromeless() ? this.togglePlay() : L.ios.version && L.ios.version < 10.1 ? (this.tappedToHide = !1, this.impl.play()) : this._areControlsVisible ? this.tappedToHide = !this.tappedToHide : this.tappedToHide = !1, this.maybeToggleControls(), setTimeout(this.maybeToggleControls, this.showControlsTimeout())) : t.ctrlKey || (this.togglePlay(), this.impl.isKeyboardFocused(i), this.impl.focus()) : "beforeplay" !== this.impl.state() && (this.tappedToHide = !1, this.maybeToggleControls(), setTimeout(this.maybeToggleControls, this.showControlsTimeout()))
                 })), A(this, "onDblClick", (t => {
@@ -19046,28 +19046,28 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return this.videoWidth() - 2 * this.controlBarDistance()
             }
             captionsBackgroundColor() {
-                return this._viewerCaptionSettings ? .backgroundColor ? ? this.impl._attrs.captionsBackgroundColor
+                return this._viewerCaptionSettings ?.backgroundColor ?? this.impl._attrs.captionsBackgroundColor
             }
             captionsBackgroundOpacityPercentage() {
-                return null != this._viewerCaptionSettings ? .backgroundOpacityPercentage ? this._viewerCaptionSettings.backgroundOpacityPercentage / 100 : .7
+                return null != this._viewerCaptionSettings ?.backgroundOpacityPercentage ? this._viewerCaptionSettings.backgroundOpacityPercentage / 100 : .7
             }
             captionsTextColor() {
-                return this._viewerCaptionSettings ? .fontColor ? ? this.impl._attrs.captionsTextColor
+                return this._viewerCaptionSettings ?.fontColor ?? this.impl._attrs.captionsTextColor
             }
             captionsTextSize() {
-                return null != this._viewerCaptionSettings ? .fontSize ? (0, w.b)(this._viewerCaptionSettings.fontSize) : this.impl._attrs.captionsTextSize
+                return null != this._viewerCaptionSettings ?.fontSize ? (0, w.b)(this._viewerCaptionSettings.fontSize) : this.impl._attrs.captionsTextSize
             }
             captionsTextShadow() {
                 return (0, T.M)({
-                    characterEdgeStyle: this._viewerCaptionSettings ? .characterEdgeStyle ? ? "none",
+                    characterEdgeStyle: this._viewerCaptionSettings ?.characterEdgeStyle ?? "none",
                     scale: this.scale()
                 })
             }
             captionsTextOpacityPercentage() {
-                return null != this._viewerCaptionSettings ? .fontOpacityPercentage ? this._viewerCaptionSettings.fontOpacityPercentage / 100 : 1
+                return null != this._viewerCaptionSettings ?.fontOpacityPercentage ? this._viewerCaptionSettings.fontOpacityPercentage / 100 : 1
             }
             captionsFontFamily() {
-                return null != this._viewerCaptionSettings ? .fontFamily ? (0, E.d)(this._viewerCaptionSettings.fontFamily) : this.impl._attrs.captionsFontFamily
+                return null != this._viewerCaptionSettings ?.fontFamily ? (0, E.d)(this._viewerCaptionSettings.fontFamily) : this.impl._attrs.captionsFontFamily
             }
             captionsFontVariant() {
                 return (0, C.s)(this.captionsFontFamily())
@@ -19076,10 +19076,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return this.impl._attrs.captionsBorderRadius
             }
             captionsWindowColor() {
-                return this._viewerCaptionSettings ? .windowColor ? ? "#000"
+                return this._viewerCaptionSettings ?.windowColor ?? "#000"
             }
             captionsWindowOpacityPercentage() {
-                return null != this._viewerCaptionSettings ? .windowOpacityPercentage ? this._viewerCaptionSettings.windowOpacityPercentage / 100 : 0
+                return null != this._viewerCaptionSettings ?.windowOpacityPercentage ? this._viewerCaptionSettings.windowOpacityPercentage / 100 : 0
             }
             setupBindings() {
                 this._hasSetupBindings = !0;
@@ -19164,7 +19164,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             }
             backgroundGradientCss() {
                 const t = this.impl._attrs.playerColorGradient;
-                if (t ? .on) return (0, c.qN)(t)
+                if (t ?.on) return (0, c.qN)(t)
             }
             contrastIcons() {
                 return this.impl.contrastIcons()
@@ -19406,7 +19406,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }))
             }
             notifyControlsLayoutChange(t) {
-                this.controlsLayout ? .controlBarHeight === t.controlBarHeight && this.controlsLayout ? .controlsAreVisible === t.controlsAreVisible || (this.controlsLayout = { ...t
+                this.controlsLayout ?.controlBarHeight === t.controlBarHeight && this.controlsLayout ?.controlsAreVisible === t.controlsAreVisible || (this.controlsLayout = { ...t
                 }, this.impl.trigger("controlslayoutchange", this.controlsLayout))
             }
             runOnControlPropsUpdated(t) {
@@ -19711,7 +19711,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 }))
             }
             showVideoWrapper() {
-                this.impl ? .videoWrapper && (0, d.elemStyle)(this.impl.videoWrapper, {
+                this.impl ?.videoWrapper && (0, d.elemStyle)(this.impl.videoWrapper, {
                     clip: ""
                 })
             }
@@ -19986,10 +19986,10 @@ var __webpack_modules__ = [, (t, e, i) => {
                     const e = this.props.control;
                     e.onKeyDownButton && e.onKeyDownButton(t)
                 })), d(this, "onDialogKeyDown", (t => {
-                    "Escape" === t.key && this.props.control.dialog ? .isOpen() && (this._wasAtRootLevelOnEscapeDown = this.props.control.isAtRootLevel())
+                    "Escape" === t.key && this.props.control.dialog ?.isOpen() && (this._wasAtRootLevelOnEscapeDown = this.props.control.isAtRootLevel())
                 })), d(this, "onDialogKeyUp", (t => {
                     const e = this.props.control;
-                    e.dialog ? .isOpen() && "Escape" === t.key && (t.escapeHandled = !0, this._wasAtRootLevelOnEscapeDown && (e.dialog ? .close(), e.buttonElement ? .focus()), this._wasAtRootLevelOnEscapeDown = !1)
+                    e.dialog ?.isOpen() && "Escape" === t.key && (t.escapeHandled = !0, this._wasAtRootLevelOnEscapeDown && (e.dialog ?.close(), e.buttonElement ?.focus()), this._wasAtRootLevelOnEscapeDown = !1)
                 })), d(this, "onMouseEnterDialog", (() => {
                     this.setState({
                         isMouseInDialog: !0
@@ -20013,7 +20013,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 })), d(this, "onFocusOut", (() => {
                     setTimeout((() => {
                         const t = this.props.control;
-                        !1 === this.props.closeDialogOnFocusOut || this.isDialogContentLoading() || !t.dialog || !t.dialog.isOpen() || this.getActiveElement() && !this.isNewElemOutsideOfBase(this.getActiveElement(), this.base) || (this.getActiveElement() && this.getActiveElement().tagName.match(/input|button/i) || !0 !== this.state.isMouseInDialog || !(0, o.C)() && !this._isMouseDown ? t.dialog.close() : this._lastClickedElem ? .focus({
+                        !1 === this.props.closeDialogOnFocusOut || this.isDialogContentLoading() || !t.dialog || !t.dialog.isOpen() || this.getActiveElement() && !this.isNewElemOutsideOfBase(this.getActiveElement(), this.base) || (this.getActiveElement() && this.getActiveElement().tagName.match(/input|button/i) || !0 !== this.state.isMouseInDialog || !(0, o.C)() && !this._isMouseDown ? t.dialog.close() : this._lastClickedElem ?.focus({
                             preventScroll: !0
                         }))
                     }), 500)
@@ -20086,7 +20086,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 return !t || !(0, n.elemIsInside)(t, e)
             }
             isDialogContentLoading() {
-                return "none" === this.dialogElem ? .style.display
+                return "none" === this.dialogElem ?.style.display
             }
             renderControlBarDialog() {
                 const t = this.props,
@@ -20600,7 +20600,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                     for (; i.nextNode();) e.push(i.currentNode);
                     return e
                 })(t);
-                e[0] ? .focus({
+                e[0] ?.focus({
                     preventScroll: !0
                 })
             }
@@ -21090,7 +21090,7 @@ var __webpack_modules__ = [, (t, e, i) => {
                 const {
                     mediaName: t,
                     playerLanguage: e
-                } = this.props, i = e ? .code;
+                } = this.props, i = e ?.code;
                 return t ? (0, d.getTranslation)(i, "CONTROL_BAR_LABEL_WITH_NAME").replace("{name}", (() => t)) : (0, d.getTranslation)(i, "CONTROL_BAR_LABEL")
             }
             isRightClusterShowing() {
@@ -21126,7 +21126,7 @@ var __webpack_modules__ = [, (t, e, i) => {
             standardCellStyle(t, e) {
                 return {
                     display: "table-cell",
-                    height: e ? ? "auto",
+                    height: e ?? "auto",
                     verticalAlign: "top",
                     position: "relative",
                     width: t
@@ -21222,7 +21222,7 @@ var __webpack_modules__ = [, (t, e, i) => {
         });
         var n = i(137),
             s = i(45);
-        const o = t => n.Yc.get(t) ? ? s.yY
+        const o = t => n.Yc.get(t) ?? s.yY
     }, (t, e, i) => {
         i.d(e, {
             M: () => n

@@ -1,6 +1,6 @@
 // Simple static file server for the Truist local site
 // Run: node serve.js
-// Then open: http://localhost:8080
+// Then open: http://localhost:8082
 
 const http = require('http');
 const fs = require('fs');
@@ -29,28 +29,25 @@ const MIME = {
   '.map': 'application/json',
 };
 
-const server = http.createServer((req, res) => {
-  // Decode and strip query string
-  let urlPath = decodeURIComponent(req.url.split('?')[0]);
-
-  // Default to index.html
-  if (urlPath === '/') urlPath = '/index.html';
-
-  const filePath = path.join(ROOT, urlPath);
-
+function serveFile(filePath, urlPath, fallback, res) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      // Try appending .html
-      fs.readFile(filePath + '.html', (err2, data2) => {
-        if (err2) {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.end('404 Not Found: ' + urlPath);
-          console.log('[404]', urlPath);
-        } else {
-          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-          res.end(data2);
-        }
-      });
+      if (fallback) {
+        // Try static.truist.com fallback for /content/dam/ paths
+        serveFile(fallback, urlPath, null, res);
+      } else {
+        // Try appending .html
+        fs.readFile(filePath + '.html', (err2, data2) => {
+          if (err2) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('404 Not Found: ' + urlPath);
+            console.log('[404]', urlPath);
+          } else {
+            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+            res.end(data2);
+          }
+        });
+      }
       return;
     }
     const ext = path.extname(filePath).toLowerCase();
@@ -63,8 +60,31 @@ const server = http.createServer((req, res) => {
       'Expires': '0',
     });
     res.end(data);
-    console.log('[200]', urlPath);
+    const via = (filePath.includes('static.truist.com') && !urlPath.startsWith('/static.truist.com'))
+      ? ' (via fallback)' : '';
+    console.log('[200]' + via, urlPath);
   });
+}
+
+const server = http.createServer((req, res) => {
+  // Decode and strip query string
+  let urlPath = decodeURIComponent(req.url.split('?')[0]);
+
+  // Default to index.html
+  if (urlPath === '/') urlPath = '/index.html';
+
+  // Rewrite JCR paths: jcr:content -> jcrcontent (colon is invalid in Windows filenames)
+  urlPath = urlPath.replace(/jcr:content/g, 'jcrcontent');
+
+  const filePath = path.join(ROOT, urlPath);
+
+  // For /content/dam/ paths, set up a static.truist.com fallback
+  let fallback = null;
+  if (urlPath.startsWith('/content/dam/')) {
+    fallback = path.join(ROOT, 'static.truist.com', urlPath);
+  }
+
+  serveFile(filePath, urlPath, fallback, res);
 });
 
 server.listen(PORT, '127.0.0.1', () => {

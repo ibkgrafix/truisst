@@ -212,7 +212,7 @@
         window.RUM_PARAMS = window.RUM_PARAMS || scriptParams;
 
         const [navigation] = (window.performance && window.performance.getEntriesByType('navigation')) || [];
-        const responseStatus = status ? ? (navigation && navigation.name === window.location.href ?
+        const responseStatus = status ?? (navigation && navigation.name === window.location.href ?
             navigation.responseStatus : undefined);
         const numericStatus = Number(responseStatus);
         const is404 = responseStatus === '404' || responseStatus === 404;

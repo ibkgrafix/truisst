@@ -22100,7 +22100,7 @@ function readPromoCodeCookie(cookieName) {
 function removeExpiredPromoCodeCookie(promoxCookieValueArgs) {
     const dtToday = new Date().setHours(0, 0, 0, 0);
     return Object.entries(promoxCookieValueArgs).reduce((acc, [key, value]) => {
-        if (!value ? .validUntil) {
+        if (!value ?.validUntil) {
             acc[key] = value;
             return acc;
         }
@@ -22122,7 +22122,7 @@ const promoxEnabledFunctionMatch = ({
     const promoxRun = () => {
         const promoxEls = document.querySelectorAll(promoxSlct);
         for (const promoEl of promoxEls) {
-            if (promoEl ? .getAttribute(promoxAttr) === promoxValue) {
+            if (promoEl ?.getAttribute(promoxAttr) === promoxValue) {
                 promoxOnMatch(promoEl);
                 break;
             }
@@ -22182,10 +22182,10 @@ async function promoxFunctionsAsync(promoxCacheKey) {
         setPromoCodeCookie(cookiePromoxName, JSON.stringify(promoxCookieValue));
         promoxPromoCode = promoxCookieValue[promoxCacheKey].promoCode ? promoxCookieValue[promoxCacheKey].promoCode : false;
         promoxPromoCode || (promoxPromoCodeObj = await promoxRetrivePromoCode(promoxCookieValue, promoxCacheKey));
-        promoxPromoCode || (promoxPromoCode = promoxPromoCodeObj ? .promoCode);
+        promoxPromoCode || (promoxPromoCode = promoxPromoCodeObj ?.promoCode);
     } else {
         promoxPromoCodeObj = await promoxRetrivePromoCode(promoxCookieValue, promoxCacheKey);
-        promoxPromoCode || (promoxPromoCode = promoxPromoCodeObj ? .promoCode);
+        promoxPromoCode || (promoxPromoCode = promoxPromoCodeObj ?.promoCode);
     }
     promoxEnabled = true;
 }
@@ -22354,7 +22354,7 @@ const lsiEnabledFunctionMatch = ({
     const lsiRun = () => {
         const lsiEls = document.querySelectorAll(lsiSlct);
         for (const lsiEl of lsiEls) {
-            if (lsiEl ? .getAttribute(lsiAttr) === lsiValue) {
+            if (lsiEl ?.getAttribute(lsiAttr) === lsiValue) {
                 lsiOnMatch(lsiEl);
                 break;
             }
@@ -31382,7 +31382,7 @@ function sanitizeUrl(url) {
     return backSanitized;
 }
 const __sbLog = (function(w) {
-    const L = w ? .Logger;
+    const L = w ?.Logger;
 
     function noop() {}
     return {
@@ -31435,7 +31435,7 @@ function speedbump_validatedRedirectURL() {
     const apiURL = `${API_ENDPOINT}?lob=non-lob&productCategory=miscellaneous&product=speedbump-whitelist-ids`;
     $.get(apiURL, function(json) {
         const speedBumpCFJson = json["speedbump-whitelist-ids"]
-        if (extid && speedBumpCFJson["external-ids"] ? .[extid]) {
+        if (extid && speedBumpCFJson["external-ids"] ?.[extid]) {
             speedBumpURL = speedBumpCFJson["external-ids"][extid];
         } else if (url) {
             let decodedurl = decodeURIComponent(url);
@@ -53699,7 +53699,7 @@ window.globalLoginTwo = function() {
                     cassMessages = await $.get(SETTINGS_RANGE);
                     if (!(Object.keys(cassMessages).length === 0)) {
                         cassMessagesFinal = cassMessages;
-                        errMsgMaint = Object.entries(cassMessagesFinal["dias-error-messages"]).find(([k]) => k === keyCaas) ? .[1];
+                        errMsgMaint = Object.entries(cassMessagesFinal["dias-error-messages"]).find(([k]) => k === keyCaas) ?.[1];
                         return errMsgMaint;
                     } else {
                         throw new Error("Maintainance mode messages CAAS data issue");
@@ -53708,7 +53708,7 @@ window.globalLoginTwo = function() {
                     console.log("Maintainance mode messages CAAS API issue");
                 }
             } else {
-                errMsgMaint = Object.entries(cassMessagesFinal["dias-error-messages"]).find(([k]) => k === keyCaas) ? .[1];
+                errMsgMaint = Object.entries(cassMessagesFinal["dias-error-messages"]).find(([k]) => k === keyCaas) ?.[1];
                 return errMsgMaint;
             }
         },
@@ -56227,7 +56227,7 @@ function getSafeRateTableDataPath(rateTableDataPath) {
 }
 
 function sanitizeCssClassToken(value) {
-    return String(value ? ? '')
+    return String(value ?? '')
         .toLowerCase()
         .trim()
         .replace(/[^a-z0-9]+/g, '-')
@@ -56238,7 +56238,7 @@ function formatCurrencyAmount(value) {
     const numericValue = Number(value);
 
     if (Number.isNaN(numericValue)) {
-        return String(value ? ? '');
+        return String(value ?? '');
     }
 
     return new Intl.NumberFormat('en-US').format(numericValue);
@@ -56307,7 +56307,7 @@ function appendHeaderRow(thead, columns, classPrefix) {
 }
 
 function buildProductTable(jsonTableData, tableParts) {
-    const rateData = jsonTableData ? .newCustmDepstRateResponse ? .standardBaseRates ? .baseRateTiers;
+    const rateData = jsonTableData ?.newCustmDepstRateResponse ?.standardBaseRates ?.baseRateTiers;
 
     if (!Array.isArray(rateData) || rateData.length === 0) {
         return null;
@@ -56335,7 +56335,7 @@ function appendProductRow(tbody, row) {
 }
 
 function buildTermTable(jsonTableData, tableParts) {
-    const productInfo = jsonTableData ? .ProductInfo;
+    const productInfo = jsonTableData ?.ProductInfo;
 
     if (!Array.isArray(productInfo) || productInfo.length === 0) {
         return null;
@@ -56382,7 +56382,7 @@ function createTermCell(termName, hideTitle) {
     termCell.scope = 'row';
     termCell.className = `${TABLE_CLASSES.CONTENT_CELL} ${TABLE_CLASSES.TERM_CELL}`;
     termSpan.className = hideTitle;
-    termSpan.textContent = String(termName ? ? '').toLowerCase();
+    termSpan.textContent = String(termName ?? '').toLowerCase();
     termCell.appendChild(termSpan);
 
     return termCell;
@@ -64845,11 +64845,11 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         return [e];
                     case
                     function(e = {}) {
-                        return "function" == typeof e ? .[Symbol.iterator]
+                        return "function" == typeof e ?.[Symbol.iterator]
                     }(e):
                     case
                     function(e = {}) {
-                        const t = e ? .length;
+                        const t = e ?.length;
                         return Array.isArray(e) || 0 === t || Number.isSafeInteger(t) && t > 0 && Object.hasOwn(e, t - 1)
                     }(e):
                         return Array.from(e);
@@ -65116,7 +65116,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             var C = (...e) => Promise.all(e.flatMap(E));
 
             function E(e) {
-                return A[e] || = function(e) {
+                return A[e] ||= function(e) {
                     return _.importLibrary(e)
                 }(e)
             }
@@ -65133,20 +65133,17 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 value: "default",
                 configurable: !0
             });
-            class L {#
-                e;#
-                t;#
-                n;
+            class L {#e;#t;#n;
                 constructor(...e) {
                     const [t, n] = e.flat(), [r, i] = L.#r(t, n).map(e => +parseFloat(e).toFixed(4));
                     this.#n = -90 <= r && r <= 90 && -180 <= i && i <= 180, this.#n && (this.#e = r, this.#t = i)
                 }
-                static# r(e, t) {
+                static #r(e, t) {
                     switch (!0) {
                         case isFinite(e) && isFinite(t):
                             return [e, t];
                         case "object" == typeof e:
-                            return [e ? .lat, e ? .lng];
+                            return [e ?.lat, e ?.lng];
                         case "string" == typeof e:
                             return e.split(",");
                         default:
@@ -65183,12 +65180,12 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     fields: ["geometry.location", "address_components"]
                 },
                 I = {
-                    zip: (e = []) => e ? .includes("postal_code"),
-                    city: (e = []) => e ? .some(e => /locality/.test(e)),
-                    county: (e = []) => e ? .includes("administrative_area_level_2"),
-                    state: (e = []) => e ? .includes("administrative_area_level_1"),
-                    country: (e = []) => e ? .includes("country"),
-                    plusCode: (e = []) => e ? .includes("plus_code")
+                    zip: (e = []) => e ?.includes("postal_code"),
+                    city: (e = []) => e ?.some(e => /locality/.test(e)),
+                    county: (e = []) => e ?.includes("administrative_area_level_2"),
+                    state: (e = []) => e ?.includes("administrative_area_level_1"),
+                    country: (e = []) => e ?.includes("country"),
+                    plusCode: (e = []) => e ?.includes("plus_code")
                 },
                 O = Object.keys(I);
             class R {
@@ -65211,9 +65208,9 @@ $(() => $('#lf-calculator').each((i, elem) => {
                                 return this._initFromLatLng(i);
                             case "string" == typeof n:
                                 return this._initFromTextAddress(n);
-                            case n ? .hasOwnProperty("place_id"):
+                            case n ?.hasOwnProperty("place_id"):
                                 return this._initFromAutocompletePrediction(n, r);
-                            case n ? .latlng instanceof L && n ? .latlng.isValid && "string" == typeof n ? .textAddress:
+                            case n ?.latlng instanceof L && n ?.latlng.isValid && "string" == typeof n ?.textAddress:
                                 return this._initFromPlainObject(n);
                             case n instanceof Error:
                                 this._initFromError(n)
@@ -65264,14 +65261,14 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     return new L(e.latitude, e.longitude)
                 }
                 async _geocode(e) {
-                    R._geocoderPromise || = C("geocoding").then(([e]) => new e.Geocoder);
+                    R._geocoderPromise ||= C("geocoding").then(([e]) => new e.Geocoder);
                     const t = await R._geocoderPromise;
                     return (await t.geocode({ ...D,
                         ...e
                     })).results[0]
                 }
                 async _getPlaceResult(e, n) {
-                    R._placesApiPromise || = C("places").then(([e]) => e), R._placesServicePromise || = R._placesApiPromise.then(e => new e.PlacesService(t()("<div/>").get(0)));
+                    R._placesApiPromise ||= C("places").then(([e]) => e), R._placesServicePromise ||= R._placesApiPromise.then(e => new e.PlacesService(t()("<div/>").get(0)));
                     const r = await R._placesApiPromise;
                     if (!(n instanceof r.AutocompleteSessionToken)) throw new Error("Invalid AutocompleteSessionToken:", n);
                     const i = await R._placesServicePromise,
@@ -65286,8 +65283,8 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     })
                 }
                 _getAddressPartsFromResult(e, t = e.formatted_address) {
-                    const n = e ? .address_components ? .reduce((e = {}, t = {}, n) => {
-                            const r = t ? .types,
+                    const n = e ?.address_components ?.reduce((e = {}, t = {}, n) => {
+                            const r = t ?.types,
                                 i = O.find(e => I[e](r));
                             return i && (e[i] = t.short_name), e
                         }, {}) || {},
@@ -65310,14 +65307,14 @@ $(() => $('#lf-calculator').each((i, elem) => {
                             menu: "typeahead-menu",
                             suggestion: "typeahead-suggestion"
                         },
-                        ...t ? .typeaheadOptions
+                        ...t ?.typeaheadOptions
                     },
                     o = `.${s.classNames.suggestion}`,
                     a = e.find(".cloners.js-truist-typeahead >.sr-status-template").html().trim();
                 let c, l;
                 const u = {
                     init: () => {
-                        r.typeahead(s, ...t ? .datasets ? .reduce(u.preprocessDatasets, [])), r.attr("aria-controls", r.attr("aria-owns")), c = r.siblings('span[role="status"]'), e.find(".typeahead-menu").css({
+                        r.typeahead(s, ...t ?.datasets ?.reduce(u.preprocessDatasets, [])), r.attr("aria-controls", r.attr("aria-owns")), c = r.siblings('span[role="status"]'), e.find(".typeahead-menu").css({
                             position: "",
                             top: "",
                             left: "",
@@ -65326,22 +65323,22 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     },
                     getTypeaheadVal: () => r.typeahead("val"),
                     setTypeaheadVal: (e = "") => {
-                        const t = e ? .toString().trim();
+                        const t = e ?.toString().trim();
                         [r.typeahead("val"), void 0].includes(t) || (u.closeTypeahead(), r.typeahead("val", t).trigger("typeahead:change"))
                     },
                     closeTypeahead: () => r.typeahead("close"),
                     preprocessDatasets: (e = [], t = {}) => ("function" != typeof t.source && (t.source = function(e = []) {
                         return (t = "", r = n) => {
-                            const i = t ? .toLowerCase();
-                            r(e ? .flatMap(function(e = "") {
-                                const t = e ? .toLowerCase(),
+                            const i = t ?.toLowerCase();
+                            r(e ?.flatMap(function(e = "") {
+                                const t = e ?.toLowerCase(),
                                     n = {
                                         str: e,
                                         lcStr: t,
-                                        matchIndex: t ? .indexOf(i)
+                                        matchIndex: t ?.indexOf(i)
                                     };
                                 return n.matchIndex >= 0 ? n : []
-                            }) ? .sort((e, t) => e.matchIndex - t.matchIndex || e.lcStr ? .localeCompare(t.lcStr)) ? .map(e => e.str))
+                            }) ?.sort((e, t) => e.matchIndex - t.matchIndex || e.lcStr ?.localeCompare(t.lcStr)) ?.map(e => e.str))
                         }
                     }(Array.from(t.list))), e.push(t), e),
                     createBindings: (e = $(), t = {}) => {
@@ -65440,7 +65437,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         const r = t instanceof R ? t : new R(t),
                             i = t instanceof Error;
                         let s;
-                        g = r, (!(!n ? .type || !n ? .target) || i) && e.trigger(l, [g]);
+                        g = r, (!(!n ?.type || !n ?.target) || i) && e.trigger(l, [g]);
                         try {
                             s = await r.textAddressPromise
                         } catch (e) {
@@ -65478,7 +65475,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         const e = "(regions)";
                         return async (t = "") => {
                             const n = t.trim(),
-                                [r, i] = n.match(/^(\d{1,5})(-\d{0,4})?$/) ? .slice(1) || [],
+                                [r, i] = n.match(/^(\d{1,5})(-\d{0,4})?$/) ?.slice(1) || [],
                                 s = [],
                                 a = (() => {
                                     switch (!0) {
@@ -65632,8 +65629,8 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     Z = z.data("cardCount"),
                     G = g.find(".dom-templates");
                 CommonUtils1.initPlaceholderLinks(G);
-                const J = G.find(">.card-size-viewport").get(0) ? .outerHTML,
-                    X = G.find(">.btn-specialty").get(0) ? .outerHTML;
+                const J = G.find(">.card-size-viewport").get(0) ?.outerHTML,
+                    X = G.find(">.btn-specialty").get(0) ?.outerHTML;
                 let Y, ee, te, ne, re = Promise.resolve();
                 const ie = {
                     init: async () => {
@@ -65641,7 +65638,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         const e = { ...ie.getParamsFromSession(n),
                             ...ie.normalizeParameters(t.queryParams)
                         };
-                        e.pf_profileType ? .[0] !== S && (e.pf_profileType = [S], delete e.pf_specialty, delete e.pf_filterSpecialty, ie.resetResultListParams());
+                        e.pf_profileType ?.[0] !== S && (e.pf_profileType = [S], delete e.pf_specialty, delete e.pf_filterSpecialty, ie.resetResultListParams());
                         const i = Promise.resolve(!!m && ie.doSearch(e));
                         ie.saveParamsToSession(n, e), te = await r(_, "FindUs"), ie.initHandlers(), ie.autoPopulateSearchForm(e), await i && ie.showSearchResults()
                     },
@@ -65661,15 +65658,15 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     autoPopulateSearchForm: (e = {}) => {
                         ie.updateInputs(e), te.safeUpdate({
                             latlng: new L(e.latlng),
-                            textAddress: e.textAddress ? .[0]
+                            textAddress: e.textAddress ?.[0]
                         })
                     },
                     submitSearchForm: async () => {
                         const e = ie.updateFromSearchForm();
-                        e.latlng ? .[0] ? (ie.resetResultListParams(), m ? await ie.doSearch(e) && ie.showSearchResults() : T.off("submit").trigger("submit")) : ie.checkForSearchFormError(new Error("No valid lat,lng obtained; cannot do search."))
+                        e.latlng ?.[0] ? (ie.resetResultListParams(), m ? await ie.doSearch(e) && ie.showSearchResults() : T.off("submit").trigger("submit")) : ie.checkForSearchFormError(new Error("No valid lat,lng obtained; cannot do search."))
                     },
                     doSearch: async (e = {}) => {
-                        if (e.latlng ? .[0]) {
+                        if (e.latlng ?.[0]) {
                             ie.setViewContainer(b), U.empty();
                             try {
                                 const t = {
@@ -65688,16 +65685,16 @@ $(() => $('#lf-calculator').each((i, elem) => {
                             n = {
                                 profileType: S
                             };
-                        t.latlong = new L(e.latlng).toString(), t.category = e.pf_category ? .[0] || p.default, t.q = e.pf_queryText ? .[0] || e.textAddress ? .[0];
-                        return n[e.pf_filterSpecialty || !O.length ? "specialty" : "specialtygroup"] = e.pf_filterSpecialty ? .join("|") || e.pf_specialty ? .[0], t.filters = Object.entries(n).map(([e, t]) => t ? `${e}:${t};` : "").join(""), t
+                        t.latlong = new L(e.latlng).toString(), t.category = e.pf_category ?.[0] || p.default, t.q = e.pf_queryText ?.[0] || e.textAddress ?.[0];
+                        return n[e.pf_filterSpecialty || !O.length ? "specialty" : "specialtygroup"] = e.pf_filterSpecialty ?.join("|") || e.pf_specialty ?.[0], t.filters = Object.entries(n).map(([e, t]) => t ? `${e}:${t};` : "").join(""), t
                     },
                     positionUpdate: async e => {
                         const [t, n, r] = await e.allPromises, [i, s] = ie.grokAddressParts(r);
                         ie.checkForSearchFormError(), ie.updateInputs({
-                            latlng: [t ? .toString()],
+                            latlng: [t ?.toString()],
                             textAddress: [n],
-                            zip: [r ? .zip],
-                            state: [r ? .state],
+                            zip: [r ?.zip],
+                            state: [r ?.state],
                             pf_category: [i],
                             pf_queryText: [s]
                         })
@@ -65718,13 +65715,13 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     },
                     isRadiusApplicable: (e = "") => [p.zip, p.city, ""].includes(e),
                     prepSearchResults: (e = {}, t = {}) => {
-                        const n = ie.isRadiusApplicable(e.pf_category ? .[0]),
-                            r = ie.parseDistance(e.pf_radius ? .[0], 1 / 0);
+                        const n = ie.isRadiusApplicable(e.pf_category ?.[0]),
+                            r = ie.parseDistance(e.pf_radius ?.[0], 1 / 0);
                         let i = [],
                             s = 0;
-                        if (t.results ? .forEach(t => {
+                        if (t.results ?.forEach(t => {
                                 if (n && ie.parseDistance(t.distance) > r) return;
-                                const a = e.pf_specialty ? .[0],
+                                const a = e.pf_specialty ?.[0],
                                     c = e.pf_filterSpecialty || ne[a] || [a],
                                     l = h(J, ie.getContentArray(s++, t));
                                 if (l.find(`.profile-button .${t.nodeType}`).removeClass("hide"), t.designationCode) {
@@ -65743,7 +65740,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                                 }
                                 l.find(".profile-specialty-pills").append(u(t.specialties).reduce(function(e, t) {
                                     if (!t.title) return e;
-                                    const n = t.content ? .replace(/.*\//, "");
+                                    const n = t.content ?.replace(/.*\//, "");
                                     return c.includes(n) ? e.unshift(t) : e.push(t), e
                                 }, []).slice(0, 4).map(e => h(X, [e.title]))), i.push(l)
                             }), !i.length) throw new Error("No results found for current search parameters.");
@@ -65827,7 +65824,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         }
                         return U.empty().append(Y), ee && ee.pagination("selectPage", t), !1
                     },
-                    setViewContainer: (e = q) => e ? .removeClass("hide").siblings().addClass("hide"),
+                    setViewContainer: (e = q) => e ?.removeClass("hide").siblings().addClass("hide"),
                     findUsPositionCallback: (e, t) => {
                         re = ie.positionUpdate(t).catch(ie.checkForSearchFormError)
                     },
@@ -65983,7 +65980,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                                 locatorSearchType: `find_advisor_${e.pf_profileType?.[0].replace(/\s.*/,"")}`,
                                 events: "event78" + (t ? "" : ",event79")
                             },
-                            s = e.pf_specialty ? .[0];
+                            s = e.pf_specialty ?.[0];
                         if (s) {
                             const t = e.pf_filterSpecialty || [];
                             i.locatorSearchExtraInfo = [`specialty:${n[s]||s}`].concat(t.map(e => `filter:${r[e]||e}`)).join(", ")
@@ -65996,10 +65993,9 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 }
             };
             n(178), n(1), n(756);
-            const N = globalThis.location ? .origin || "https://www.truist.com",
-                F = new URLSearchParams(globalThis.location ? .search);
-            class q {#
-                i = {};
+            const N = globalThis.location ?.origin || "https://www.truist.com",
+                F = new URLSearchParams(globalThis.location ?.search);
+            class q {#i = {};
                 constructor(e = ["wcmmode", "no-cache"]) {
                     u(e).forEach(e => this.#i[e] = F.getAll(e))
                 }
@@ -66028,10 +66024,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             function H(e = "") {
                 return o(e).replace(/\W+/g, "-")
             }
-            class B {#
-                s;#
-                o;#
-                a;
+            class B {#s;#o;#a;
                 constructor(e, n, r) {
                     if (this.#s = H(e), !this.#s) throw new Error("Missing or invalid mode name", {
                         cause: e
@@ -66048,8 +66041,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     return this.#a
                 }
             }
-            class U extends B {#
-                c;
+            class U extends B {#c;
                 constructor(e = new B, t = "") {
                     super(e.name, e.onActivate, e.onDeactivate), this.#c = `js-${t}-mode-${e.name}`
                 }
@@ -66057,10 +66049,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     return this.#c
                 }
             }
-            class z {#
-                l;#
-                u;#
-                d = {};
+            class z {#l;#u;#d = {};
                 constructor(e = "", n = "", r = []) {
                     if (this.#l = H(e), this.#u = n instanceof t() ? n : t()(o(n)), 0 === this.#u.length) throw new Error("Not a valid container", {
                         cause: n
@@ -66084,14 +66073,11 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 isActive(e = "") {
                     const t = this.#d[e];
                     return !!t && this.#f(t)
-                }#
-                h(e = new U) {
+                }#h(e = new U) {
                     this.#f(e) || (this.#u.addClass(e.className), e.onActivate())
-                }#
-                p(e = new U) {
+                }#p(e = new U) {
                     this.#f(e) && (this.#u.removeClass(e.className), e.onDeactivate())
-                }#
-                f(e = new U) {
+                }#f(e = new U) {
                     return this.#u.hasClass(e.className)
                 }
             }
@@ -67123,7 +67109,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
 
             function Je(e = {}) {
                 return function(e = {}) {
-                    return e ? .jquery === t()().jquery
+                    return e ?.jquery === t()().jquery
                 }(e) && e[0] instanceof Node
             }
             const Xe = "tgsParams",
@@ -67153,11 +67139,11 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 const t = e => e ? [e] : void 0;
                 try {
                     const [n, r, i] = await e.allPromises, s = {
-                        latlng: t(n ? .toString()),
+                        latlng: t(n ?.toString()),
                         textAddress: t(r),
-                        state: t(i ? .state),
-                        city: t(i ? .city),
-                        zip: t(i ? .zip)
+                        state: t(i ?.state),
+                        city: t(i ?.city),
+                        zip: t(i ?.zip)
                     };
                     tt(Xe, s, !0)
                 } catch (e) {}
@@ -67167,8 +67153,8 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 if (!Je(e)) throw new Error("We need a jQuery object here; this is not:", e);
                 const n = e.find("dialog.location-status-modal"),
                     r = n.get(0);
-                return n.find(">button").on("click", () => r ? .close()), e.on("click", `button[command="show-modal"][commandfor="${n.attr("id")}"]`, function(e) {
-                    n.attr("data-status", t()(e.currentTarget).data("status")), r ? .showModal()
+                return n.find(">button").on("click", () => r ?.close()), e.on("click", `button[command="show-modal"][commandfor="${n.attr("id")}"]`, function(e) {
+                    n.attr("data-status", t()(e.currentTarget).data("status")), r ?.showModal()
                 }), {
                     $MODAL: n,
                     STATUS_LABELS: n.find("span[data-status]").get().reduce(function(e, n) {
@@ -67182,9 +67168,9 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         t = new URL(`${e}//maps.google.com/maps`);
                     return (e = {}, n = "") => {
                         const r = structuredClone(e);
-                        r.href = r.url, r.isBranch = l(r.locationType, "branch"), r.isATM = l(r.locationType, "atm"), r.hasATM = r.isBranch && !!r.atmDetail ? .length, r.displayType = `${r.locationType}${r.hasATM?"/ATM":""}`, r.displayName = `${TextFormatUtils.format(r.locationName,"title")} ${r.displayType}`, r.phone = r.phone ? .replace(/\D+/g, "-") ? .replace(/(^-)|(-$)/g, "");
+                        r.href = r.url, r.isBranch = l(r.locationType, "branch"), r.isATM = l(r.locationType, "atm"), r.hasATM = r.isBranch && !!r.atmDetail ?.length, r.displayType = `${r.locationType}${r.hasATM?"/ATM":""}`, r.displayName = `${TextFormatUtils.format(r.locationName,"title")} ${r.displayType}`, r.phone = r.phone ?.replace(/\D+/g, "-") ?.replace(/(^-)|(-$)/g, "");
                         const i = r.locationAddress;
-                        i.streetAddress1 = TextFormatUtils.format(i.address1, "streetAddress"), i.streetAddress2 = TextFormatUtils.format(i.address2, "streetAddress"), i.fullStreetAddress = i.streetAddress1 + (i.address2 && r.isATM ? `\n${i.streetAddress2}` : ""), i.city = TextFormatUtils.format(i.city, "title"), i.zipCode = i.zipCode ? .replace(/-0000$/, ""), i.zipLine = `${i.city}, ${i.state}  ${i.zipCode}`, i.markerTitle = `${r.displayName}\n${i.fullStreetAddress}\n${i.zipLine}`, n && (t.searchParams.set("saddr", n), t.searchParams.set("daddr", `${i.streetAddress1}, ${i.zipLine}`), i.directionsHref = t.href);
+                        i.streetAddress1 = TextFormatUtils.format(i.address1, "streetAddress"), i.streetAddress2 = TextFormatUtils.format(i.address2, "streetAddress"), i.fullStreetAddress = i.streetAddress1 + (i.address2 && r.isATM ? `\n${i.streetAddress2}` : ""), i.city = TextFormatUtils.format(i.city, "title"), i.zipCode = i.zipCode ?.replace(/-0000$/, ""), i.zipLine = `${i.city}, ${i.state}  ${i.zipCode}`, i.markerTitle = `${r.displayName}\n${i.fullStreetAddress}\n${i.zipLine}`, n && (t.searchParams.set("saddr", n), t.searchParams.set("daddr", `${i.streetAddress1}, ${i.zipLine}`), i.directionsHref = t.href);
                         const s = new URLSearchParams;
                         return s.set("branchId", r.branchId), s.set("latitude", i.lat), s.set("Longitude", i.long), r.makeApptQueryString = `?${s.toString()}`, [r, i]
                     }
@@ -67215,11 +67201,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 lt = 3e-4,
                 ut = [];
             let dt, ht, pt, ft, gt, mt, yt;
-            class vt {#
-                g;#
-                m;#
-                y;#
-                v;
+            class vt {#g;#m;#y;#v;
                 constructor(e, n, r = t()(), i = {}) {
                     if (!gt) throw new Error("Please call initMarkers() with a valid map object first.");
                     const s = new dt.LatLng(e, n),
@@ -67244,7 +67226,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     return this.#v
                 }
                 get isPositionVisible() {
-                    return gt.getBounds() ? .contains(this.#g.position)
+                    return gt.getBounds() ?.contains(this.#g.position)
                 }
                 get isContentVisible() {
                     if (!this.isPositionVisible) return !1;
@@ -67266,27 +67248,24 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 }
             }
             class wt extends vt {
-                static# b = [];#
-                w;#
-                x;#
-                k = !1;
+                static #b = [];#w;#x;#k = !1;
                 constructor(e, t, n, r) {
-                    const i = n ? .find(et),
+                    const i = n ?.find(et),
                         s = i.clone(),
-                        o = ut.at(-1) ? .advMarkerElement ? .position,
-                        a = Math.abs(e - o ? .lat) < lt && Math.abs(t - o ? .lng) < lt,
+                        o = ut.at(-1) ?.advMarkerElement ?.position,
+                        a = Math.abs(e - o ?.lat) < lt && Math.abs(t - o ?.lng) < lt,
                         c = {
                             title: r,
                             zIndex: -ut.length,
                             collisionBehavior: pt.CollisionBehavior[a ? "OPTIONAL_AND_HIDES_LOWER_PRIORITY" : "REQUIRED_AND_HIDES_OPTIONAL"]
                         };
-                    super(e, t, s, c), this.#w = n, this.#x = i.add(s), this.#k = a, this.advMarkerElement.addListener("gmp-click", this.spotlight), s ? .on("mouseenter", this.spotlight), s ? .on("mouseleave", this.unlight), n ? .on("mouseenter mouseleave", e => s.trigger(e))
+                    super(e, t, s, c), this.#w = n, this.#x = i.add(s), this.#k = a, this.advMarkerElement.addListener("gmp-click", this.spotlight), s ?.on("mouseenter", this.spotlight), s ?.on("mouseleave", this.unlight), n ?.on("mouseenter mouseleave", e => s.trigger(e))
                 }
                 get $card() {
                     return this.#w
                 }
                 spotlight = e => {
-                    "gmp-click" === e ? .type && this.#w.trigger("markerClick");
+                    "gmp-click" === e ?.type && this.#w.trigger("markerClick");
                     const t = wt.#b;
                     for (; t.length;) t.shift().unlight();
                     this.#k && (this.advMarkerElement.collisionBehavior = pt.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL), this.advMarkerElement.zIndex = ut.length - this.index, this.#x.addClass(ct), t.push(this)
@@ -67295,8 +67274,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     this.#k && (this.advMarkerElement.collisionBehavior = pt.CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY), this.advMarkerElement.zIndex = -this.index, this.#x.removeClass(ct)
                 }
             }
-            class xt extends vt {#
-                T;
+            class xt extends vt {#T;
                 constructor(e, n, r, i, s = !1) {
                     super(e, n, t()(`<div class="region-marker-content">${r?.data("count")||0}</div>`), {
                         title: i
@@ -67311,14 +67289,14 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         }
                     }), gt.fitBounds(this.minBounds))
                 }
-                static# S(e) {
+                static #S(e) {
                     return new pt.AdvancedMarkerElement({
                         content: t()(`<div class="region-marker-content cluster-marker-content">${e.markers.reduce((e,n)=>e+(parseInt(t()(n.content).text())||0),0)}</div>`).get(0),
                         position: e.position,
                         map: gt
                     })
                 }
-                activate = () => this.#T ? .trigger("markerClick")
+                activate = () => this.#T ?.trigger("markerClick")
             }
             async function kt(e) {
                 if (gt) throw new Error("Map already set for this page.");
@@ -67335,7 +67313,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             }
 
             function _t(e = !1) {
-                return mt = ut.findLast(e => e.isPositionVisible), e && mt ? .$card ? .trigger("markerVisible"), mt
+                return mt = ut.findLast(e => e.isPositionVisible), e && mt ?.$card ?.trigger("markerVisible"), mt
             }
             const At = Object.freeze({
                 mapId: S,
@@ -67354,7 +67332,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             };
             async function Dt(e) {
                 await async function(e) {
-                    [Ct, Et, Pt] = await C("core", "maps", "marker"), Lt = e, $t || = new Et.Map(Lt.element, { ...At
+                    [Ct, Et, Pt] = await C("core", "maps", "marker"), Lt = e, $t ||= new Et.Map(Lt.element, { ...At
                     }), kt($t), Lt.geometry && $t.fitBounds(Lt.geometry.viewport)
                 }({ ...jt,
                     ...e
@@ -67396,7 +67374,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         return r(i, s, a, i.hour < 7), r(s, i, !a, !1), `${i.clockTime}${i.period}&ndash;${s.clockTime}${s.period} ${t}`
                     }
                     return n => {
-                        if (!n.table ? .length) return {};
+                        if (!n.table ?.length) return {};
                         let r, s = !1;
                         const o = n.table.reduce((o, a) => {
                             const c = i(a, n.tz);
@@ -67436,7 +67414,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
 
                 function r(e = []) {
                     const [r, i] = e;
-                    r ? .isValid && (n.searchParams.set("lat", r.lat), n.searchParams.set("long", r.lng));
+                    r ?.isValid && (n.searchParams.set("lat", r.lat), n.searchParams.set("long", r.lng));
                     return t().get({
                         url: n.href,
                         dataType: "json"
@@ -67461,13 +67439,13 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     o = [new B(s.waiting), new B(s.results, It), new B(s.noResults), new B(s.mobileMap, It)],
                     c = new z("advisor-locations", e, o);
                 const l = (() => {
-                    const n = ["macOS", "iOS"].includes(navigator.userAgentData ? .platform) || /Mac|iPhone|iPad/i.test(navigator.platform) ? "maps:" : "https:",
+                    const n = ["macOS", "iOS"].includes(navigator.userAgentData ?.platform) || /Mac|iPhone|iPad/i.test(navigator.platform) ? "maps:" : "https:",
                         r = new q,
                         o = e.find("#cloners >.card").get(0).outerHTML;
                     let l;
                     return {
                         buildResultList: function(u = []) {
-                            u ? .sort((e, t) => e.miles - t.miles), 1 == u.length && (u[0].preferred = "Y");
+                            u ?.sort((e, t) => e.miles - t.miles), 1 == u.length && (u[0].preferred = "Y");
                             const d = [];
                             for (; u.length;) d.push(u.splice(0, 3));
                             Ht && Ht.remove(), Ht = t()(d.map(function(t, s) {
@@ -67491,7 +67469,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                                         }
                                     }(e, i);
                                     /^(?:true|yes|y)$/i.test(e.preferred) && function(e) {
-                                        l || = Nt.find(".detail-group-list >.detail-group-row.detail-color-apply"), l.find("span.js-miles").text(e.miles ? `(${e.miles} miles)` : ""), l.find(".js-streetaddress").text((e, t) => TextFormatUtils.format(t, "streetAddress"));
+                                        l ||= Nt.find(".detail-group-list >.detail-group-row.detail-color-apply"), l.find("span.js-miles").text(e.miles ? `(${e.miles} miles)` : ""), l.find(".js-streetaddress").text((e, t) => TextFormatUtils.format(t, "streetAddress"));
                                         try {
                                             const t = r.build(Ft.get(0));
                                             t.searchParams.set("url", e.directionsHref), Ft.attr("href", t.href)
@@ -67589,7 +67567,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                                         console.error(e)
                                     }
                                     return n
-                                }(l, e).shift() ? .instance,
+                                }(l, e).shift() ?.instance,
                                 i = u(r).flat(),
                                 s = "atmHours" === e && (l.isATM || l.hasATM);
                             let o, a;
@@ -67616,15 +67594,15 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     getTimetableReducer: e => (t, n = "") => {
                         const r = ["Mon", "Tue", "Wed", "Thu"],
                             s = t.at(-1),
-                            a = s ? .days,
-                            l = a ? .at(-1),
+                            a = s ?.days,
+                            l = a ?.at(-1),
                             u = o(n).split(/^([a-z]+):/i),
                             d = u.pop().trim(),
                             h = TextFormatUtils.format(u.pop(), "title"),
-                            p = 2 === d.match(/^\*|\*$/g) ? .length ? "" : TextFormatUtils.format(c(d), "title"),
+                            p = 2 === d.match(/^\*|\*$/g) ?.length ? "" : TextFormatUtils.format(c(d), "title"),
                             g = f.getScheduleBlocks(p),
                             m = f.convertBlocksToText(g) || p;
-                        return m && (m === s ? .scheduleText && (e || r.includes(h) && r.includes(l)) ? a.push(h) : t.push({
+                        return m && (m === s ?.scheduleText && (e || r.includes(h) && r.includes(l)) ? a.push(h) : t.push({
                             days: Array(h),
                             scheduleText: m
                         }), (h || i) === i && (t[0] = f.getTodaySchedule(e, m, g))), t
@@ -67632,7 +67610,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     $formatTodaySchedule: (e = {}, t = "") => {
                         const r = e => e ? "show" : "",
                             i = o(e.status),
-                            s = o(n.statusLabels ? .[i]),
+                            s = o(n.statusLabels ?.[i]),
                             a = s ? "" : o(e.scheduleText),
                             c = [t, r(a), a, r(a && e.isAltered), i, r(s), s, l.displayName];
                         return h(n.todayScheduleTemplate, c)
@@ -67672,7 +67650,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     parseTimes: (e = "") => {
                         class t {
                             constructor(e, t = ":00", n = "") {
-                                this.hour = parseInt(e), this.minute = parseInt(t ? .replace(/^:/, "")), this.meridian = n ? .toLowerCase()
+                                this.hour = parseInt(e), this.minute = parseInt(t ?.replace(/^:/, "")), this.meridian = n ?.toLowerCase()
                             }
                             get minutesBeyondMidnight() {
                                 return 60 * (this.hour % 12 + ("pm" === this.meridian ? 12 : 0)) + this.minute
@@ -67688,7 +67666,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                             }
                         }
                         try {
-                            const n = e ? .matchAll(/(\d?\d)(:\d\d)?\s*([ap]m)?/gi);
+                            const n = e ?.matchAll(/(\d?\d)(:\d\d)?\s*([ap]m)?/gi);
                             return n ? [...n].map(e => new t(...e.slice(1))) : []
                         } catch (e) {
                             return console.error(e), []
@@ -67714,10 +67692,10 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     },
                     getAltScheduleInfo_Branch: (e = []) => {
                         const t = l.branchStatusDetail,
-                            n = u(t ? .closedate).indexOf(s);
+                            n = u(t ?.closedate).indexOf(s);
                         if (n < 0) return ["", ""];
-                        const r = f.parseTimes(u(t ? .openTime)[n]).shift(),
-                            i = f.parseTimes(u(t ? .closeTime)[n]).shift();
+                        const r = f.parseTimes(u(t ?.openTime)[n]).shift(),
+                            i = f.parseTimes(u(t ?.closeTime)[n]).shift();
                         let a = "";
                         if (r || i) {
                             const t = e.filter(e => (!r || r.minutesBeyondMidnight < e.close.minutesBeyondMidnight) && (!i || e.open.minutesBeyondMidnight < i.minutesBeyondMidnight));
@@ -67797,7 +67775,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             function cn(e) {
                 Yt = void 0;
                 const t = St(e);
-                rn = t ? .index, ln(t ? .minBounds, Xt)
+                rn = t ?.index, ln(t ?.minBounds, Xt)
             }
 
             function ln(e, t = 0) {
@@ -67809,7 +67787,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             }
 
             function un(e) {
-                !St(e).isContentVisible && cn(Math.max(e, (mt || _t()) ? .index))
+                !St(e).isContentVisible && cn(Math.max(e, (mt || _t()) ?.index))
             }
             const dn = (() => {
                     let e, t;
@@ -67829,7 +67807,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         }
                         t = r;
                         let i = _t(!nn);
-                        i ? .index > en && (en = i.index, e.getMap() || e.setMap(Jt), e.setBounds(i.minBounds)), Yt = n, nn = !1
+                        i ?.index > en && (en = i.index, e.getMap() || e.setMap(Jt), e.setBounds(i.minBounds)), Yt = n, nn = !1
                     }
                 })(),
                 hn = {
@@ -67850,7 +67828,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     if (_n && 0 == r.indexOf(_n)) return void i(An);
                     _n = void 0, An = void 0;
                     let o = /^[\d\-]+$/.test(r) ? [gn, mn] : [yn];
-                    n || = xn.find("div.suggestion-template").html(), e || = (await C("places"))[0], t || = new e.AutocompleteService, Sn || = new e.AutocompleteSessionToken,
+                    n ||= xn.find("div.suggestion-template").html(), e ||= (await C("places"))[0], t ||= new e.AutocompleteService, Sn ||= new e.AutocompleteSessionToken,
                         function e(i = []) {
                             if (bn.attr("aria-describedby", "tt-menu"), o.length <= 0 || i.length >= 5) s(i.slice(0, 5)), i.length <= 1 && (_n = r, An = i);
                             else {
@@ -67925,7 +67903,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             }
 
             function Rn(e = "") {
-                const t = hn.footprint[e ? .toUpperCase()];
+                const t = hn.footprint[e ?.toUpperCase()];
                 return wn.attr("action", t ? `/${hn.locationTypeDir}/${t.abbr.toLowerCase()}` : hn.locatorPagePath), !!t
             }
 
@@ -67935,7 +67913,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
             }
 
             function Fn(e = !0) {
-                kn ? .prop("disabled", !e)
+                kn ?.prop("disabled", !e)
             }
             globalThis.branchAtmLocator = (e, n = {}) => {
                 window.location.href.endsWith("?") && history.pushState({}, null, window.location.href.slice(0, -1));
@@ -68052,7 +68030,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                                     header: xn.find("div.header-template").html(),
                                     suggestion: e => e.suggestion
                                 }
-                            }).on("typeahead:change", En).on("typeahead:select", Pn).on("keydown", $n).on("input", Ln).after(t).parent().find("div.tt-menu").attr("id", "tt-menu"), hn.locatorPagePath = wn.attr("action"), wn.attr("action", window.location.pathname), kn = wn.find("button.google-search-button").first().on("click", () => pn.searchButtonClick = !0), hn.relayParams ? .forEach((e, t) => {
+                            }).on("typeahead:change", En).on("typeahead:select", Pn).on("keydown", $n).on("input", Ln).after(t).parent().find("div.tt-menu").attr("id", "tt-menu"), hn.locatorPagePath = wn.attr("action"), wn.attr("action", window.location.pathname), kn = wn.find("button.google-search-button").first().on("click", () => pn.searchButtonClick = !0), hn.relayParams ?.forEach((e, t) => {
                                 const n = $('<input type="hidden"/>');
                                 n.attr("name", t), n.val(e), wn.prepend(n)
                             }), wn.find("label.placeholder").on("click:a11y", () => bn.focus()), wn.on("submit", In);
@@ -68080,7 +68058,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                             pgState: n,
                             pgCity: r,
                             pgZip: i
-                        } = e.data(), s = N.getFootprint()[n], o = g.textAddress ? .[0], a = {
+                        } = e.data(), s = N.getFootprint()[n], o = g.textAddress ?.[0], a = {
                             state: n,
                             city: r,
                             zip: i
@@ -68096,12 +68074,12 @@ $(() => $('#lf-calculator').each((i, elem) => {
                                     return [!1, String(i)]
                             }
                         })();
-                        return l && l === o && (Object.keys(a).forEach(e => a[e] || = g[e] ? .[0]), a.latlng = new L(g.latlng ? .[0])), a.textAddress = l, [t, c, a]
+                        return l && l === o && (Object.keys(a).forEach(e => a[e] ||= g[e] ?.[0]), a.latlng = new L(g.latlng ?.[0])), a.textAddress = l, [t, c, a]
                     },
                     getCitySearchText: (e, t) => `${TextFormatUtils.format(e,"title")}, ${t}`,
                     citySanitation: async t => {
                         const n = await t.addressPartsPromise;
-                        n ? .city ? e.find(".locator-header-city").text(`${n.city},`) : window.location = "/locator-error"
+                        n ?.city ? e.find(".locator-header-city").text(`${n.city},`) : window.location = "/locator-error"
                     },
                     autocompleteCallback: (t = {}, n = {}) => {
                         t.latlngPromise.then(r => {
@@ -68128,7 +68106,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         let n;
                         return (r = {}) => {
                             const i = structuredClone(j);
-                            i.locationType = j.locationType ? .toUpperCase() || "BOTH";
+                            i.locationType = j.locationType ?.toUpperCase() || "BOTH";
                             const s = { ...a,
                                 ...i,
                                 ...r
@@ -68147,7 +68125,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         M.remove(), e.removeClass(["init-view-active", o])
                     },
                     handleLocationSearchResults: (e, n, r) => {
-                        const i = e ? .location || [],
+                        const i = e ?.location || [],
                             s = i.length > 0;
                         if (N.makeAnalyticsCall(s, D, n, r), !s) return N.handleLocationSearchEmpty(void 0, "0 locations", e);
                         const o = nt(Ye).href,
@@ -68190,11 +68168,11 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         const e = [];
                         let t;
                         return (...n) => {
-                            t || = A.html(), Object.assign(e, n.flat()), A.html(d(t, e))
+                            t ||= A.html(), Object.assign(e, n.flat()), A.html(d(t, e))
                         }
                     })(),
                     revealCard: (e, t = !1) => {
-                        e ? .hasClass("hide") && N.revealPage(e.data("page"), t), e && p(e)
+                        e ?.hasClass("hide") && N.revealPage(e.data("page"), t), e && p(e)
                     },
                     revealPage: (e, t = !1) => {
                         let n = M.filter(`[data-page=${e}]`).prevAll(c).addBack();
@@ -68222,7 +68200,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         n.attr("aria-checked", n.prop("checked"))
                     },
                     handleApplyFilters: e => {
-                        const t = !!e ? .target;
+                        const t = !!e ?.target;
                         D = t, v.find(".badge-count").text(k.filter(":checked").not(":disabled").length || ""), t && (N.listViewToggle(), N.closeFilterModal());
                         const n = new URLSearchParams(w.serialize());
                         j = Array.from(new Set(n.keys())).reduce((e, t) => (e[t] = n.getAll(t).join(), e), {}), tt(f, {
@@ -68236,7 +68214,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                             })
                     },
                     handleResetFilters: e => {
-                        w.get(0).reset(), x.val([e.data ? .initType]), w.find("input").trigger("change"), tt(f, {
+                        w.get(0).reset(), x.val([e.data ?.initType]), w.find("input").trigger("change"), tt(f, {
                             bal_filters: void 0
                         }, !0), D = !1
                     },
@@ -68268,7 +68246,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                         const n = ["a[href]", "button:not([disabled])", "input:not([disabled])", "select:not([disabled])", "textarea:not([disabled])", '[tabindex]:not([tabindex="-1"])', '[contenteditable="true"]'].join(",");
                         if (t()(e.target).closest(n).length) return;
                         const r = t()(e.currentTarget).find(n).filter(":visible").get();
-                        r.find(t => e.target.compareDocumentPosition(t) & Node.DOCUMENT_POSITION_FOLLOWING) ? .focus()
+                        r.find(t => e.target.compareDocumentPosition(t) & Node.DOCUMENT_POSITION_FOLLOWING) ?.focus()
                     },
                     seeMoreToggle: e => {
                         const n = t()(e.currentTarget),
@@ -68308,7 +68286,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                     init: N.init
                 }
             }, globalThis.branchAtmDetail = (e, n = {}) => {
-                const r = nt(Xe).textAddress ? .[0],
+                const r = nt(Xe).textAddress ?.[0],
                     i = nt(Ye),
                     {
                         STATUS_LABELS: s
@@ -68372,7 +68350,7 @@ $(() => $('#lf-calculator').each((i, elem) => {
                 t()(`[data-${e}]`).each((i, s) => {
                     const o = t()(s),
                         a = o.data(e);
-                    n[a] || = [];
+                    n[a] ||= [];
                     const c = n[a],
                         l = c.length;
                     c.push(r(o, o.data(e)).catch(function(e) {
@@ -68968,8 +68946,8 @@ $(() => {
     }
 
     function getValidMMARate(responseJSON) {
-        const rate = responseJSON ? .dynamicmmarate;
-        if (!Array.isArray(rate ? .pr) || !rate.pr[0] ? .prt) {
+        const rate = responseJSON ?.dynamicmmarate;
+        if (!Array.isArray(rate ?.pr) || !rate.pr[0] ?.prt) {
             return null;
         }
         const rateEntry = rate.pr[0],
@@ -69020,8 +68998,8 @@ $(() => {
                 if (onSuccess) onSuccess(data);
             },
             complete: function(data) {
-                const validRate = getValidMMARate(data ? .responseJSON);
-                if (data && data.responseJSON ? .status !== "error" && validRate) {
+                const validRate = getValidMMARate(data ?.responseJSON);
+                if (data && data.responseJSON ?.status !== "error" && validRate) {
                     onComplete(validRate, queriedValue);
                 } else {
                     onInvalid();
@@ -69219,9 +69197,9 @@ $(() => {
         const standardRates = getCookieValue("mmaratestandard"),
             standardRates2 = getCookieValue("mmaratestandardone"),
             allStandardRates = createRatesValueArray(standardRates, standardRates2);
-        let tIndex = allStandardRates.findIndex((x) => String(x ? .st ? .z) === String(zip));
+        let tIndex = allStandardRates.findIndex((x) => String(x ?.st ?.z) === String(zip));
         if (tIndex === -1) return;
-        const tier = allStandardRates[tIndex] ? .st ? .brt;
+        const tier = allStandardRates[tIndex] ?.st ?.brt;
         if (!Array.isArray(tier) || tier.length < 6) return;
         footer.find(".tier1-bf").text(`$${tier[0].bt}`);
         footer.find(".tier2-bt").text(`$${tier[1].bt}`);
@@ -69327,13 +69305,13 @@ $(() => {
 
     function deduplicateRateCookies() {
         deduplicateCookieByZip("mmarateprime", function(entry) {
-            return String(entry.pr ? .[0] ? .z || "").trim();
+            return String(entry.pr ?.[0] ?.z || "").trim();
         });
         deduplicateCookieByZip("mmaratestandard", function(entry) {
-            return String(entry.st ? .z || "").trim();
+            return String(entry.st ?.z || "").trim();
         });
         deduplicateCookieByZip("mmaratestandardone", function(entry) {
-            return String(entry.st ? .z || "").trim();
+            return String(entry.st ?.z || "").trim();
         });
     }
 
@@ -69425,8 +69403,8 @@ $(() => {
     }
 
     function handleCachedZip(rateObj, queriedValue) {
-        const matchedRate = rateObj.zs.find((item) => String(item.pr ? .[0] ? .z).trim() === queriedValue);
-        if (!matchedRate ? .pr ? .[0] ? .prt) return;
+        const matchedRate = rateObj.zs.find((item) => String(item.pr ?.[0] ?.z).trim() === queriedValue);
+        if (!matchedRate ?.pr ?.[0] ?.prt) return;
         renderMMAContent(matchedRate.pr[0].z, matchedRate.pr[0].prt.ir, matchedRate.pr[0].prt.apy);
         setLastMMAQueriedCookie(queriedValue, EXPIRES, MMA_COOKIE_ATTRIBUTES);
         updateZipLinks(queriedValue);
@@ -69440,7 +69418,7 @@ $(() => {
         const rateObj = safeJsonParse(cookieValue);
         if (!rateObj || !Array.isArray(rateObj.zs)) return;
 
-        const uniqueZips = removeDuplicateZipCodes(rateObj.zs.map((item) => item.pr ? .[0] ? .z));
+        const uniqueZips = removeDuplicateZipCodes(rateObj.zs.map((item) => item.pr ?.[0] ?.z));
 
         if (uniqueZips.includes(queriedValue)) {
             handleCachedZip(rateObj, queriedValue);
@@ -69454,7 +69432,7 @@ $(() => {
             createLoaderFn: createLoader,
             resetSubmitButtonFn: resetSubmitButton,
             onSuccess: function(data) {
-                if (data ? .status === "error") {
+                if (data ?.status === "error") {
                     triggerError(invalidError, "invalid");
                 }
             },
@@ -69467,7 +69445,7 @@ $(() => {
             },
             onError: function() {
                 const lastQuery = rateObj.zs[rateObj.zs.length - 1];
-                const fallbackZip = lastQuery ? .pr ? .[0] ? .z;
+                const fallbackZip = lastQuery ?.pr ?.[0] ?.z;
                 if (fallbackZip) {
                     setLastMMAQueriedCookie(fallbackZip, EXPIRES, MMA_COOKIE_ATTRIBUTES);
                     trackMMAZipSearch(fallbackZip, null, false);
@@ -69484,7 +69462,7 @@ $(() => {
             createLoaderFn: createLoader,
             resetSubmitButtonFn: resetSubmitButton,
             onSuccess: function(data) {
-                if (data ? .status === "error") {
+                if (data ?.status === "error") {
                     triggerError(invalidError, "invalid");
                 }
             },
@@ -69516,7 +69494,7 @@ $(() => {
 
     function handleBackToTop($btt, $target) {
         const $container = $btt.closest(".disc-back-to-content");
-        if (!lastClickedElement ? .length) {
+        if (!lastClickedElement ?.length) {
             scrollToElement($target);
             return;
         }
@@ -69556,7 +69534,7 @@ $(() => {
         const rateObj = safeJsonParse(cookieValue);
         if (!rateObj || !Array.isArray(rateObj.zs)) return;
 
-        const queriedZips = rateObj.zs.map((item) => item.pr ? .[0] ? .z);
+        const queriedZips = rateObj.zs.map((item) => item.pr ?.[0] ?.z);
         const uniqueZips = removeDuplicateZipCodes(queriedZips);
         if (uniqueZips.length >= 10) {
             $(".mma-banner-modal .modal-header .modal-title, .mma-banner-modal .modal-header p").hide();
@@ -69584,10 +69562,10 @@ $(() => {
         }
 
         const matchedRate = rateObj.zs.find((item) => {
-            return String(item.pr ? .[0] ? .z).trim() === queriedValue.trim();
+            return String(item.pr ?.[0] ?.z).trim() === queriedValue.trim();
         });
 
-        if (matchedRate ? .pr ? .[0] ? .prt) {
+        if (matchedRate ?.pr ?.[0] ?.prt) {
             renderMMAContent(matchedRate.pr[0].z, matchedRate.pr[0].prt.ir, matchedRate.pr[0].prt.apy);
             return matchedRate.pr[0].z;
         }
@@ -69608,7 +69586,7 @@ $(() => {
         if (!rateObj || !Array.isArray(rateObj.zs) || rateObj.zs.length === 0) return true;
 
         const lastQuery = rateObj.zs[rateObj.zs.length - 1];
-        if (!Array.isArray(lastQuery ? .pr) || !lastQuery.pr[0] ? .prt) return true;
+        if (!Array.isArray(lastQuery ?.pr) || !lastQuery.pr[0] ?.prt) return true;
 
         const queryZip = lastQuery.pr[0].z,
             queryRate = lastQuery.pr[0].prt.ir,
@@ -70262,7 +70240,7 @@ window.zipCodeSelector = function() {
                 const state = components.filter(c => c.types.includes("administrative_area_level_1"))[0];
                 const postalCode = components.filter(c => c.types.includes("postal_code"))[0];
                 const country = components.filter(c => c.types.includes("country"))[0];
-                if (state && postalCode && country ? .short_name === "US") {
+                if (state && postalCode && country ?.short_name === "US") {
                     return {
                         state: state.short_name ? state.short_name : '',
                         postalCode: postalCode.short_name ? postalCode.short_name : '',
@@ -70328,7 +70306,7 @@ window.zipCodeSelector = function() {
                 console.log(error.message);
             });
             if (latlng) {
-                const locQrdZip = (source, search) => Object.entries(source).find(([_, v]) => v.includes(search)) ? .[0] || false;
+                const locQrdZip = (source, search) => Object.entries(source).find(([_, v]) => v.includes(search)) ?.[0] || false;
                 const locQrdZipValue = locQrdZip(cookieLSIZipList, latlngString);
                 if (cookieLSIZipList.hasOwnProperty(locQrdZipValue)) {
                     ZIPSELECT_INPUT.val(locQrdZipValue);
@@ -72713,7 +72691,7 @@ window.CardView = function() {
                 } catch (e) {
                     sessionStorage.removeItem("filterData");
                 }
-                if (filText ? .cardFilterValue) {
+                if (filText ?.cardFilterValue) {
 
                     getFiltervalue = '?cardfilter=' + encodeURIComponent(filText.cardFilterValue);
                     if (filtersListUpdated) {
