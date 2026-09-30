@@ -4989,3 +4989,5 @@ div.bg-off-white:not(.card):not(.staticcardv2) {
 
 html, body { background-color: #fff !important; }
 body { max-width: none !important; margin: 0 !important; }
+
+#main-hero-login.hero-login-template { padding-left: 15px; padding-right: 15px; }

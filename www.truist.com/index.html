@@ -13726,7 +13726,7 @@
             }
 
             function initFloatingLabels() {
-                document.querySelectorAll('.sign-in-form .form-group input').forEach(function (input) {
+                document.querySelectorAll('.sign-in-form .form-group input:not([type="checkbox"])').forEach(function (input) {
                     var group = input.closest('.form-group');
                     if (!group) return;
                     var label = group.querySelector('label');
