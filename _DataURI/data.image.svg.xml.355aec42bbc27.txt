@@ -1,0 +1,1 @@
+data:image/svg+xml,%3Csvg viewBox='0 0 608 180'%3E%3C/svg%3E

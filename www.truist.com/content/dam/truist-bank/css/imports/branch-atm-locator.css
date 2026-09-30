@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Truist Trio Var';
+    src: url('/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-site/resources/fonts/truist-trio/TruistTrioVF_W_Wght.woff2') format('woff2'), url('/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-site/resources/fonts/truist-trio/TruistTrioVF_Wght.ttf') format('truetype');
+    font-stretch: normal;
+}
+
+.branch-locator-container.init-view-active .google-map-locator-component .main-container:has( .citylist-content) {
+    display: unset;
+}
+
+.google-map-locator-component .grid-container .card-title {
+    font-weight: var( --truFontWt600);
+}
+
+.google-map-locator-component .result-list-item-view .grid-container p.tel-syntax {
+    white-space: nowrap;
+}
+
+.google-map-locator-component .result-list-item-view .card {
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.branch-locator-container .loc-schedule-today-item,
+.location-detail-component .loc-schedule-today-item {
+    line-height: var( --truLnHght3);
+}
+
+.branch-locator-container ul.lobby-items>li,
+.location-detail-component ul.lobby-items>li {
+    padding: 0 0 var( --truSpace2xs);
+}
+
+.google-map-locator-component .main-container {
+    padding: 0 var( --truSpaceMd);
+}
+
+.google-map-locator-component .result-list-item-view .load-more-button button {
+    translate: 0 -50%;
+    border: var( --truSpace3xs) solid var( --truPurple800);
+    border-radius: var( --truBdrRadiusMd);
+    padding: var( --truSpaceSm) var( --truSpaceXlg);
+    font-size: var( --truTxtSize4);
+    background: var( --truNeutral50);
+}
+
+.google-map-locator-component .result-list-item-view .show-less-button {
+    text-align: center;
+}
+
+@media screen and ( max-width: 1024px) {
+    .google-map-locator-component .grid-button-align {
+        flex-wrap: wrap;
+        padding: 0 var( --truSpaceSm);
+        gap: var( --truSpaceSm);
+    }
+}
+
+@media screen and ( max-width: 768px) {
+    .google-map-locator-component .main-container {
+        padding: 0;
+    }
+    .branch-locator-container .resultlist-index>.card .address {
+        text-wrap: revert;
+    }
+}
