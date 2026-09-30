@@ -1,0 +1,12 @@
+{
+  "name": "truist-clone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static Truist clone served by a small Node server",
+  "scripts": {
+    "start": "node serve.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
