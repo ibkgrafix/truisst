@@ -72,8 +72,16 @@ function serveFile(filePath, urlPath, fallback, res) {
         // Try appending .html
         fs.readFile(filePath + '.html', (err2, data2) => {
           if (err2) {
-            send(res, 404, 'text/plain', '404 Not Found: ' + urlPath);
-            console.log('[404]', urlPath);
+            // Try as a directory — append /index.html
+            fs.readFile(filePath + '/index.html', (err3, data3) => {
+              if (err3) {
+                send(res, 404, 'text/plain', '404 Not Found: ' + urlPath);
+                console.log('[404]', urlPath);
+              } else {
+                send(res, 200, 'text/html; charset=utf-8', data3);
+                console.log('[200] (dir index)', urlPath);
+              }
+            });
           } else {
             send(res, 200, 'text/html; charset=utf-8', data2);
           }
