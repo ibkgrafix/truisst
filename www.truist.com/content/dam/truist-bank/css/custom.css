@@ -4991,3 +4991,242 @@ html, body { background-color: #fff !important; }
 body { max-width: none !important; margin: 0 !important; }
 
 #main-hero-login.hero-login-template { padding-left: 15px; padding-right: 15px; }
+
+
+/* =====================================================================
+   SIGN-IN FLOW OVERLAYS
+   ===================================================================== */
+
+/* Shared overlay wrapper: fills the viewport, centres the panel */
+#tru-otp-overlay,
+#tru-success-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Truist Trio Var', 'Source Sans 3', sans-serif;
+}
+
+/* Semi-transparent backdrop */
+.tru-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+/* White card panel */
+.tru-overlay-panel {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+    padding: 40px 36px 36px;
+    width: 100%;
+    max-width: 480px;
+    margin: 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Logo */
+.tru-overlay-logo {
+    display: block;
+    height: 32px;
+    margin: 0 auto 20px;
+}
+
+/* Titles */
+.tru-overlay-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2e1a47;
+    text-align: center;
+    margin: 0 0 8px;
+}
+
+.tru-overlay-subtitle {
+    font-size: 0.9rem;
+    color: #5c5c5c;
+    text-align: center;
+    margin: 0 0 28px;
+    line-height: 1.5;
+}
+
+/* Form fields */
+.tru-overlay-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.tru-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tru-field-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #2e1a47;
+}
+
+.tru-field-group input {
+    border: 1.5px solid #c9c4d1;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 1rem;
+    color: #1a1a1a;
+    transition: border-color 0.2s;
+    outline: none;
+    background: #fafafa;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tru-field-group input:focus {
+    border-color: #4b2d7e;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(75, 45, 126, 0.12);
+}
+
+.tru-field-error {
+    font-size: 0.8rem;
+    color: #c0392b;
+    display: none;
+    margin-top: 2px;
+}
+
+/* Primary button */
+.tru-overlay-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #4b2d7e;
+    color: #fff;
+    border: 2px solid #4b2d7e;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.tru-overlay-btn:hover {
+    background: #3a1f63;
+    border-color: #3a1f63;
+}
+
+.tru-overlay-btn:active {
+    transform: scale(0.98);
+}
+
+/* Outline variant for "Go Home Now" */
+.tru-btn-outline {
+    background: transparent;
+    color: #4b2d7e;
+}
+
+.tru-btn-outline:hover {
+    background: #4b2d7e;
+    color: #fff;
+}
+
+/* ── Success panel ── */
+.tru-success-panel {
+    text-align: center;
+    padding: 48px 36px 40px;
+}
+
+.tru-success-icon {
+    margin: 0 auto 20px;
+    width: 72px;
+    height: 72px;
+}
+
+.tru-success-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.tru-success-msg {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+
+.tru-success-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ede8f4;
+    padding: 12px 0;
+    font-size: 0.9rem;
+}
+
+.tru-success-detail:last-of-type {
+    border-bottom: 1px solid #ede8f4;
+    margin-bottom: 24px;
+}
+
+.tru-success-label {
+    color: #777;
+    font-weight: 500;
+}
+
+.tru-success-value {
+    font-weight: 700;
+    color: #2e1a47;
+}
+
+.tru-green {
+    color: #2e7d32 !important;
+}
+
+/* Countdown text */
+.tru-redirect-msg {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.tru-redirect-msg strong {
+    color: #4b2d7e;
+    font-size: 1rem;
+}
+
+/* Progress bar */
+.tru-progress-bar {
+    height: 6px;
+    background: #ede8f4;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 0 24px;
+}
+
+.tru-progress-fill {
+    height: 100%;
+    width: 100%;
+    background: #4b2d7e;
+    border-radius: 3px;
+    transition: width 1s linear;
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+    .tru-overlay-panel {
+        padding: 28px 20px 24px;
+        border-radius: 12px;
+    }
+
+    .tru-overlay-title {
+        font-size: 1.25rem;
+    }
+}
