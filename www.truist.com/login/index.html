@@ -27,52 +27,87 @@
     type="text/css" />
   <link rel="stylesheet" href="/content/dam/truist-bank/css/custom.css" type="text/css" />
 
-  <style>
-    /* Make this page fill the viewport exactly like the hero on the homepage */
-    html,
-    body {
+    <style>
+    html, body {
       margin: 0;
       padding: 0;
       min-height: 100vh;
       background: #2e1a47;
     }
 
-    /* Force the hero to fill the full page height */
+    /* Fill the full viewport */
     .hero-login-template {
       min-height: 100vh !important;
       display: flex !important;
       align-items: stretch !important;
       position: relative !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
 
-    /* On the standalone login page, hide the left content panel — show only the login form */
+    /* Hide the left hero image panel */
     .hero-login-left-container {
       display: none !important;
     }
 
-    /* Expand the login panel to fill the full width */
-    .hero--login-menu--row {
+    /* The login panel is display:none on mobile in the base CSS â€” override it here */
+    .hero-login-template .hero--login-menu--row {
+      display: flex !important;
       width: 100% !important;
       max-width: 100% !important;
       margin: 0 !important;
-      padding: 16px 0 0 0 !important;
+      padding: 0 !important;
       min-height: 100vh !important;
-      display: flex !important;
       align-items: flex-start !important;
       justify-content: center !important;
     }
 
-    .login-component {
-      width: 100% !important;
+    .hero-login-template .hero--login-menu--row .login-component {
+      justify-content: center !important;
+      height: auto !important;
     }
 
-    /* Show/hide password button — use the same SVG icon as homepage */
-    .password-not-visible {
-      background-image: url('/etc.clientlibs/stcom-aem-globalcomponents/components/content/login-component/v2/login-component/clientlibs/resources/img/show-password.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
+    /* Close button: exact dimensions from homepage signon-close-button */
+    .login-page-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 8px;
+      cursor: pointer;
     }
+
+    .login-page-close-btn:hover { border-color: #fff; }
+
+    /* X icon drawn with ::before/::after exactly like .signon-close-icon */
+    .login-page-close-icon {
+      width: 22px;
+      height: 22px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .login-page-close-icon::before,
+    .login-page-close-icon::after {
+      position: absolute;
+      content: ' ';
+      height: 20px;
+      width: 2px;
+      background-color: #fff;
+      top: 1px;
+      left: 10px;
+    }
+
+    .login-page-close-icon::before { transform: rotate(45deg); }
+    .login-page-close-icon::after  { transform: rotate(-45deg); }
   </style>
 </head>
 
@@ -88,10 +123,9 @@
     <div class="hero--login-menu--row">
 
       <!-- × Close button — top right, same as homepage mobile sign-in overlay -->
-      <button type="button" class="truist-signon-close-button" aria-label="Close" onclick="window.location.href='/'"
-        style="position:absolute;top:16px;right:16px;z-index:10;background:transparent;border:2px solid rgba(255,255,255,0.6);border-radius:8px;width:44px;height:44px;color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">
-        <span aria-hidden="true" class="signon-close-icon" style="font-style:normal;">&#x2715;</span>
-      </button>
+      <button type="button" class="login-page-close-btn" aria-label="Close sign in" onclick="window.location.href='/'" >
+      <span aria-hidden="true" class="login-page-close-icon"></span>
+    </button>
 
       <div class="login-component">
 
