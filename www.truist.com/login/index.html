@@ -27,8 +27,9 @@
     type="text/css" />
   <link rel="stylesheet" href="/content/dam/truist-bank/css/custom.css" type="text/css" />
 
-    <style>
-    html, body {
+  <style>
+    html,
+    body {
       margin: 0;
       padding: 0;
       min-height: 100vh;
@@ -67,6 +68,13 @@
       height: auto !important;
     }
 
+    /* MOBILE ONLY: push form down to match Image 1 reference positioning */
+    @media (max-width: 768px) {
+      .hero-login-template .maintenancemodeendpointurl {
+        padding-top: 110px !important;
+      }
+    }
+
     /* Close button: exact dimensions from homepage signon-close-button */
     .login-page-close-btn {
       position: absolute;
@@ -80,12 +88,14 @@
       height: 44px;
       padding: 0;
       background: transparent;
-      border: 2px solid rgba(255,255,255,0.6);
+      border: 2px solid rgba(255, 255, 255, 0.6);
       border-radius: 8px;
       cursor: pointer;
     }
 
-    .login-page-close-btn:hover { border-color: #fff; }
+    .login-page-close-btn:hover {
+      border-color: #fff;
+    }
 
     /* X icon drawn with ::before/::after exactly like .signon-close-icon */
     .login-page-close-icon {
@@ -106,8 +116,13 @@
       left: 10px;
     }
 
-    .login-page-close-icon::before { transform: rotate(45deg); }
-    .login-page-close-icon::after  { transform: rotate(-45deg); }
+    .login-page-close-icon::before {
+      transform: rotate(45deg);
+    }
+
+    .login-page-close-icon::after {
+      transform: rotate(-45deg);
+    }
   </style>
 </head>
 
@@ -123,9 +138,9 @@
     <div class="hero--login-menu--row">
 
       <!-- × Close button — top right, same as homepage mobile sign-in overlay -->
-      <button type="button" class="login-page-close-btn" aria-label="Close sign in" onclick="window.location.href='/'" >
-      <span aria-hidden="true" class="login-page-close-icon"></span>
-    </button>
+      <button type="button" class="login-page-close-btn" aria-label="Close sign in" onclick="window.location.href='/'">
+        <span aria-hidden="true" class="login-page-close-icon"></span>
+      </button>
 
       <div class="login-component">
 
