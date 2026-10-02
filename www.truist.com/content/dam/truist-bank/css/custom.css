@@ -5230,3 +5230,9 @@ body { max-width: none !important; margin: 0 !important; }
         font-size: 1.25rem;
     }
 }
+
+/* Remove underline from Set up online banking and Online security measures links */
+.truist-login-widget-form--need-id a,
+.truist-login-widget-form--need-id p a {
+    text-decoration: none !important;
+}
