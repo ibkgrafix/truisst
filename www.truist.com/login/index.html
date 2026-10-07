@@ -246,8 +246,7 @@
               <div class="form-group form-space-24 disp-flex">
                 <div class="input-wrapper login-checkbox-container">
                   <label class="form-check-label custom-control-label" for="login-save-user-id-checkbox">
-                    <input type="checkbox" class="form-control login-save-user-id-checkbox"
-                      id="login-save-user-id-checkbox" name="login-save-user-id-checkbox" />
+                    <input type="checkbox" id="login-save-user-id-checkbox" name="login-save-user-id-checkbox" />
                     <span class="label-span">Save user ID</span>
                   </label>
                 </div>
@@ -264,7 +263,8 @@
                   <input type="password" name="namepassword" id="idpassword" aria-required="true"
                     class="form-control sign-in-form-input login-password" aria-describedby="errMsg-password"
                     autocapitalize="none" autocomplete="off" value="" validate="empty" />
-                  <button class="password-not-visible" type="button" aria-label="Show password"></button>
+                  <button class="password-not-visible" type="button" aria-label="Show password"
+                    onclick="(function(btn){var p=document.getElementById('idpassword');if(!p)return;p.type=p.type==='password'?'text':'password';btn.setAttribute('aria-label',p.type==='password'?'Show password':'Hide password');})(this)"></button>
                   <label for="idpassword">Password</label>
                   <div class="inline-validation-message" id="errMsg-password">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 17 17">
